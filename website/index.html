@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCSE Maths Higher &mdash; Past Paper Topic Data</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f4f6f9; color: #222; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 3rem 1rem; }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; text-align: center; }
+    p.subtitle { color: #555; margin-bottom: 2.5rem; text-align: center; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; width: 100%; max-width: 900px; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 1.5rem 1.75rem; text-decoration: none; color: inherit; transition: box-shadow 0.15s, transform 0.15s; display: flex; flex-direction: column; gap: 0.4rem; }
+    .card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.14); transform: translateY(-2px); }
+    .card-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #2c3e50; }
+    .card-title { font-size: 1.1rem; font-weight: 600; }
+    .card-desc { font-size: 0.85rem; color: #666; }
+    footer { margin-top: 3rem; font-size: 0.8rem; color: #999; }
+  </style>
+</head>
+<body>
+  <h1>GCSE Maths Higher &mdash; Past Paper Topic Data</h1>
+  <p class="subtitle">Edexcel &bull; 13 papers per component &bull; Sorted by expected mark value</p>
+  <div class="cards">
+    <a class="card" href="paper1data_sorted.html">
+      <span class="card-label">Paper 1</span>
+      <span class="card-title">Non-Calculator</span>
+      <span class="card-desc">Topics sorted by P(appearance) &times; mean marks</span>
+    </a>
+    <a class="card" href="paper2data_sorted.html">
+      <span class="card-label">Paper 2</span>
+      <span class="card-title">Calculator</span>
+      <span class="card-desc">Topics sorted by P(appearance) &times; mean marks</span>
+    </a>
+    <a class="card" href="paper3data_sorted.html">
+      <span class="card-label">Paper 3</span>
+      <span class="card-title">Calculator</span>
+      <span class="card-desc">Topics sorted by P(appearance) &times; mean marks</span>
+    </a>
+    <a class="card" href="consolidated_sorted.html">
+      <span class="card-label">All Papers</span>
+      <span class="card-title">Consolidated</span>
+      <span class="card-desc">Combined totals across all three papers</span>
+    </a>
+  </div>
+  <footer>Data extracted from Edexcel GCSE Maths Higher past papers</footer>
+</body>
+</html>
