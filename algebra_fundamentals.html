@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algebra Fundamentals</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f7fa; }
+    .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+    h1 { font-size: 2.2rem; margin-bottom: 0.5rem; color: #1a5490; border-bottom: 3px solid #2c3e50; padding-bottom: 0.5rem; }
+    h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; color: #2c3e50; }
+    h3 { font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.7rem; color: #34495e; }
+    p { margin-bottom: 1rem; }
+    .section { background: #fff; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+    .definition { background: #e8f4f8; border-left: 4px solid #1a5490; padding: 1rem; margin: 1rem 0; border-radius: 4px; }
+    .example { background: #fff9e6; border-left: 4px solid #e8a600; padding: 1rem; margin: 1rem 0; border-radius: 4px; }
+    .breakdown { background: #f0f8e6; border-left: 4px solid #6ab04c; padding: 1rem; margin: 1rem 0; border-radius: 4px; line-height: 1.8; }
+    .question { background: #fff; border: 2px solid #ddd; border-radius: 6px; padding: 1.2rem; margin-bottom: 1rem; }
+    .question-title { font-weight: 700; color: #2c3e50; margin-bottom: 0.5rem; }
+    .difficulty { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .difficulty.easy { background: #d4edda; color: #155724; }
+    .difficulty.medium { background: #fff3cd; color: #856404; }
+    .difficulty.hard { background: #f8d7da; color: #721c24; }
+    .answer { background: #f9f9f9; padding: 0.75rem; margin-top: 0.75rem; border-radius: 4px; display: none; border-top: 1px solid #ddd; }
+    .answer.show { display: block; }
+    .toggle-btn { background: #1a5490; color: #fff; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; font-size: 0.85rem; }
+    .toggle-btn:hover { background: #0f3a63; }
+    .formula-box { background: #f0f0f0; padding: 1rem; border-radius: 6px; margin: 1rem 0; line-height: 2; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #2c3e50; color: #fff; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    footer { text-align: center; color: #666; margin-top: 3rem; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Algebra Fundamentals</h1>
+    <p style="color: #666; font-size: 1.05rem; margin-bottom: 2rem;">Master the building blocks of algebraic expressions and learn how to break down complex equations.</p>
+
+    <!-- Section 1: Fundamentals -->
+    <div class="section">
+      <h2>1. The Building Blocks of Algebra</h2>
+      
+      <h3>What is Algebra?</h3>
+      <p>Algebra is the branch of mathematics that uses letters (called variables) and symbols to represent unknown numbers and relationships between quantities. Instead of dealing only with concrete numbers, algebra allows us to work with general relationships that apply to many situations.</p>
+
+      <h3>Variables</h3>
+      <div class="definition">
+        <strong>Variable:</strong> A symbol (usually a letter like $x$, $y$, or $z$) that represents an unknown or changeable number.
+      </div>
+      <div class="example">
+        <strong>Example:</strong> In the expression $3x + 5$, the letter $x$ is a variable. It could represent any number: 1, 2, 100, or even a fraction.
+      </div>
+
+      <h3>Terms</h3>
+      <div class="definition">
+        <strong>Term:</strong> A single mathematical expression that consists of a number (coefficient) and/or variable(s) multiplied together. Terms are separated by addition ($+$) or subtraction ($−$) signs.
+      </div>
+      <div class="example">
+        <strong>Example:</strong> In $5x + 3y − 7$, there are three terms: $5x$, $3y$, and $−7$.
+      </div>
+
+      <h3>Coefficients</h3>
+      <div class="definition">
+        <strong>Coefficient:</strong> The number that multiplies a variable. It tells you how many of that variable you have.
+      </div>
+      <div class="example">
+        <strong>Example:</strong> In $7x$, the coefficient is $7$. In $4xy$, the coefficient is $4$. In $x$, the coefficient is $1$ (implied).
+      </div>
+
+      <h3>Constants</h3>
+      <div class="definition">
+        <strong>Constant:</strong> A term that contains only a number with no variables.
+      </div>
+      <div class="example">
+        <strong>Example:</strong> In $3x^2 + 5x + 2$, the constant term is $2$.
+      </div>
+
+      <h3>Like Terms</h3>
+      <div class="definition">
+        <strong>Like Terms:</strong> Terms that have the same variable(s) raised to the same power. You can combine like terms by adding or subtracting their coefficients.
+      </div>
+      <div class="example">
+        <strong>Example:</strong> $3x$ and $5x$ are like terms (both have $x$ to the first power). You can combine them: $3x + 5x = 8x$.<br>
+        However, $3x$ and $3x^2$ are NOT like terms (different powers).
+      </div>
+
+      <h3>Exponents (Powers)</h3>
+      <div class="definition">
+        <strong>Exponent:</strong> A small number placed above and to the right of a variable that shows how many times the variable is multiplied by itself.
+      </div>
+      <div class="example">
+        <strong>Example:</strong> In $x^3$, the exponent is $3$, which means $x \times x \times x$. In $2x^2$, the coefficient is $2$ and the exponent is $2$.
+      </div>
+
+      <h3>Order of Operations (PEMDAS/BODMAS)</h3>
+      <p>When working with algebraic expressions, follow this order:</p>
+      <ol style="margin-left: 1.5rem; margin-bottom: 1rem;">
+        <li><strong>Parentheses/Brackets</strong></li>
+        <li><strong>Exponents/Orders</strong></li>
+        <li><strong>Multiplication and Division</strong> (left to right)</li>
+        <li><strong>Addition and Subtraction</strong> (left to right)</li>
+      </ol>
+    </div>
+
+    <!-- Section 2: Breaking down expressions -->
+    <div class="section">
+      <h2>2. Breaking Down Algebraic Expressions</h2>
+      
+      <h3>Primary Example: $\dfrac{5x}{2}$</h3>
+      
+      <p><strong>Expression:</strong> $\dfrac{5x}{2}$</p>
+      <p>Let's break this expression into its parts step by step.</p>
+
+      <h4>Step 1: Identify the Overall Structure</h4>
+      <div class="breakdown">
+        $$\dfrac{5x}{2}$$
+        
+        This is a <strong>fraction</strong> (or rational expression) where:
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Numerator (top): $5x$</li>
+          <li>Denominator (bottom): $2$</li>
+        </ul>
+      </div>
+
+      <h4>Step 2: Analyze the Numerator</h4>
+      <div class="breakdown">
+        Numerator: $5x$<br>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Coefficient: $5$</li>
+          <li>Variable: $x$</li>
+          <li>Meaning: $5$ times $x$</li>
+        </ul>
+      </div>
+
+      <h4>Step 3: Analyze the Denominator</h4>
+      <div class="breakdown">
+        Denominator: $2$<br>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>This is a constant (a fixed number with no variables)</li>
+          <li>It tells us we're dividing by $2$</li>
+        </ul>
+      </div>
+
+      <h4>Step 4: Interpretation</h4>
+      <p>The expression $\dfrac{5x}{2}$ means:</p>
+      <div class="example">
+        Take $5$ groups of $x$, then divide that total by $2$. In other words, we split $5x$ into two equal parts, each worth $\dfrac{5x}{2}$.
+      </div>
+
+      <h4>Step 5: Alternative Forms</h4>
+      <p>An important insight: when we have a fraction with a variable in the numerator and a constant in the denominator, we can rearrange it:</p>
+      <div class="example">
+        $$\dfrac{5x}{2} = \dfrac{5}{2} \cdot x = 2.5x$$
+        
+        This shows that $\dfrac{5x}{2}$ is the same as multiplying $x$ by the decimal $2.5$. So if $x = 4$, then:
+        <ul style="margin-left: 1.5rem;">
+          <li>$\dfrac{5(4)}{2} = \dfrac{20}{2} = 10$</li>
+          <li>$2.5 \times 4 = 10$ ✓</li>
+        </ul>
+      </div>
+
+      <h4>Step 6: Component Summary Table</h4>
+      <table>
+        <tr>
+          <th>Component</th>
+          <th>What It Is</th>
+          <th>Value/Description</th>
+        </tr>
+        <tr>
+          <td>$5$</td>
+          <td>Coefficient (numerator)</td>
+          <td>The multiplier of $x$</td>
+        </tr>
+        <tr>
+          <td>$x$</td>
+          <td>Variable (numerator)</td>
+          <td>Unknown value in the numerator</td>
+        </tr>
+        <tr>
+          <td>$2$</td>
+          <td>Denominator</td>
+          <td>Constant that we divide by</td>
+        </tr>
+        <tr>
+          <td>Division bar</td>
+          <td>Fraction operator</td>
+          <td>Divides numerator by denominator</td>
+        </tr>
+      </table>
+
+      <hr style="margin: 2rem 0; border: none; border-top: 1px solid #ddd;">
+
+      <h3>Additional Examples in Increasing Difficulty</h3>
+
+      <h4>Example 2 (Easy): $3a + 2$</h4>
+      <div class="breakdown">
+        $$3a + 2$$
+        
+        <strong>Breakdown:</strong><br>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Number of terms: 2</li>
+          <li>First term: $3a$ → Coefficient: $3$, Variable: $a$</li>
+          <li>Second term: $2$ → Constant (no variables)</li>
+          <li>Operation: $3$ times $a$, then add $2$</li>
+          <li>Example: if $a = 4$, then $3(4) + 2 = 12 + 2 = 14$</li>
+        </ul>
+      </div>
+
+      <h4>Example 3 (Easy): $\dfrac{x}{4}$</h4>
+      <div class="breakdown">
+        $$\dfrac{x}{4}$$
+        
+        <strong>Breakdown:</strong><br>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Type: Fraction</li>
+          <li>Numerator: $x$ (coefficient is $1$, implied)</li>
+          <li>Denominator: $4$ (constant)</li>
+          <li>Meaning: Divide $x$ into $4$ equal parts (one quarter of $x$)</li>
+          <li><strong>Alternative forms:</strong> $\dfrac{x}{4} = \dfrac{1}{4}x = 0.25x$</li>
+        </ul>
+      </div>
+
+      <h4>Example 4 (Easy): $2x^2$</h4>
+      <div class="breakdown">
+        $$2x^2$$
+        
+        <strong>Breakdown:</strong><br>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Coefficient: $2$</li>
+          <li>Variable: $x$</li>
+          <li>Exponent: $2$</li>
+          <li>Meaning: $2$ times ($x$ squared), which equals $2 \times x \times x$</li>
+          <li><strong>Expanded form:</strong> $2x^2 = 2 \times x \times x$ (the exponent tells us to multiply $x$ by itself)</li>
+          <li>Example: if $x = 3$, then $2(3)^2 = 2 \times 3 \times 3 = 2 \times 9 = 18$</li>
+        </ul>
+      </div>
+
+      <h4>Example 5 (Medium): $\dfrac{3x + 2}{5}$</h4>
+      <div class="breakdown">
+        $$\dfrac{3x + 2}{5}$$
+        
+        <strong>Breakdown:</strong><br>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Type: Fraction with multiple terms in numerator</li>
+          <li>Numerator: $3x + 2$ (this is an expression with 2 terms)</li>
+          <li style="margin-left: 1.5rem;">
+            <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+              <li>Term 1: $3x$ → coefficient $3$, variable $x$</li>
+              <li>Term 2: $2$ → constant</li>
+            </ul>
+          </li>
+          <li>Denominator: $5$ (constant)</li>
+          <li>Meaning: Take ($3x$ plus $2$), then divide the entire result by $5$</li>
+          <li><strong>Alternative form:</strong> $\dfrac{3x + 2}{5} = \dfrac{3x}{5} + \dfrac{2}{5} = 0.6x + 0.4$</li>
+          <li>Example: if $x = 10$, then $\dfrac{3(10) + 2}{5} = \dfrac{32}{5} = 6.4$, and $0.6(10) + 0.4 = 6 + 0.4 = 6.4$ ✓</li>
+        </ul>
+      </div>
+
+      <h4>Example 6 (Medium): $4(2x + 1)$</h4>
+      <div class="breakdown">
+        $$4(2x + 1)$$
+        
+        <strong>Breakdown:</strong><br>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>The coefficient $4$ multiplies everything inside the bracket</li>
+          <li>Inside the bracket: $2x + 1$ (expression with 2 terms)</li>
+          <li><strong>Expanded form:</strong> $4(2x + 1) = 4 \times 2x + 4 \times 1 = 8x + 4$ (distribute the $4$ to both terms)</li>
+          <li>Terms after expansion: $8x$ (coefficient $8$) and $4$ (constant)</li>
+          <li>Example: if $x = 2$, then $4(2(2) + 1) = 4(4 + 1) = 4(5) = 20$, and $8(2) + 4 = 16 + 4 = 20$ ✓</li>
+        </ul>
+      </div>
+
+      <h4>Example 7 (Medium): $\dfrac{6a}{2b}$</h4>
+      <div class="breakdown">
+        $$\dfrac{6a}{2b}$$
+        
+        <strong>Breakdown:</strong><br>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Type: Fraction with variables in both numerator and denominator</li>
+          <li>Numerator: $6a$ → Coefficient: $6$, Variable: $a$</li>
+          <li>Denominator: $2b$ → Coefficient: $2$, Variable: $b$</li>
+          <li>Meaning: Divide ($6$ times $a$) by ($2$ times $b$)</li>
+          <li><strong>Simplified form:</strong> $\dfrac{6a}{2b} = \dfrac{3a}{b}$ (we can divide the coefficients: $\dfrac{6}{2} = 3$)</li>
+          <li>Example: if $a = 4$ and $b = 2$, then $\dfrac{6(4)}{2(2)} = \dfrac{24}{4} = 6$, and $\dfrac{3(4)}{2} = \dfrac{12}{2} = 6$ ✓</li>
+        </ul>
+      </div>
+
+      <h4>Example 8 (Hard): $\dfrac{5x + 3y}{2 - z}$</h4>
+      <div class="breakdown">
+        $$\dfrac{5x + 3y}{2 - z}$$
+        
+        <strong>Breakdown:</strong><br>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Type: Complex fraction with multiple variables</li>
+          <li>Numerator: $5x + 3y$ (expression with 2 terms)</li>
+          <li style="margin-left: 1.5rem;">
+            <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+              <li>Term 1: $5x$ → coefficient $5$, variable $x$</li>
+              <li>Term 2: $3y$ → coefficient $3$, variable $y$</li>
+            </ul>
+          </li>
+          <li>Denominator: $2 - z$ (expression with 2 terms)</li>
+          <li style="margin-left: 1.5rem;">
+            <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+              <li>Term 1: $2$ → constant</li>
+              <li>Term 2: $-z$ → coefficient $-1$, variable $z$</li>
+            </ul>
+          </li>
+          <li>Meaning: Divide the sum ($5x + 3y$) by the difference ($2 - z$)</li>
+          <li>Note: This expression cannot be simplified to a single decimal form because it has multiple variables with different values affecting the result</li>
+          <li>Example: if $x = 2$, $y = 1$, and $z = 0$, then $\dfrac{5(2) + 3(1)}{2 - 0} = \dfrac{10 + 3}{2} = \dfrac{13}{2} = 6.5$</li>
+        </ul>
+      </div>
+
+      <h4>Example 9 (Hard): $2(3x^2 + 4x - 5)$</h4>
+      <div class="breakdown">
+        $$2(3x^2 + 4x - 5)$$
+        
+        <strong>Breakdown:</strong><br>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>The coefficient $2$ multiplies every term inside the bracket</li>
+          <li>Inside the bracket: expression with 3 terms</li>
+          <li style="margin-left: 1.5rem;">
+            <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+              <li>Term 1: $3x^2$ → coefficient $3$, variable $x$, exponent $2$</li>
+              <li>Term 2: $4x$ → coefficient $4$, variable $x$, exponent $1$</li>
+              <li>Term 3: $-5$ → constant</li>
+            </ul>
+          </li>
+          <li><strong>Expanded form:</strong> $2(3x^2 + 4x - 5) = 6x^2 + 8x - 10$ (distribute the $2$ to each term)</li>
+          <li>Example: if $x = 1$, then $2(3(1)^2 + 4(1) - 5) = 2(3 + 4 - 5) = 2(2) = 4$, and $6(1)^2 + 8(1) - 10 = 6 + 8 - 10 = 4$ ✓</li>
+        </ul>
+      </div>
+
+      <h4>Example 10 (Hard): $\dfrac{2(x + 3)}{y - 1}$</h4>
+      <div class="breakdown">
+        $$\dfrac{2(x + 3)}{y - 1}$$
+        
+        <strong>Breakdown:</strong><br>
+        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+          <li>Type: Complex fraction</li>
+          <li>Numerator: $2(x + 3)$ (coefficient multiplies a bracket)</li>
+          <li style="margin-left: 1.5rem;">
+            <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+              <li>Coefficient outside: $2$</li>
+              <li>Inside bracket: $x + 3$ (two terms: variable $x$ and constant $3$)</li>
+              <li>Expanded form: $2x + 6$</li>
+            </ul>
+          </li>
+          <li>Denominator: $y - 1$ (two terms: variable $y$ with coefficient $1$, and constant $-1$)</li>
+          <li>Meaning: Divide ($2$ times the sum of $x$ and $3$) by (the difference of $y$ and $1$)</li>
+          <li><strong>Expanded alternative form:</strong> $\dfrac{2(x + 3)}{y - 1} = \dfrac{2x + 6}{y - 1}$ (distribute the $2$ to each term inside the bracket)</li>
+          <li>Example: if $x = 5$ and $y = 3$, then $\dfrac{2(5 + 3)}{3 - 1} = \dfrac{2(8)}{2} = 8$, and $\dfrac{2(5) + 6}{2} = \dfrac{16}{2} = 8$ ✓</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Section 3: Practice Questions -->
+    <div class="section">
+      <h2>3. Practice Questions</h2>
+      <p>Test your understanding of algebraic fundamentals with these practice questions. Questions increase in difficulty from easy to hard.</p>
+
+      <h3>Easy (Identifying Single Concepts)</h3>
+
+      <div class="question">
+        <div class="difficulty easy">Easy</div>
+        <div class="question-title">1. In the expression $3x + 5$, what is the coefficient of $x$?</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong> $3$<br>
+          The coefficient is the number that multiplies the variable $x$.
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="difficulty easy">Easy</div>
+        <div class="question-title">2. In the expression $7y − 4$, what is the constant?</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong> $−4$<br>
+          The constant is the number that stands alone without any variables.
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="difficulty easy">Easy</div>
+        <div class="question-title">3. How many terms are in the expression $2x + 3y − 8$?</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong> 3 terms<br>
+          The three terms are: $2x$, $3y$, and $−8$. Terms are separated by $+$ or $−$ signs.
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="difficulty easy">Easy</div>
+        <div class="question-title">4. What is the variable in $9a + 4$?</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong> $a$<br>
+          The variable is the letter that represents an unknown number.
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="difficulty easy">Easy</div>
+        <div class="question-title">5. In the term $−5x$, what is the coefficient?</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong> $−5$<br>
+          The coefficient includes the sign, so it's negative 5.
+        </div>
+      </div>
+
+      <h3>Medium (Identifying Components in Expressions)</h3>
+
+      <div class="question">
+        <div class="difficulty medium">Medium</div>
+        <div class="question-title">6. In $4x^2 + 2x − 7$, identify: (a) the coefficient of $x^2$, (b) the coefficient of $x$, and (c) the constant.</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong><br>
+          (a) Coefficient of $x^2$: $4$<br>
+          (b) Coefficient of $x$: $2$<br>
+          (c) Constant: $−7$
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="difficulty medium">Medium</div>
+        <div class="question-title">7. Are $3x^2$ and $5x$ like terms? Explain why or why not.</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong> No, they are not like terms.<br>
+          $3x^2$ has $x$ to the power of $2$, while $5x$ has $x$ to the power of $1$. Like terms must have the same variable(s) with the same exponents.
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="difficulty medium">Medium</div>
+        <div class="question-title">8. Simplify by combining like terms: $5x + 3y + 2x − y$</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong> $7x + 2y$<br>
+          Combine $x$ terms: $5x + 2x = 7x$<br>
+          Combine $y$ terms: $3y − y = 2y$<br>
+          Result: $7x + 2y$
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="difficulty medium">Medium</div>
+        <div class="question-title">9. In the expression $6ab − 2a + 4b$, how many terms are there and what are they?</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong> 3 terms: $6ab$, $−2a$, and $4b$<br>
+          Each term is separated by a $+$ or $−$ sign. The term $6ab$ has a coefficient of $6$ with both variables $a$ and $b$.
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="difficulty medium">Medium</div>
+        <div class="question-title">10. What is the coefficient of $xy$ in the term $−7xy$?</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong> $−7$<br>
+          The coefficient is the number multiplying all the variables together. Here it's $−7$ times $xy$.
+        </div>
+      </div>
+
+      <h3>Hard (Breaking Down Complex Expressions)</h3>
+
+      <div class="question">
+        <div class="difficulty hard">Hard</div>
+        <div class="question-title">11. Break down $\dfrac{5x}{2}$ into its component parts. Identify: (a) the numerator, (b) the denominator, (c) the coefficient in the numerator, (d) the variable in the numerator.</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong><br>
+          (a) Numerator: $5x$<br>
+          (b) Denominator: $2$<br>
+          (c) Coefficient in the numerator: $5$<br>
+          (d) Variable in the numerator: $x$
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="difficulty hard">Hard</div>
+        <div class="question-title">12. In the expression $3(2x + 4y − 5)$, expand it and then identify all coefficients and constants in the expanded form.</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong> Expanded: $6x + 12y − 15$<br>
+          Coefficients: $6$ (for $x$), $12$ (for $y$)<br>
+          Constant: $−15$<br>
+          We multiply each term inside the bracket by $3$: $3(2x) = 6x$, $3(4y) = 12y$, $3(−5) = −15$
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="difficulty hard">Hard</div>
+        <div class="question-title">13. The expression $\dfrac{3x − 2}{5}$ represents: (a) What is being divided by what? (b) Identify the numerator and denominator. (c) What are the terms in the numerator?</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong><br>
+          (a) $(3x − 2)$ is being divided by $5$<br>
+          (b) Numerator: $3x − 2$; Denominator: $5$<br>
+          (c) The terms in the numerator are: $3x$ (coefficient $3$, variable $x$) and $−2$ (constant)
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="difficulty hard">Hard</div>
+        <div class="question-title">14. Simplify: $2(3x + 4) − 5x$. Show all steps and identify the coefficient and constant in your final answer.</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong><br>
+          Step 1: Expand $2(3x + 4) = 6x + 8$<br>
+          Step 2: So the expression is: $6x + 8 − 5x$<br>
+          Step 3: Combine like terms: $6x − 5x = x$<br>
+          Final: $x + 8$<br>
+          Coefficient of $x$: $1$ (implied)<br>
+          Constant: $8$
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="difficulty hard">Hard</div>
+        <div class="question-title">15. In the expression $4x^2y + 3xy^2 − 2xy + 5$, identify: (a) all the terms, (b) all the coefficients, (c) the constant, and (d) which terms are NOT like terms and why.</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong><br>
+          (a) Terms: $4x^2y$, $3xy^2$, $−2xy$, and $5$<br>
+          (b) Coefficients: $4$, $3$, $−2$<br>
+          (c) Constant: $5$<br>
+          (d) None of the first three terms are like terms because:<br>
+          - $4x^2y$ has $x^2$ and $y^1$<br>
+          - $3xy^2$ has $x^1$ and $y^2$<br>
+          - $−2xy$ has $x^1$ and $y^1$<br>
+          All have different variable combinations or powers.
+        </div>
+      </div>
+
+      <div class="question">
+        <div class="difficulty hard">Hard</div>
+        <div class="question-title">16. Break down and analyze: $\dfrac{2(x + 3)}{y − 1}$. Identify: (a) the numerator, (b) the denominator, (c) all variables, (d) all constants, and (e) the coefficient outside the bracket in the numerator.</div>
+        <button class="toggle-btn" onclick="toggleAnswer(this)">Show Answer</button>
+        <div class="answer">
+          <strong>Answer:</strong><br>
+          (a) Numerator: $2(x + 3)$<br>
+          (b) Denominator: $(y − 1)$<br>
+          (c) Variables: $x$ and $y$<br>
+          (d) Constants: $3$ and $−1$<br>
+          (e) Coefficient outside the bracket in the numerator: $2$
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Master algebra step by step. Practice makes perfect! 📐</p>
+    </footer>
+  </div>
+
+  <script>
+    function toggleAnswer(button) {
+      const answer = button.nextElementSibling;
+      answer.classList.toggle('show');
+      button.textContent = answer.classList.contains('show') ? 'Hide Answer' : 'Show Answer';
+    }
+  </script>
+</body>
+</html>
