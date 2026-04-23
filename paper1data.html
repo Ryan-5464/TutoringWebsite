@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paper 1 Data</title>
+  <title>Paper 1 Topic Data</title>
   <style>
-
     :root {
       --bg: #020617;
       --surface-1: #0B1120;
@@ -24,9 +23,12 @@
       --shadow-focus: 0 0 0 3px rgba(34, 211, 238, 0.35);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
       min-height: 100%;
@@ -36,6 +38,19 @@
         radial-gradient(circle at 20% -10%, rgba(49, 46, 129, 0.35), transparent 35%),
         radial-gradient(circle at 80% 0%, rgba(34, 211, 238, 0.18), transparent 30%),
         var(--bg);
+    }
+
+    a {
+      color: #67E8F9;
+    }
+
+    a:hover {
+      color: #A5F3FC;
+    }
+
+    a:focus-visible {
+      outline: 2px solid rgba(34, 211, 238, 0.7);
+      outline-offset: 2px;
     }
 
     .top-nav {
@@ -51,30 +66,20 @@
       width: min(1200px, calc(100% - 2rem));
       margin: 0 auto;
       padding: 1rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
       font-size: 0.9rem;
+      letter-spacing: 0.02em;
       color: #67E8F9;
     }
-
-    .back-link {
-      color: #A5F3FC;
-      text-decoration: none;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      border-radius: var(--radius-md);
-      padding: 0.35rem 0.65rem;
-      transition: background 180ms ease-out;
-    }
-
-    .back-link:hover { background: rgba(148, 163, 184, 0.08); }
-    .back-link:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
 
     .page {
       width: min(1200px, calc(100% - 2rem));
       margin: 0 auto;
-      padding: 2.5rem 0 4rem;
+      padding: 2rem 0 4rem;
+    }
+
+    .hero {
+      padding: 3rem 0 2rem;
+      animation: fadeUp 280ms ease-out both;
     }
 
     .eyebrow {
@@ -84,62 +89,123 @@
       border-radius: 999px;
       background: rgba(49, 46, 129, 0.22);
       color: #C4B5FD;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
     h1 {
-      margin: 1rem 0 0.5rem;
-      font-size: clamp(1.8rem, 3.2vw, 2.45rem);
+      margin: 1rem 0 0.75rem;
+      font-size: clamp(2rem, 4vw, 2.8rem);
       line-height: 1.2;
       letter-spacing: -0.01em;
     }
 
     .lead {
-      margin: 0 0 1.25rem;
-      max-width: 70ch;
+      margin: 0;
+      max-width: 72ch;
       color: var(--text-muted);
-      font-size: 1rem;
+      font-size: 1.05rem;
       line-height: 1.7;
     }
 
-    .table-wrap {
-      margin-top: 1.25rem;
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.875rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      transition: transform 180ms ease-out, filter 180ms ease-out, box-shadow 180ms ease-out, background 180ms ease-out;
+      padding: 0.8rem 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #06B6D4);
+      color: #06202A;
+      border: 1px solid rgba(34, 211, 238, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(49, 46, 129, 0.22);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: var(--text);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.06);
+    }
+
+    .btn:focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus);
+    }
+
+    .panel {
+      margin-top: 2rem;
       background: linear-gradient(145deg, rgba(11, 17, 32, 0.95), rgba(17, 24, 39, 0.9));
       border: 1px solid var(--border);
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow-soft);
-      overflow: auto;
+      padding: 1.5rem;
       animation: fadeUp 280ms ease-out both;
+    }
+
+    .panel h2 {
+      margin: 0 0 1rem;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+    }
+
+    .explanations {
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .table-shell {
+      margin-top: 1.5rem;
+      overflow-x: auto;
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      border-radius: var(--radius-lg);
+      background: var(--surface-1);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 980px;
+      min-width: 860px;
     }
 
     thead th {
       position: sticky;
       top: 0;
-      z-index: 1;
       background: rgba(15, 23, 42, 0.95);
-      color: #CFFAFE;
-      font-size: 0.8rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
       text-align: left;
-      padding: 0.9rem 0.85rem;
-      border-bottom: 1px solid rgba(51, 65, 85, 0.8);
-      white-space: nowrap;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
     }
 
-    tbody td {
-      padding: 0.8rem 0.85rem;
+    th,
+    td {
+      padding: 0.95rem 1rem;
       border-bottom: 1px solid rgba(51, 65, 85, 0.6);
-      color: var(--text);
-      vertical-align: top;
     }
 
     tbody tr:nth-child(even) {
@@ -147,113 +213,45 @@
     }
 
     tbody tr:hover {
-      background: rgba(34, 211, 238, 0.07);
+      background: rgba(34, 211, 238, 0.1);
     }
 
-    td.num, th.num { text-align: right; }
-
-    .explanation {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      background: linear-gradient(145deg, rgba(11, 17, 32, 0.7), rgba(17, 24, 39, 0.65));
-      border: 1px solid rgba(34, 211, 238, 0.2);
-      border-left: 3px solid var(--accent);
-      border-radius: var(--radius-lg);
+    tbody tr {
+      transition: background 180ms ease-out;
     }
 
-    .explanation h2 {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin: 0 0 0.75rem 0;
-      color: var(--accent);
+    td.num,
+    th.num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
     }
 
-    .explanation h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 1.5rem 0 0.75rem 0;
-      color: var(--text);
-    }
-
-    .explanation p {
-      margin: 0.75rem 0;
+    .caption {
+      margin-top: 1rem;
       color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .column-definitions {
-      list-style: none;
-      padding: 0;
-      margin: 0.75rem 0;
-    }
-
-    .def-item {
-      margin-bottom: 0.75rem;
-      padding: 0.75rem;
-      background: rgba(15, 23, 42, 0.5);
-      border-radius: var(--radius-md);
-    }
-
-    .def-item dt {
-      display: inline-block;
-      color: var(--accent);
-      margin-right: 0.5rem;
-    }
-
-    .def-item dd {
-      display: inline;
-      margin: 0;
-      color: var(--text-muted);
-    }
-
-    .past-papers-link {
-      margin-bottom: 1.5rem;
-      padding: 1.25rem 1.5rem;
-      background: linear-gradient(145deg, rgba(11, 17, 32, 0.7), rgba(17, 24, 39, 0.65));
-      border: 1px solid rgba(34, 211, 238, 0.15);
-      border-radius: var(--radius-lg);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .past-papers-desc {
-      flex: 1 1 300px;
-      margin: 0;
-      color: var(--text-muted);
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    .past-papers-btn {
-      display: inline-block;
-      padding: 0.6rem 1.25rem;
-      background: transparent;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      border-radius: var(--radius-md);
-      text-decoration: none;
       font-size: 0.9rem;
-      font-weight: 500;
-      white-space: nowrap;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .past-papers-btn:hover,
-    .past-papers-btn:focus {
-      background: rgba(34, 211, 238, 0.12);
-      outline: none;
-      box-shadow: var(--shadow-focus);
+      line-height: 1.6;
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 900px) {
-      .page { padding-top: 2rem; }
+      .page {
+        width: min(1200px, calc(100% - 1rem));
+      }
+
+      .hero {
+        padding-top: 2.5rem;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -262,1195 +260,149 @@
         transition: none !important;
       }
     }
-
   </style>
 </head>
 <body>
   <header class="top-nav">
-    <div class="top-nav-inner">
-      <span>Edexcel GCSE Maths Higher</span>
-      <a class="back-link" href="index.html">Back to Dashboard</a>
-    </div>
+    <div class="top-nav-inner">Edexcel GCSE Maths Higher</div>
   </header>
 
   <main class="page">
-    <span class="eyebrow">Paper 1</span>
-    <h1>Paper 1 Sorted Topic Data</h1>
-    <p class="lead">Rows are sourced from <code>sorted_data_paper1.csv</code> and are ordered by marks in descending order.</p>
+    <section class="hero">
+      <span class="eyebrow">Past Paper Analytics</span>
+      <h1>Paper 1 Topic Data</h1>
+      <p class="lead">
+        This page summarises the Edexcel GCSE Maths Higher topic data for Paper 1. Use the table below to compare how frequently topics appear, how many marks they contribute overall, and how that pattern looks across the paper set analysed.
+      </p>
+      <div class="actions">
+        <a class="btn btn-ghost" href="index.html">Back to Dashboard</a>
+        <a class="btn btn-primary" href="https://mmerevise.co.uk/gcse-maths-revision/gcse-maths-past-papers/edexcel-gcse-maths-past-papers/" target="_blank" rel="noreferrer">Past Papers</a>
+      </div>
+    </section>
 
-    <div class="past-papers-link">
-      <p class="past-papers-desc">The data in this table is derived from Edexcel GCSE Maths Higher Tier past papers. Access the original papers to practise the topics identified in the table below.</p>
-      <a href="https://mmerevise.co.uk/gcse-maths-revision/gcse-maths-past-papers/edexcel-gcse-maths-past-papers/" target="_blank" rel="noopener noreferrer" class="past-papers-btn">View Edexcel GCSE Maths Past Papers &rarr;</a>
-    </div>
+    <section class="panel">
+      <h2>Column Guide</h2>
+      <ul class="explanations">
+        <li><strong>Branch</strong> groups each topic into a broader area of the specification.</li>
+        <li><strong>Topic</strong> names the specific curriculum area tracked in the dataset.</li>
+        <li><strong>Marks</strong> is the total number of marks awarded to that topic across all papers included in this dataset.</li>
+        <li><strong>Frequency</strong> records the total number of times the topic appears across the full paper set.</li>
+        <li><strong>Average Marks</strong> shows the mean number of marks available each time the topic appears, calculated as total marks divided by frequency.</li>
+        <li><strong>Average Number of Appearances</strong> shows the mean number of appearances per paper across the dataset.</li>
+        <li><strong>Number of Papers</strong> states how many papers were included when compiling the topic data.</li>
+      </ul>
+      <p class="caption">
+        The Past Papers button opens the external Edexcel past papers page for the topics shown in the table.
+      </p>
 
-    <div class="explanation">
-      <h2>How to Use This Table</h2>
-      <p>This table shows which maths topics appear most frequently in past papers and their relative importance. Use it to guide where to focus your study time for the GCSE.</p>
-
-      <h3>Understanding the Columns</h3>
-      <dl class="column-definitions">
-        <div class="def-item">
-          <dt><strong>Branch</strong></dt>
-          <dd>The main area of mathematics (e.g., Algebra, Geometry and Measures)</dd>
-        </div>
-        <div class="def-item">
-          <dt><strong>Topic</strong></dt>
-          <dd>The specific topic within that branch</dd>
-        </div>
-        <div class="def-item">
-          <dt><strong>Marks</strong></dt>
-          <dd>Total marks allocated to this topic across all papers</dd>
-        </div>
-        <div class="def-item">
-          <dt><strong>Frequency</strong></dt>
-          <dd>Number of times this topic appeared in the papers</dd>
-        </div>
-        <div class="def-item">
-          <dt><strong>Average Marks</strong></dt>
-          <dd>Average marks per appearance (calculated as: Marks &divide; Frequency)</dd>
-        </div>
-        <div class="def-item">
-          <dt><strong>Likelihood of Appearance</strong></dt>
-          <dd>Probability this topic will appear in a future paper (calculated as: Frequency &divide; Number of Papers)</dd>
-        </div>
-        <div class="def-item">
-          <dt><strong>Relative Importance</strong></dt>
-          <dd>Combined score showing how essential this topic is (calculated as: Average Marks &times; Likelihood of Appearance)</dd>
-        </div>
-      </dl>
-
-      <h3>Study Strategy</h3>
-      <p><strong>Sort by Relative Importance:</strong> Topics with higher values should be your priority&mdash;they're likely to appear and are worth significant marks.</p>
-      <p><strong>Don't Skip Low-Importance Topics:</strong> Even topics with lower scores are examinable and may be combined with higher-priority content in questions.</p>
-    </div>
-
-    <section class="table-wrap" aria-label="Paper 1 data table">
-      <table>
-        <thead>
-          <tr>
-          <th>branch</th>
-          <th>topic</th>
-          <th class="num">relative importance</th>
-          <th class="num">marks</th>
-          <th class="num">frequency</th>
-          <th class="num">average marks</th>
-          <th class="num">likelihood of appearance</th>
-          <th class="num">number of papers</th>
-          </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>Algebra</td>
-          <td>Functions</td>
-          <td class="num">4.91</td>
-          <td class="num">54</td>
-          <td class="num">10</td>
-          <td class="num">5.40</td>
-          <td class="num">0.91</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Ratio Proportion and Rates of Change</td>
-          <td>Proportion</td>
-          <td class="num">4.45</td>
-          <td class="num">49</td>
-          <td class="num">13</td>
-          <td class="num">3.77</td>
-          <td class="num">1.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Number</td>
-          <td>Fractions</td>
-          <td class="num">4.27</td>
-          <td class="num">47</td>
-          <td class="num">15</td>
-          <td class="num">3.13</td>
-          <td class="num">1.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Number</td>
-          <td>Surds 1</td>
-          <td class="num">4.18</td>
-          <td class="num">46</td>
-          <td class="num">12</td>
-          <td class="num">3.83</td>
-          <td class="num">1.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Volumes of 3-D shapes</td>
-          <td class="num">4.00</td>
-          <td class="num">44</td>
-          <td class="num">9</td>
-          <td class="num">4.89</td>
-          <td class="num">0.82</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Ratio Proportion and Rates of Change</td>
-          <td>Ratio</td>
-          <td class="num">3.64</td>
-          <td class="num">40</td>
-          <td class="num">11</td>
-          <td class="num">3.64</td>
-          <td class="num">1.00</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Simultaneous equations 1</td>
-          <td class="num">3.36</td>
-          <td class="num">37</td>
-          <td class="num">10</td>
-          <td class="num">3.70</td>
-          <td class="num">0.91</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Perimeter and area</td>
-          <td class="num">3.27</td>
-          <td class="num">36</td>
-          <td class="num">8</td>
-          <td class="num">4.50</td>
-          <td class="num">0.73</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Ratio</td>
-          <td class="num">3.18</td>
-          <td class="num">35</td>
-          <td class="num">8</td>
-          <td class="num">4.38</td>
-          <td class="num">0.73</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Number</td>
-          <td>Indices 1</td>
-          <td class="num">3.00</td>
-          <td class="num">33</td>
-          <td class="num">9</td>
-          <td class="num">3.67</td>
-          <td class="num">0.82</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Probability</td>
-          <td>Probability</td>
-          <td class="num">2.73</td>
-          <td class="num">30</td>
-          <td class="num">8</td>
-          <td class="num">3.75</td>
-          <td class="num">0.73</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Number</td>
-          <td>Indices 2</td>
-          <td class="num">2.64</td>
-          <td class="num">29</td>
-          <td class="num">8</td>
-          <td class="num">3.63</td>
-          <td class="num">0.73</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Inverse functions</td>
-          <td class="num">2.55</td>
-          <td class="num">28</td>
-          <td class="num">5</td>
-          <td class="num">5.60</td>
-          <td class="num">0.45</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Completing the square</td>
-          <td class="num">2.45</td>
-          <td class="num">27</td>
-          <td class="num">7</td>
-          <td class="num">3.86</td>
-          <td class="num">0.64</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Angle properties</td>
-          <td class="num">2.36</td>
-          <td class="num">26</td>
-          <td class="num">6</td>
-          <td class="num">4.33</td>
-          <td class="num">0.55</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Straight-line graphs 1</td>
-          <td class="num">2.18</td>
-          <td class="num">24</td>
-          <td class="num">7</td>
-          <td class="num">3.43</td>
-          <td class="num">0.64</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Statistics</td>
-          <td>Cumulative frequency</td>
-          <td class="num">2.18</td>
-          <td class="num">24</td>
-          <td class="num">4</td>
-          <td class="num">6.00</td>
-          <td class="num">0.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Real-life graphs</td>
-          <td class="num">1.91</td>
-          <td class="num">21</td>
-          <td class="num">7</td>
-          <td class="num">3.00</td>
-          <td class="num">0.64</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Factorising</td>
-          <td class="num">1.91</td>
-          <td class="num">21</td>
-          <td class="num">6</td>
-          <td class="num">3.50</td>
-          <td class="num">0.55</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Number</td>
-          <td>Estimation</td>
-          <td class="num">1.82</td>
-          <td class="num">20</td>
-          <td class="num">5</td>
-          <td class="num">4.00</td>
-          <td class="num">0.45</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Statistics</td>
-          <td>Mean, median and mode</td>
-          <td class="num">1.73</td>
-          <td class="num">19</td>
-          <td class="num">6</td>
-          <td class="num">3.17</td>
-          <td class="num">0.55</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Similar shapes 2</td>
-          <td class="num">1.73</td>
-          <td class="num">19</td>
-          <td class="num">5</td>
-          <td class="num">3.80</td>
-          <td class="num">0.45</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Equation of a circle</td>
-          <td class="num">1.64</td>
-          <td class="num">18</td>
-          <td class="num">4</td>
-          <td class="num">4.50</td>
-          <td class="num">0.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Ratio Proportion and Rates of Change</td>
-          <td>Speed</td>
-          <td class="num">1.64</td>
-          <td class="num">18</td>
-          <td class="num">4</td>
-          <td class="num">4.50</td>
-          <td class="num">0.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Ratio Proportion and Rates of Change</td>
-          <td>Percentage change</td>
-          <td class="num">1.55</td>
-          <td class="num">17</td>
-          <td class="num">5</td>
-          <td class="num">3.40</td>
-          <td class="num">0.45</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Statistics</td>
-          <td>Box plots</td>
-          <td class="num">1.45</td>
-          <td class="num">16</td>
-          <td class="num">3</td>
-          <td class="num">5.33</td>
-          <td class="num">0.27</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Trigonometry 1</td>
-          <td class="num">1.36</td>
-          <td class="num">15</td>
-          <td class="num">4</td>
-          <td class="num">3.75</td>
-          <td class="num">0.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Circle theorems</td>
-          <td class="num">1.36</td>
-          <td class="num">15</td>
-          <td class="num">4</td>
-          <td class="num">3.75</td>
-          <td class="num">0.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Statistics</td>
-          <td>Comparing data</td>
-          <td class="num">1.36</td>
-          <td class="num">15</td>
-          <td class="num">4</td>
-          <td class="num">3.75</td>
-          <td class="num">0.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Probability</td>
-          <td>Counting strategies</td>
-          <td class="num">1.36</td>
-          <td class="num">15</td>
-          <td class="num">4</td>
-          <td class="num">3.75</td>
-          <td class="num">0.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Circles and cylinders</td>
-          <td class="num">1.36</td>
-          <td class="num">15</td>
-          <td class="num">4</td>
-          <td class="num">3.75</td>
-          <td class="num">0.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Number</td>
-          <td>Factors and primes</td>
-          <td class="num">1.27</td>
-          <td class="num">14</td>
-          <td class="num">5</td>
-          <td class="num">2.80</td>
-          <td class="num">0.45</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Algebraic proof</td>
-          <td class="num">1.27</td>
-          <td class="num">14</td>
-          <td class="num">4</td>
-          <td class="num">3.50</td>
-          <td class="num">0.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Parallel and perpendicular</td>
-          <td class="num">1.27</td>
-          <td class="num">14</td>
-          <td class="num">4</td>
-          <td class="num">3.50</td>
-          <td class="num">0.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Similar shapes 1</td>
-          <td class="num">1.27</td>
-          <td class="num">14</td>
-          <td class="num">4</td>
-          <td class="num">3.50</td>
-          <td class="num">0.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Translations, reflections and rotations</td>
-          <td class="num">1.18</td>
-          <td class="num">13</td>
-          <td class="num">5</td>
-          <td class="num">2.60</td>
-          <td class="num">0.45</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Vectors</td>
-          <td class="num">1.18</td>
-          <td class="num">13</td>
-          <td class="num">3</td>
-          <td class="num">4.33</td>
-          <td class="num">0.27</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Statistics</td>
-          <td>Frequency table averages</td>
-          <td class="num">1.18</td>
-          <td class="num">13</td>
-          <td class="num">3</td>
-          <td class="num">4.33</td>
-          <td class="num">0.27</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Perimeter and area</td>
-          <td class="num">1.09</td>
-          <td class="num">12</td>
-          <td class="num">3</td>
-          <td class="num">4.00</td>
-          <td class="num">0.27</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Expanding brackets</td>
-          <td class="num">1.09</td>
-          <td class="num">12</td>
-          <td class="num">4</td>
-          <td class="num">3.00</td>
-          <td class="num">0.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Number</td>
-          <td>Percentage change</td>
-          <td class="num">1.09</td>
-          <td class="num">12</td>
-          <td class="num">5</td>
-          <td class="num">2.40</td>
-          <td class="num">0.45</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Trigonometric graphs</td>
-          <td class="num">1.09</td>
-          <td class="num">12</td>
-          <td class="num">3</td>
-          <td class="num">4.00</td>
-          <td class="num">0.27</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Interquartile range</td>
-          <td class="num">1.00</td>
-          <td class="num">11</td>
-          <td class="num">2</td>
-          <td class="num">5.50</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Linear equations 1</td>
-          <td class="num">1.00</td>
-          <td class="num">11</td>
-          <td class="num">3</td>
-          <td class="num">3.67</td>
-          <td class="num">0.27</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Rearranging formulae</td>
-          <td class="num">1.00</td>
-          <td class="num">11</td>
-          <td class="num">3</td>
-          <td class="num">3.67</td>
-          <td class="num">0.27</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Statistics</td>
-          <td>Scatter graphs</td>
-          <td class="num">0.91</td>
-          <td class="num">10</td>
-          <td class="num">2</td>
-          <td class="num">5.00</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Statistics</td>
-          <td>Histograms</td>
-          <td class="num">0.91</td>
-          <td class="num">10</td>
-          <td class="num">2</td>
-          <td class="num">5.00</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Bearings</td>
-          <td class="num">0.91</td>
-          <td class="num">10</td>
-          <td class="num">2</td>
-          <td class="num">5.00</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Straight-line graphs 2</td>
-          <td class="num">0.82</td>
-          <td class="num">9</td>
-          <td class="num">2</td>
-          <td class="num">4.50</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Linear equations 1</td>
-          <td class="num">0.82</td>
-          <td class="num">9</td>
-          <td class="num">2</td>
-          <td class="num">4.50</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Sectors of circles</td>
-          <td class="num">0.82</td>
-          <td class="num">9</td>
-          <td class="num">2</td>
-          <td class="num">4.50</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Quadratic inequalities</td>
-          <td class="num">0.82</td>
-          <td class="num">9</td>
-          <td class="num">2</td>
-          <td class="num">4.50</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Quadratic graphs</td>
-          <td class="num">0.82</td>
-          <td class="num">9</td>
-          <td class="num">3</td>
-          <td class="num">3.00</td>
-          <td class="num">0.27</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Congruent triangles</td>
-          <td class="num">0.82</td>
-          <td class="num">9</td>
-          <td class="num">3</td>
-          <td class="num">3.00</td>
-          <td class="num">0.27</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Ratio Proportion and Rates of Change</td>
-          <td>Other compound measures</td>
-          <td class="num">0.82</td>
-          <td class="num">9</td>
-          <td class="num">3</td>
-          <td class="num">3.00</td>
-          <td class="num">0.27</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Number</td>
-          <td>Recurring decimals</td>
-          <td class="num">0.82</td>
-          <td class="num">9</td>
-          <td class="num">3</td>
-          <td class="num">3.00</td>
-          <td class="num">0.27</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Algebraic proof</td>
-          <td class="num">0.73</td>
-          <td class="num">8</td>
-          <td class="num">2</td>
-          <td class="num">4.00</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Plans and elevations</td>
-          <td class="num">0.73</td>
-          <td class="num">8</td>
-          <td class="num">2</td>
-          <td class="num">4.00</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Inequalities</td>
-          <td class="num">0.73</td>
-          <td class="num">8</td>
-          <td class="num">2</td>
-          <td class="num">4.00</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Quadratic equations</td>
-          <td class="num">0.73</td>
-          <td class="num">8</td>
-          <td class="num">2</td>
-          <td class="num">4.00</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Arithmetic sequences</td>
-          <td class="num">0.73</td>
-          <td class="num">8</td>
-          <td class="num">4</td>
-          <td class="num">2.00</td>
-          <td class="num">0.36</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Algebraic fractions</td>
-          <td class="num">0.73</td>
-          <td class="num">8</td>
-          <td class="num">2</td>
-          <td class="num">4.00</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Number</td>
-          <td>Algebraic proof</td>
-          <td class="num">0.73</td>
-          <td class="num">8</td>
-          <td class="num">3</td>
-          <td class="num">2.67</td>
-          <td class="num">0.27</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Indices 1</td>
-          <td class="num">0.64</td>
-          <td class="num">7</td>
-          <td class="num">2</td>
-          <td class="num">3.50</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Algebraic expressions</td>
-          <td class="num">0.64</td>
-          <td class="num">7</td>
-          <td class="num">2</td>
-          <td class="num">3.50</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Surface area</td>
-          <td class="num">0.55</td>
-          <td class="num">6</td>
-          <td class="num">1</td>
-          <td class="num">6.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Circle facts</td>
-          <td class="num">0.55</td>
-          <td class="num">6</td>
-          <td class="num">2</td>
-          <td class="num">3.00</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Number</td>
-          <td>Decimals</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">2</td>
-          <td class="num">2.50</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Other compound measures</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">1</td>
-          <td class="num">5.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Number</td>
-          <td>Standard form</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">2</td>
-          <td class="num">2.50</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Simultaneous equations 2</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">1</td>
-          <td class="num">5.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>The cosine rule</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">1</td>
-          <td class="num">5.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Straight-line graphs 2</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">1</td>
-          <td class="num">5.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Statistics</td>
-          <td>Estimation</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">1</td>
-          <td class="num">5.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Proportion</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">1</td>
-          <td class="num">5.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Parallel and perpendicular</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">1</td>
-          <td class="num">5.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Algebraic expressions</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">1</td>
-          <td class="num">5.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Exact trigonometry values</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">2</td>
-          <td class="num">2.50</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Probability</td>
-          <td>Linear equations 1</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">1</td>
-          <td class="num">5.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Probability</td>
-          <td>Simultaneous equations 1</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">1</td>
-          <td class="num">5.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Scale drawings and maps</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">1</td>
-          <td class="num">5.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>The quadratic formula</td>
-          <td class="num">0.45</td>
-          <td class="num">5</td>
-          <td class="num">1</td>
-          <td class="num">5.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Number</td>
-          <td>Reverse percentages</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">2</td>
-          <td class="num">2.00</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Estimation</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">1</td>
-          <td class="num">4.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Probability</td>
-          <td>Conditional probability</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">1</td>
-          <td class="num">4.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Ratio Proportion and Rates of Change</td>
-          <td>Perimeter and area</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">1</td>
-          <td class="num">4.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Statistics</td>
-          <td>Sampling</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">1</td>
-          <td class="num">4.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Statistics</td>
-          <td>Capture-recapture</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">1</td>
-          <td class="num">4.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Vector proof</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">1</td>
-          <td class="num">4.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Ratio Proportion and Rates of Change</td>
-          <td>Sampling</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">1</td>
-          <td class="num">4.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Ratio Proportion and Rates of Change</td>
-          <td>Accuracy and error</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">1</td>
-          <td class="num">4.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Enlargement</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">2</td>
-          <td class="num">2.00</td>
-          <td class="num">0.18</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Formulae</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">1</td>
-          <td class="num">4.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Ratio Proportion and Rates of Change</td>
-          <td>Estimation</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">1</td>
-          <td class="num">4.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Ratio Proportion and Rates of Change</td>
-          <td>Units of area and volume</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">1</td>
-          <td class="num">4.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Solving sequence problems</td>
-          <td class="num">0.36</td>
-          <td class="num">4</td>
-          <td class="num">1</td>
-          <td class="num">4.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Cubic and reciprocal graphs</td>
-          <td class="num">0.27</td>
-          <td class="num">3</td>
-          <td class="num">1</td>
-          <td class="num">3.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Surds 1</td>
-          <td class="num">0.27</td>
-          <td class="num">3</td>
-          <td class="num">1</td>
-          <td class="num">3.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Ratio Proportion and Rates of Change</td>
-          <td>Fractions</td>
-          <td class="num">0.27</td>
-          <td class="num">3</td>
-          <td class="num">1</td>
-          <td class="num">3.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Ratio Proportion and Rates of Change</td>
-          <td>Density</td>
-          <td class="num">0.27</td>
-          <td class="num">3</td>
-          <td class="num">1</td>
-          <td class="num">3.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Probability</td>
-          <td>Venn diagrams</td>
-          <td class="num">0.27</td>
-          <td class="num">3</td>
-          <td class="num">1</td>
-          <td class="num">3.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Probability</td>
-          <td>Set notation</td>
-          <td class="num">0.27</td>
-          <td class="num">3</td>
-          <td class="num">1</td>
-          <td class="num">3.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Combining transformations</td>
-          <td class="num">0.27</td>
-          <td class="num">3</td>
-          <td class="num">1</td>
-          <td class="num">3.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Indices 2</td>
-          <td class="num">0.27</td>
-          <td class="num">3</td>
-          <td class="num">1</td>
-          <td class="num">3.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Inequalities on graphs</td>
-          <td class="num">0.27</td>
-          <td class="num">3</td>
-          <td class="num">1</td>
-          <td class="num">3.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Circles and cylinders</td>
-          <td class="num">0.27</td>
-          <td class="num">3</td>
-          <td class="num">1</td>
-          <td class="num">3.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Angle properties</td>
-          <td class="num">0.18</td>
-          <td class="num">2</td>
-          <td class="num">1</td>
-          <td class="num">2.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Geometry and Measures</td>
-          <td>Trigonometric graphs</td>
-          <td class="num">0.18</td>
-          <td class="num">2</td>
-          <td class="num">1</td>
-          <td class="num">2.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Factors and primes</td>
-          <td class="num">0.18</td>
-          <td class="num">2</td>
-          <td class="num">1</td>
-          <td class="num">2.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Algebra</td>
-          <td>Transforming graphs</td>
-          <td class="num">0.18</td>
-          <td class="num">2</td>
-          <td class="num">1</td>
-          <td class="num">2.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        <tr>
-          <td>Statistics</td>
-          <td>Stratified sampling</td>
-          <td class="num">0.18</td>
-          <td class="num">2</td>
-          <td class="num">1</td>
-          <td class="num">2.00</td>
-          <td class="num">0.09</td>
-          <td class="num">11</td>
-        </tr>
-        </tbody>
-      </table>
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>Branch</th>
+              <th>Topic</th>
+              <th class="num">Marks</th>
+              <th class="num">Frequency</th>
+              <th class="num">Average Marks</th>
+              <th class="num">Average Number of Appearances</th>
+              <th class="num">Number of Papers</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr><td>RATIO &amp; PROPORTION</td><td>Ratio</td><td class="num">52.5</td><td class="num">21</td><td class="num">2.50</td><td class="num">1.91</td><td class="num">11</td></tr>
+              <tr><td>NUMBER</td><td>Fractions</td><td class="num">46.5</td><td class="num">26</td><td class="num">1.79</td><td class="num">2.36</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Straight-line graphs</td><td class="num">34.5</td><td class="num">18</td><td class="num">1.92</td><td class="num">1.64</td><td class="num">11</td></tr>
+              <tr><td>RATIO &amp; PROPORTION</td><td>Proportion</td><td class="num">32</td><td class="num">11</td><td class="num">2.91</td><td class="num">1.00</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Simultaneous equations</td><td class="num">29.5</td><td class="num">12</td><td class="num">2.46</td><td class="num">1.09</td><td class="num">11</td></tr>
+              <tr><td>NUMBER</td><td>Indices</td><td class="num">29</td><td class="num">13</td><td class="num">2.23</td><td class="num">1.18</td><td class="num">11</td></tr>
+              <tr><td>NUMBER</td><td>Surds</td><td class="num">28</td><td class="num">11</td><td class="num">2.55</td><td class="num">1.00</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Perimeter and area</td><td class="num">26.5</td><td class="num">12</td><td class="num">2.21</td><td class="num">1.09</td><td class="num">11</td></tr>
+              <tr><td>RATIO &amp; PROPORTION</td><td>Percentage change</td><td class="num">23</td><td class="num">12</td><td class="num">1.92</td><td class="num">1.09</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Volumes of 3-D shapes</td><td class="num">21</td><td class="num">9</td><td class="num">2.33</td><td class="num">0.82</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Circles and cylinders</td><td class="num">21</td><td class="num">9</td><td class="num">2.33</td><td class="num">0.82</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Trigonometry</td><td class="num">20.5</td><td class="num">9</td><td class="num">2.28</td><td class="num">0.82</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Algebraic proof</td><td class="num">20</td><td class="num">9</td><td class="num">2.22</td><td class="num">0.82</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Factorising</td><td class="num">19</td><td class="num">8</td><td class="num">2.38</td><td class="num">0.73</td><td class="num">11</td></tr>
+              <tr><td>PROBABILITY &amp; STATISTICS</td><td>Mean, median and mode</td><td class="num">19</td><td class="num">9</td><td class="num">2.11</td><td class="num">0.82</td><td class="num">11</td></tr>
+              <tr><td>PROBABILITY &amp; STATISTICS</td><td>Probability</td><td class="num">18</td><td class="num">7</td><td class="num">2.57</td><td class="num">0.64</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Functions</td><td class="num">17</td><td class="num">7</td><td class="num">2.43</td><td class="num">0.64</td><td class="num">11</td></tr>
+              <tr><td>NUMBER</td><td>Estimation</td><td class="num">16.5</td><td class="num">7</td><td class="num">2.36</td><td class="num">0.64</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Linear equations</td><td class="num">16</td><td class="num">6</td><td class="num">2.67</td><td class="num">0.55</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Trigonometric graphs</td><td class="num">15</td><td class="num">6</td><td class="num">2.50</td><td class="num">0.55</td><td class="num">11</td></tr>
+              <tr><td>NUMBER</td><td>Decimals</td><td class="num">14</td><td class="num">4</td><td class="num">3.50</td><td class="num">0.36</td><td class="num">11</td></tr>
+              <tr><td>PROBABILITY &amp; STATISTICS</td><td>Box plots</td><td class="num">13</td><td class="num">4</td><td class="num">3.25</td><td class="num">0.36</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Angle properties</td><td class="num">12</td><td class="num">7</td><td class="num">1.71</td><td class="num">0.64</td><td class="num">11</td></tr>
+              <tr><td>PROBABILITY &amp; STATISTICS</td><td>Cumulative frequency</td><td class="num">12</td><td class="num">4</td><td class="num">3.00</td><td class="num">0.36</td><td class="num">11</td></tr>
+              <tr><td>RATIO &amp; PROPORTION</td><td>Speed</td><td class="num">11.5</td><td class="num">4</td><td class="num">2.88</td><td class="num">0.36</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Vectors</td><td class="num">11</td><td class="num">3</td><td class="num">3.67</td><td class="num">0.27</td><td class="num">11</td></tr>
+              <tr><td>NUMBER</td><td>Counting strategies</td><td class="num">11</td><td class="num">4</td><td class="num">2.75</td><td class="num">0.36</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Solving sequence problems</td><td class="num">11</td><td class="num">3</td><td class="num">3.67</td><td class="num">0.27</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Quadratic graphs</td><td class="num">10.5</td><td class="num">6</td><td class="num">1.75</td><td class="num">0.55</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Translations, reflections and rotations</td><td class="num">10.5</td><td class="num">6</td><td class="num">1.75</td><td class="num">0.55</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Similar shapes</td><td class="num">10.5</td><td class="num">4</td><td class="num">2.63</td><td class="num">0.36</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Algebraic expressions</td><td class="num">10</td><td class="num">4</td><td class="num">2.50</td><td class="num">0.36</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Circle theorems</td><td class="num">10</td><td class="num">4</td><td class="num">2.50</td><td class="num">0.36</td><td class="num">11</td></tr>
+              <tr><td>RATIO &amp; PROPORTION</td><td>Other compound measures</td><td class="num">9</td><td class="num">5</td><td class="num">1.80</td><td class="num">0.45</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Rearranging formulae</td><td class="num">8.5</td><td class="num">4</td><td class="num">2.13</td><td class="num">0.36</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Completing the square</td><td class="num">8</td><td class="num">4</td><td class="num">2.00</td><td class="num">0.36</td><td class="num">11</td></tr>
+              <tr><td>PROBABILITY &amp; STATISTICS</td><td>Histograms</td><td class="num">8</td><td class="num">3</td><td class="num">2.67</td><td class="num">0.27</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Units of area and volume</td><td class="num">7.5</td><td class="num">4</td><td class="num">1.88</td><td class="num">0.36</td><td class="num">11</td></tr>
+              <tr><td>PROBABILITY &amp; STATISTICS</td><td>Sampling</td><td class="num">7</td><td class="num">4</td><td class="num">1.75</td><td class="num">0.36</td><td class="num">11</td></tr>
+              <tr><td>NUMBER</td><td>Factors and primes</td><td class="num">7</td><td class="num">3</td><td class="num">2.33</td><td class="num">0.27</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Algebraic fractions</td><td class="num">7</td><td class="num">3</td><td class="num">2.33</td><td class="num">0.27</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Quadratic equations</td><td class="num">6.5</td><td class="num">3</td><td class="num">2.17</td><td class="num">0.27</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Cubic and reciprocal graphs</td><td class="num">6.5</td><td class="num">3</td><td class="num">2.17</td><td class="num">0.27</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Expanding brackets</td><td class="num">6</td><td class="num">4</td><td class="num">1.50</td><td class="num">0.36</td><td class="num">11</td></tr>
+              <tr><td>PROBABILITY &amp; STATISTICS</td><td>Comparing data</td><td class="num">6</td><td class="num">3</td><td class="num">2.00</td><td class="num">0.27</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Inverse functions</td><td class="num">6</td><td class="num">2</td><td class="num">3.00</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>Algebra</td><td>Composite functions</td><td class="num">6</td><td class="num">2</td><td class="num">3.00</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Inequalities</td><td class="num">5.5</td><td class="num">3</td><td class="num">1.83</td><td class="num">0.27</td><td class="num">11</td></tr>
+              <tr><td>PROBABILITY &amp; STATISTICS</td><td>Scatter graphs</td><td class="num">5</td><td class="num">2</td><td class="num">2.50</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>NUMBER</td><td>Standard form</td><td class="num">5</td><td class="num">2</td><td class="num">2.50</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Congruent triangles</td><td class="num">5</td><td class="num">3</td><td class="num">1.67</td><td class="num">0.27</td><td class="num">11</td></tr>
+              <tr><td>Geometry and Measures</td><td>deducing coordinates from patterns</td><td class="num">5</td><td class="num">1</td><td class="num">5.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Algebra</td><td>Graphical methods</td><td class="num">5</td><td class="num">3</td><td class="num">1.67</td><td class="num">0.27</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Transforming graphs</td><td class="num">5</td><td class="num">2</td><td class="num">2.50</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>Number</td><td>LCM and HCF</td><td class="num">5</td><td class="num">2</td><td class="num">2.50</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>Number</td><td>Mixed numbers</td><td class="num">5</td><td class="num">3</td><td class="num">1.67</td><td class="num">0.27</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Formulae</td><td class="num">4.5</td><td class="num">2</td><td class="num">2.25</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>PROBABILITY &amp; STATISTICS</td><td>Venn diagrams</td><td class="num">4.5</td><td class="num">2</td><td class="num">2.25</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Quadratic inequalities</td><td class="num">4.5</td><td class="num">2</td><td class="num">2.25</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>NUMBER</td><td>Upper and lower bounds</td><td class="num">4</td><td class="num">2</td><td class="num">2.00</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Constructions</td><td class="num">4</td><td class="num">2</td><td class="num">2.00</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>Number</td><td>Rationalising the denominator</td><td class="num">3.5</td><td class="num">2</td><td class="num">1.75</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Prisms</td><td class="num">3</td><td class="num">1</td><td class="num">3.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Number</td><td>Multiplying mixed numbers</td><td class="num">3</td><td class="num">2</td><td class="num">1.50</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>PROBABILITY &amp; STATISTICS</td><td>Frequency table averages</td><td class="num">3</td><td class="num">1</td><td class="num">3.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>PROBABILITY &amp; STATISTICS</td><td>Interquartile range</td><td class="num">3</td><td class="num">1</td><td class="num">3.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Algebra</td><td>ranges</td><td class="num">2.5</td><td class="num">1</td><td class="num">2.50</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Geometry and Measures</td><td>Geometric reasoning</td><td class="num">2.5</td><td class="num">1</td><td class="num">2.50</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Bearings</td><td class="num">2.5</td><td class="num">1</td><td class="num">2.50</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Algebra</td><td>Rationalising the denominator</td><td class="num">2.5</td><td class="num">1</td><td class="num">2.50</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Probability</td><td>Without replacement</td><td class="num">2</td><td class="num">1</td><td class="num">2.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Number</td><td>HCF and LCM</td><td class="num">2</td><td class="num">1</td><td class="num">2.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Number</td><td>Powers and roots</td><td class="num">2</td><td class="num">1</td><td class="num">2.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Algebra</td><td>Sequences</td><td class="num">2</td><td class="num">2</td><td class="num">1.00</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>ALGEBRA</td><td>Arithmetic sequences</td><td class="num">2</td><td class="num">2</td><td class="num">1.00</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>PROBABILITY &amp; STATISTICS</td><td>Capture-recapture</td><td class="num">2</td><td class="num">1</td><td class="num">2.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Vector proof</td><td class="num">2</td><td class="num">1</td><td class="num">2.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Enlargement</td><td class="num">2</td><td class="num">2</td><td class="num">1.00</td><td class="num">0.18</td><td class="num">11</td></tr>
+              <tr><td>Ratio Proportion and Rates of Change</td><td>Proportional reasoning</td><td class="num">2</td><td class="num">1</td><td class="num">2.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Algebra</td><td>Square roots</td><td class="num">2</td><td class="num">1</td><td class="num">2.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Algebra</td><td>Forming expressions</td><td class="num">2</td><td class="num">1</td><td class="num">2.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Algebra</td><td>LCM and HCF</td><td class="num">2</td><td class="num">1</td><td class="num">2.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Algebra</td><td>Forming equations</td><td class="num">1.5</td><td class="num">1</td><td class="num">1.50</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Algebra</td><td>Graph interpretation</td><td class="num">1.5</td><td class="num">1</td><td class="num">1.50</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>PROBABILITY &amp; STATISTICS</td><td>Line graphs</td><td class="num">1.5</td><td class="num">1</td><td class="num">1.50</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>RATIO &amp; PROPORTION</td><td>Density</td><td class="num">1.5</td><td class="num">1</td><td class="num">1.50</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Probability</td><td>Independent events</td><td class="num">1.5</td><td class="num">1</td><td class="num">1.50</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>GEOMETRY &amp; MEASURES</td><td>Combining transformations</td><td class="num">1.5</td><td class="num">1</td><td class="num">1.50</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Algebra</td><td>Graphs</td><td class="num">1.5</td><td class="num">1</td><td class="num">1.50</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Geometry and Measures</td><td>Similarity</td><td class="num">1.5</td><td class="num">1</td><td class="num">1.50</td><td class="num">0.09</td><td class="num">11</td></tr>
+              <tr><td>Statistics</td><td>Proportional reasoning</td><td class="num">1</td><td class="num">1</td><td class="num">1.00</td><td class="num">0.09</td><td class="num">11</td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
   </main>
 </body>
