@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donte Tutoring Notes</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --surface-1: #0B1120;
+      --surface-2: #111827;
+      --primary: #0F172A;
+      --secondary: #312E81;
+      --accent: #22D3EE;
+      --border: #1F2937;
+      --text: #E5E7EB;
+      --text-muted: #9CA3AF;
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --shadow-soft: 0 8px 24px rgba(2, 6, 23, 0.45);
+      --shadow-focus: 0 0 0 3px rgba(34, 211, 238, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      color: var(--text);
+      font-family: "Atkinson Hyperlegible", "Inter", "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 20% -10%, rgba(49, 46, 129, 0.35), transparent 35%),
+        radial-gradient(circle at 80% 0%, rgba(34, 211, 238, 0.18), transparent 30%),
+        var(--bg);
+      line-height: 1.8;
+      letter-spacing: 0.01em;
+    }
+
+    a {
+      color: #67E8F9;
+    }
+
+    a:hover {
+      color: #A5F3FC;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: none;
+      box-shadow: var(--shadow-focus);
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+      background: rgba(2, 6, 23, 0.75);
+      border-bottom: 1px solid rgba(31, 41, 55, 0.8);
+    }
+
+    .top-nav-inner {
+      width: min(1100px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 1rem 0;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      color: #67E8F9;
+    }
+
+    .page {
+      width: min(1100px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 4rem;
+    }
+
+    .hero {
+      padding: 2.5rem 0 1.5rem;
+      animation: fadeUp 280ms ease-out both;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.375rem 0.625rem;
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      border-radius: 999px;
+      background: rgba(49, 46, 129, 0.22);
+      color: #C4B5FD;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 1rem 0 0.75rem;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 74ch;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.25rem;
+    }
+
+    .btn {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      padding: 0.72rem 1rem;
+      transition: transform 180ms ease-out, filter 180ms ease-out;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.06);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #06B6D4);
+      color: #06202A;
+      border-color: rgba(34, 211, 238, 0.4);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .panel {
+      background: linear-gradient(145deg, rgba(11, 17, 32, 0.95), rgba(17, 24, 39, 0.9));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      padding: 1.5rem;
+      margin-top: 1.25rem;
+      animation: fadeUp 280ms ease-out both;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      letter-spacing: -0.01em;
+      margin-top: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-top: 0;
+      margin-bottom: 0.7rem;
+      color: #BAE6FD;
+    }
+
+    p,
+    li {
+      font-size: 1.05rem;
+      margin-top: 0;
+      margin-bottom: 0.85rem;
+    }
+
+    ul,
+    ol {
+      padding-left: 1.25rem;
+      margin: 0;
+    }
+
+    .example-block {
+      border: 1px solid rgba(51, 65, 85, 0.8);
+      border-radius: var(--radius-lg);
+      background: rgba(2, 6, 23, 0.35);
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .k-step {
+      margin: 0.6rem 0;
+      padding-left: 0.8rem;
+      border-left: 3px solid rgba(34, 211, 238, 0.35);
+    }
+
+    .math-line {
+      display: block;
+      margin: 0.45rem 0;
+      overflow-x: auto;
+    }
+
+    .practice-card {
+      border: 1px solid rgba(51, 65, 85, 0.8);
+      border-radius: var(--radius-lg);
+      background: rgba(2, 6, 23, 0.35);
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .answer-btn {
+      background: rgba(49, 46, 129, 0.22);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: var(--text);
+      border-radius: var(--radius-md);
+      padding: 0.6rem 0.9rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      min-height: 40px;
+    }
+
+    .answer-btn:hover {
+      filter: brightness(1.08);
+    }
+
+    .answer {
+      margin-top: 0.8rem;
+      padding: 0.9rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(34, 211, 238, 0.35);
+      background: rgba(15, 23, 42, 0.85);
+      display: none;
+    }
+
+    .hint {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .tip {
+      border-left: 4px solid #38BDF8;
+      padding: 0.75rem 0.9rem;
+      background: rgba(56, 189, 248, 0.08);
+      border-radius: var(--radius-sm);
+      margin-top: 1rem;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .page,
+      .top-nav-inner {
+        width: min(1100px, calc(100% - 1rem));
+      }
+
+      h1 {
+        font-size: clamp(1.7rem, 8vw, 2.2rem);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+  <script>
+    function toggleAnswer(id, button) {
+      const answer = document.getElementById(id);
+      const isOpen = answer.style.display === 'block';
+      answer.style.display = isOpen ? 'none' : 'block';
+      button.textContent = isOpen ? 'Show answer' : 'Hide answer';
+      button.setAttribute('aria-expanded', String(!isOpen));
+    }
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="top-nav">
+    <div class="top-nav-inner">Edexcel GCSE Maths Higher | Donte Notes</div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <span class="eyebrow">Tutoring Notes</span>
+      <h1>Subtracting, Negative Numbers, and Making \(x\) the Subject</h1>
+      <p class="lead">
+        These notes are written in short, clear steps. Read one step at a time, and pause whenever you need.
+        If a line feels difficult, cover the rest and focus on just that line.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#practice">Jump to Practice Questions</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>1) Subtracting is Adding a Negative</h2>
+      <p>
+        You can think of subtraction as adding a negative number.
+      </p>
+      <p class="math-line">\[5 - 2 = 3\]</p>
+      <p>
+        The same idea can be written as:
+      </p>
+      <p class="math-line">\[5 + (-2) = 3\]</p>
+      <p>
+        A negative number can also be written as a positive number multiplied by \(-1\):
+      </p>
+      <p class="math-line">\[-2 = 2 \times (-1)\]</p>
+      <p>
+        So another equivalent form is:
+      </p>
+      <p class="math-line">\[5 + (2 \times -1) = 3\]</p>
+      <div class="tip">
+        <strong>Key idea:</strong> subtracting a number and adding its negative give the same result.
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>2) Add or Subtract the Same Thing on Both Sides</h2>
+      <p>
+        To keep an equation balanced, whatever you do to the left side, do the same to the right side.
+      </p>
+      <p>
+        Your goal is to get \(x\) on its own.
+      </p>
+
+      <div class="example-block">
+        <h3>Example 1</h3>
+        <p class="math-line">\[y = x + 5\]</p>
+        <div class="k-step">
+          Left side: \(y\)<br>
+          Right side: \(x + 5\)
+        </div>
+        <div class="k-step">
+          Operation: subtract 5 from both sides.
+        </div>
+        <div class="k-step">
+          Left side: \(y - 5\)<br>
+          Right side: \(x + 5 - 5 = x + 0 = x\)
+        </div>
+        <div class="k-step">
+          Write the equation with the new left and right side.
+        </div>
+        <p class="math-line">\[y - 5 = x\]</p>
+        <p>Since \(x\) is now the subject, this is the answer.</p>
+      </div>
+
+      <div class="example-block">
+        <h3>Example 2</h3>
+        <p class="math-line">\[y = x + 3 + c\]</p>
+        <div class="k-step">
+          Left side: \(y\)<br>
+          Right side: \(x + 3 + c\)
+        </div>
+        <div class="k-step">
+          Operation: subtract 3 from both sides.
+        </div>
+        <div class="k-step">
+          Left side: \(y - 3\)<br>
+          Right side: \(x + 3 + c - 3 = x + c + 0 = x + c\)
+        </div>
+        <div class="k-step">
+          Write the equation with the new left and right side.
+        </div>
+        <p class="math-line">\[y - 3 = x + c\]</p>
+        <div class="k-step">
+          Left side: \(y - 3\)<br>
+          Right side: \(x + c\)
+        </div>
+        <div class="k-step">
+          Operation: subtract \(c\) from both sides.
+        </div>
+        <div class="k-step">
+          Left side: \(y - 3 - c\)<br>
+          Right side: \(x + c - c = x + 0 = x\)
+        </div>
+        <div class="k-step">
+          Write the equation with the new left and right side.
+        </div>
+        <p class="math-line">\[y - 3 - c = x\]</p>
+        <p>Since \(x\) is now the subject, this is the answer.</p>
+      </div>
+
+      <div class="example-block">
+        <h3>Example 3</h3>
+        <p class="math-line">\[y = x - 12 + c\]</p>
+        <div class="k-step">
+          Left side: \(y\)<br>
+          Right side: \(x - 12 + c\)
+        </div>
+        <div class="k-step">
+          Operation: add 12 to both sides.
+        </div>
+        <div class="k-step">
+          Left side: \(y + 12\)<br>
+          Right side: \(x - 12 + c + 12 = x + c + 0 = x + c\)
+        </div>
+        <div class="k-step">
+          Write the equation with the new left and right side.
+        </div>
+        <p class="math-line">\[y + 12 = x + c\]</p>
+        <div class="k-step">
+          Left side: \(y + 12\)<br>
+          Right side: \(x + c\)
+        </div>
+        <div class="k-step">
+          Operation: subtract \(c\) from both sides.
+        </div>
+        <div class="k-step">
+          Left side: \(y + 12 - c\)<br>
+          Right side: \(x + c - c = x + 0 = x\)
+        </div>
+        <div class="k-step">
+          Write the equation with the new left and right side.
+        </div>
+        <p class="math-line">\[y + 12 - c = x\]</p>
+        <p>Since \(x\) is now the subject, this is the answer.</p>
+      </div>
+
+      <div class="example-block">
+        <h3>Example 4</h3>
+        <p class="math-line">\[y = x - \frac{c}{4}\]</p>
+        <div class="k-step">
+          Left side: \(y\)<br>
+          Right side: \(x - \frac{c}{4}\)
+        </div>
+        <div class="k-step">
+          Operation: add \(\frac{c}{4}\) to both sides.
+        </div>
+        <div class="k-step">
+          Left side: \(y + \frac{c}{4}\)<br>
+          Right side: \(x - \frac{c}{4} + \frac{c}{4} = x + 0 = x\)
+        </div>
+        <div class="k-step">
+          Write the equation with the new left and right side.
+        </div>
+        <p class="math-line">\[y + \frac{c}{4} = x\]</p>
+        <p>Since \(x\) is now the subject, this is the answer.</p>
+      </div>
+
+      <div class="example-block">
+        <h3>Example 5</h3>
+        <p class="math-line">\[y = x + 2d^2\]</p>
+        <div class="k-step">
+          Left side: \(y\)<br>
+          Right side: \(x + 2d^2\)
+        </div>
+        <div class="k-step">
+          Operation: subtract \(2d^2\) from both sides.
+        </div>
+        <div class="k-step">
+          Left side: \(y - 2d^2\)<br>
+          Right side: \(x + 2d^2 - 2d^2 = x + 0 = x\)
+        </div>
+        <div class="k-step">
+          Write the equation with the new left and right side.
+        </div>
+        <p class="math-line">\[y - 2d^2 = x\]</p>
+        <p>Since \(x\) is now the subject, this is the answer.</p>
+      </div>
+    </section>
+
+    <section class="panel" id="practice">
+      <h2>3) Practice Questions</h2>
+      <p class="hint">Try each one first. Then use the button to check the answer.</p>
+
+      <article class="practice-card">
+        <h3>Question 1</h3>
+        <p>Make \(x\) the subject:</p>
+        <p class="math-line">\[y = x + 9\]</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('a1', this)">Show answer</button>
+        <div class="answer" id="a1">
+          <div class="k-step">
+            Left side: \(y\)<br>
+            Right side: \(x + 9\)
+          </div>
+          <div class="k-step">
+            Operation: subtract 9 from both sides.
+          </div>
+          <div class="k-step">
+            Left side: \(y - 9\)<br>
+            Right side: \(x + 9 - 9 = x + 0 = x\)
+          </div>
+          <div class="k-step">
+            Write the new equation.
+          </div>
+          <p class="math-line">\[y - 9 = x\]</p>
+          <p>Since \(x\) is now the subject, the answer is \(x = y - 9\).</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 2</h3>
+        <p>Make \(x\) the subject:</p>
+        <p class="math-line">\[y = x - 6 + c\]</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('a2', this)">Show answer</button>
+        <div class="answer" id="a2">
+          <div class="k-step">
+            Left side: \(y\)<br>
+            Right side: \(x - 6 + c\)
+          </div>
+          <div class="k-step">
+            Operation: add 6 to both sides.
+          </div>
+          <div class="k-step">
+            Left side: \(y + 6\)<br>
+            Right side: \(x - 6 + c + 6 = x + c\)
+          </div>
+          <p class="math-line">\[y + 6 = x + c\]</p>
+          <div class="k-step">
+            Left side: \(y + 6\)<br>
+            Right side: \(x + c\)
+          </div>
+          <div class="k-step">
+            Operation: subtract \(c\) from both sides.
+          </div>
+          <div class="k-step">
+            Left side: \(y + 6 - c\)<br>
+            Right side: \(x + c - c = x\)
+          </div>
+          <p class="math-line">\[y + 6 - c = x\]</p>
+          <p>Since \(x\) is now the subject, the answer is \(x = y + 6 - c\).</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 3</h3>
+        <p>Rewrite as addition of a negative:</p>
+        <p class="math-line">\[8 - 3\]</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('a3', this)">Show answer</button>
+        <div class="answer" id="a3">
+          <div class="k-step">
+            Start with: \(8 - 3\)
+          </div>
+          <div class="k-step">
+            Rewrite subtraction as adding a negative.
+          </div>
+          <p class="math-line">\[8 + (-3)\]</p>
+          <div class="k-step">
+            So \(8 - 3\) and \(8 + (-3)\) are equivalent.
+          </div>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 4</h3>
+        <p>Make \(x\) the subject:</p>
+        <p class="math-line">\[y = x + \frac{b}{2}\]</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('a4', this)">Show answer</button>
+        <div class="answer" id="a4">
+          <div class="k-step">
+            Left side: \(y\)<br>
+            Right side: \(x + \frac{b}{2}\)
+          </div>
+          <div class="k-step">
+            Operation: subtract \(\frac{b}{2}\) from both sides.
+          </div>
+          <div class="k-step">
+            Left side: \(y - \frac{b}{2}\)<br>
+            Right side: \(x + \frac{b}{2} - \frac{b}{2} = x\)
+          </div>
+          <div class="k-step">
+            Write the new equation.
+          </div>
+          <p class="math-line">\[y - \frac{b}{2} = x\]</p>
+          <p>Since \(x\) is now the subject, the answer is \(x = y - \frac{b}{2}\).</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 5</h3>
+        <p>Write \(-7\) as a positive number multiplied by \(-1\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('a5', this)">Show answer</button>
+        <div class="answer" id="a5">
+          <div class="k-step">
+            Start with: \(-7\)
+          </div>
+          <div class="k-step">
+            A negative number can be written as a positive number multiplied by \(-1\).
+          </div>
+          <p class="math-line">\[-7 = 7 \times (-1)\]</p>
+          <div class="k-step">
+            So this is \(-7\) written in the requested form.
+          </div>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 6</h3>
+        <p>Rewrite as addition of a negative:</p>
+        <p class="math-line">\[14 - 9\]</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('a6', this)">Show answer</button>
+        <div class="answer" id="a6">
+          <div class="k-step">
+            Start with: \(14 - 9\)
+          </div>
+          <div class="k-step">
+            Rewrite subtraction as adding a negative.
+          </div>
+          <p class="math-line">\[14 + (-9)\]</p>
+          <div class="k-step">
+            So \(14 - 9\) and \(14 + (-9)\) are equivalent.
+          </div>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 7</h3>
+        <p>Write \(-12\) as a positive number multiplied by \(-1\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('a7', this)">Show answer</button>
+        <div class="answer" id="a7">
+          <div class="k-step">
+            Start with: \(-12\)
+          </div>
+          <div class="k-step">
+            A negative number can be written as a positive number multiplied by \(-1\).
+          </div>
+          <p class="math-line">\[-12 = 12 \times (-1)\]</p>
+          <div class="k-step">
+            So this is \(-12\) written in the requested form.
+          </div>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 8 (More Difficult)</h3>
+        <p>Make \(x\) the subject:</p>
+        <p class="math-line">\[y = x - \frac{3c}{5} + 2d\]</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('a8', this)">Show answer</button>
+        <div class="answer" id="a8">
+          <div class="k-step">
+            Left side: \(y\)<br>
+            Right side: \(x - \frac{3c}{5} + 2d\)
+          </div>
+          <div class="k-step">
+            Operation: add \(\frac{3c}{5}\) to both sides.
+          </div>
+          <div class="k-step">
+            Left side: \(y + \frac{3c}{5}\)<br>
+            Right side: \(x - \frac{3c}{5} + 2d + \frac{3c}{5} = x + 2d\)
+          </div>
+          <p class="math-line">\[y + \frac{3c}{5} = x + 2d\]</p>
+          <div class="k-step">
+            Left side: \(y + \frac{3c}{5}\)<br>
+            Right side: \(x + 2d\)
+          </div>
+          <div class="k-step">
+            Operation: subtract \(2d\) from both sides.
+          </div>
+          <div class="k-step">
+            Left side: \(y + \frac{3c}{5} - 2d\)<br>
+            Right side: \(x + 2d - 2d = x\)
+          </div>
+          <p class="math-line">\[y + \frac{3c}{5} - 2d = x\]</p>
+          <p>Since \(x\) is now the subject, the answer is \(x = y + \frac{3c}{5} - 2d\).</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 9 (More Difficult)</h3>
+        <p>Make \(x\) the subject:</p>
+        <p class="math-line">\[y = x + \frac{a}{3} - \frac{b}{4} + 7\]</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('a9', this)">Show answer</button>
+        <div class="answer" id="a9">
+          <div class="k-step">
+            Left side: \(y\)<br>
+            Right side: \(x + \frac{a}{3} - \frac{b}{4} + 7\)
+          </div>
+          <div class="k-step">
+            Operation: subtract 7 from both sides.
+          </div>
+          <div class="k-step">
+            Left side: \(y - 7\)<br>
+            Right side: \(x + \frac{a}{3} - \frac{b}{4}\)
+          </div>
+          <p class="math-line">\[y - 7 = x + \frac{a}{3} - \frac{b}{4}\]</p>
+          <div class="k-step">
+            Operation: subtract \(\frac{a}{3}\) from both sides.
+          </div>
+          <div class="k-step">
+            Left side: \(y - 7 - \frac{a}{3}\)<br>
+            Right side: \(x + \frac{a}{3} - \frac{b}{4} - \frac{a}{3} = x - \frac{b}{4}\)
+          </div>
+          <p class="math-line">\[y - 7 - \frac{a}{3} = x - \frac{b}{4}\]</p>
+          <div class="k-step">
+            Operation: add \(\frac{b}{4}\) to both sides.
+          </div>
+          <div class="k-step">
+            Left side: \(y - 7 - \frac{a}{3} + \frac{b}{4}\)<br>
+            Right side: \(x - \frac{b}{4} + \frac{b}{4} = x\)
+          </div>
+          <p class="math-line">\[y - 7 - \frac{a}{3} + \frac{b}{4} = x\]</p>
+          <p>Since \(x\) is now the subject, the answer is \(x = y - 7 - \frac{a}{3} + \frac{b}{4}\).</p>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
