@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Angelica Tutoring Notes</title>
+  <title>Angelica Tutoring Notes - Functions</title>
   <style>
     :root {
       --bg: #020617;
       --surface-1: #0B1120;
       --surface-2: #111827;
-      --primary: #0F172A;
-      --secondary: #312E81;
       --accent: #22D3EE;
       --border: #1F2937;
       --text: #E5E7EB;
@@ -132,6 +130,39 @@
       border-color: rgba(34, 211, 238, 0.4);
     }
 
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-header h2 {
+      margin-bottom: 0;
+    }
+
+    .section-toggle {
+      background: rgba(49, 46, 129, 0.22);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: var(--text);
+      border-radius: var(--radius-md);
+      padding: 0.45rem 0.75rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .section-toggle:hover { filter: brightness(1.08); }
+
+    .section-content {
+      display: block;
+    }
+
+    .panel.collapsed .section-content {
+      display: none;
+    }
+
     .panel {
       background: linear-gradient(145deg, rgba(11, 17, 32, 0.95), rgba(17, 24, 39, 0.9));
       border: 1px solid var(--border);
@@ -167,59 +198,6 @@
       margin: 0;
     }
 
-    /* ---- trig tables ---- */
-    .trig-table-wrap {
-      overflow-x: auto;
-      margin-top: 1rem;
-    }
-
-    .trig-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 1rem;
-      background: var(--surface-1);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-
-    .trig-table thead tr {
-      background: rgba(15, 23, 42, 0.95);
-    }
-
-    .trig-table th {
-      padding: 0.7rem 1rem;
-      text-align: center;
-      color: var(--accent);
-      font-weight: 600;
-      border-bottom: 1px solid rgba(51, 65, 85, 0.6);
-    }
-
-    .trig-table td {
-      padding: 0.6rem 1rem;
-      text-align: center;
-      border-bottom: 1px solid rgba(51, 65, 85, 0.4);
-    }
-
-    .trig-table tr:nth-child(even) td {
-      background: rgba(148, 163, 184, 0.03);
-    }
-
-    .trig-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .trig-table td:first-child {
-      color: var(--accent);
-      font-weight: 600;
-      text-align: left;
-    }
-
-    .undef {
-      color: var(--text-muted);
-      font-style: italic;
-    }
-
-    /* ---- example / practice blocks ---- */
     .example-block {
       border: 1px solid rgba(51, 65, 85, 0.8);
       border-radius: var(--radius-lg);
@@ -238,6 +216,20 @@
       display: block;
       margin: 0.45rem 0;
       overflow-x: auto;
+    }
+
+    .diagram-image-wrap {
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .diagram-image {
+      width: min(720px, 100%);
+      height: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(51, 65, 85, 0.8);
+      box-shadow: var(--shadow-soft);
+      background: rgba(2, 6, 23, 0.35);
     }
 
     .practice-card {
@@ -291,104 +283,47 @@
       margin: 0.8rem 0;
     }
 
-    .rule-box p { margin-bottom: 0.4rem; }
-    .rule-box p:last-child { margin-bottom: 0; }
+    .update-notice {
+      background: linear-gradient(145deg, rgba(34, 211, 238, 0.1), rgba(99, 102, 241, 0.08));
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: #A5F3FC;
+      text-align: center;
+      animation: fadeUp 280ms ease-out both;
+    }
 
-    /* quadrant diagram */
-    .cast-diagram {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 0;
-      margin: 1rem 0;
-      max-width: 460px;
-      border: 2px solid rgba(34, 211, 238, 0.25);
+    .important-notice {
+      background: linear-gradient(145deg, rgba(220, 38, 38, 0.28), rgba(127, 29, 29, 0.34));
+      border: 1px solid rgba(248, 113, 113, 0.65);
       border-radius: var(--radius-lg);
-      overflow: hidden;
+      padding: 1rem 1.1rem;
+      margin: 0.5rem 0 1.5rem;
+      color: #fee2e2;
+      animation: fadeUp 280ms ease-out both;
     }
 
-    .cast-cell {
-      padding: 1rem;
-      text-align: center;
-      position: relative;
+    .important-notice h2 {
+      margin: 0 0 0.65rem;
+      color: #fecaca;
+      font-size: 1.25rem;
     }
 
-    .cast-cell:nth-child(1) { border-right: 1px solid rgba(34,211,238,0.2); border-bottom: 1px solid rgba(34,211,238,0.2); background: rgba(49,46,129,0.15); }
-    .cast-cell:nth-child(2) { border-bottom: 1px solid rgba(34,211,238,0.2); background: rgba(34,211,238,0.07); }
-    .cast-cell:nth-child(3) { border-right: 1px solid rgba(34,211,238,0.2); background: rgba(49,46,129,0.08); }
-    .cast-cell:nth-child(4) { background: rgba(49,46,129,0.08); }
-
-    .cast-letter {
-      font-size: 2rem;
-      font-weight: 800;
-      line-height: 1;
-      margin-bottom: 0.3rem;
+    .important-notice p {
+      margin-bottom: 0.9rem;
     }
 
-    .cast-range {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 0.3rem;
+    .important-notice ul {
+      margin: 0;
+      padding-left: 1.1rem;
     }
 
-    .cast-desc {
-      font-size: 0.88rem;
-      line-height: 1.4;
+    .important-notice li {
+      margin-bottom: 0.7rem;
+      color: #fee2e2;
     }
-
-    .cast-formula-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
-      margin: 1rem 0;
-      max-width: 600px;
-    }
-
-    .cast-formula-cell {
-      border: 1px solid rgba(51, 65, 85, 0.7);
-      border-radius: var(--radius-md);
-      padding: 0.7rem 0.9rem;
-      background: rgba(15, 23, 42, 0.5);
-      font-size: 0.95rem;
-    }
-
-    .cast-formula-cell .cf-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.25rem;
-    }
-
-    .cast-formula-cell .cf-formula {
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    .quad-cell {
-      border: 1px solid rgba(51, 65, 85, 0.7);
-      border-radius: var(--radius-md);
-      padding: 0.7rem;
-      text-align: center;
-      background: rgba(15, 23, 42, 0.5);
-    }
-
-    .quad-cell .qlabel {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .quad-cell .qsign {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-top: 0.2rem;
-    }
-
-    .pos { color: #22C55E; }
-    .neg { color: #EF4444; }
-    .neutral { color: var(--accent); }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(12px); }
@@ -408,34 +343,29 @@
         transition: none !important;
       }
     }
-
-    .update-notice {
-      background: linear-gradient(145deg, rgba(34, 211, 238, 0.1), rgba(99, 102, 241, 0.08));
-      border: 1px solid rgba(34, 211, 238, 0.3);
-      border-radius: var(--radius-md);
-      padding: 0.75rem 1rem;
-      margin: 1.5rem 0;
-      font-size: 0.9rem;
-      color: #A5F3FC;
-      text-align: center;
-      animation: fadeUp 280ms ease-out both;
-    }
   </style>
 
   <script>
     function toggleAnswer(id, button) {
       const answer = document.getElementById(id);
-      const isOpen = answer.style.display === 'block';
-      answer.style.display = isOpen ? 'none' : 'block';
-      button.textContent = isOpen ? 'Show answer' : 'Hide answer';
-      button.setAttribute('aria-expanded', String(!isOpen));
+      const isOpen = answer.style.display === "block";
+      answer.style.display = isOpen ? "none" : "block";
+      button.textContent = isOpen ? "Show answer" : "Hide answer";
+      button.setAttribute("aria-expanded", String(!isOpen));
+    }
+
+    function toggleSection(sectionId, button) {
+      const section = document.getElementById(sectionId);
+      const isCollapsed = section.classList.toggle("collapsed");
+      button.textContent = isCollapsed ? "Show section" : "Hide section";
+      button.setAttribute("aria-expanded", String(!isCollapsed));
     }
   </script>
   <script>
     window.MathJax = {
       tex: {
-        inlineMath: [['\\(', '\\)'], ['$', '$']],
-        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+        inlineMath: [["\\(", "\\)"], ["$", "$"]],
+        displayMath: [["\\[", "\\]"], ["$$", "$$"]]
       }
     };
   </script>
@@ -449,699 +379,481 @@
 
   <main class="page">
 
-    <!-- ===================== HERO ===================== -->
+    <section class="important-notice">
+      <h2>Important Notice</h2>
+      <p>Hi Angelica. I've updated this page by making the following changes. I've added a lot of stuff so you can choose how much you want to do. Good luck in the exam! :)</p>
+      <ul>
+        <li>Rewritten the trigonometry section to hopefully make it easier to understand and remember. If you understand it and want to remember the diagram I recommend trying to redraw the diagram from memory 2-3 times a day for the next 2 days before your exam, that should be enough to remember it.</li>
+        <li>Created new practice questions for the composite and inverse function sections if you want to practice that topic more. (the factorisation sections are not changed).</li>
+        <li>Created a new section for the ratios exam question you tried in the last session with the simulataneous equations. I've added a better explanation of how the examiner answered the question. I've also added a couple of practice questions if you want more practice on that type of question.</li>
+        <li>Created a new section for the circle + line geometry problem you tried last week. I've added an explanation how to solve that problem and added a couple of practice problems if you want to practice the topic. I've also added pratice for similar problems which involve either perpendicular lines or tangent lines which may appear in the exam.</li>
+      </ul>
+    </section>
+
     <section class="hero">
       <span class="eyebrow">Tutoring Notes — Higher GCSE</span>
-      <h1>Trigonometry, Straight Lines &amp; Circles</h1>
-      <p class="lead">
-        Worked examples and practice questions covering key trig values, solving trig equations,
-        straight-line and circle geometry, and finding points of intersection.
-      </p>
       <div class="actions">
-        <a class="btn btn-primary" href="#key-trig-values">Key Trig Values</a>
-        <a class="btn btn-primary" href="#cast-diagram">CAST Diagram</a>
-        <a class="btn btn-primary" href="#trig-equations">Trig Worked Examples</a>
-        <a class="btn btn-primary" href="#trig-practice">Trig Practice</a>
-        <a class="btn btn-primary" href="#lines-circles">Lines &amp; Circles</a>
-        <a class="btn btn-primary" href="#lines-circles-practice">Lines &amp; Circles Practice</a>
+        <a class="btn btn-primary" href="#trig-solving">Trig Equations (Unit Circle)</a>
+        <a class="btn btn-primary" href="#exam-ratios">Exam Question (Ratios)</a>
+        <a class="btn btn-primary" href="#coord-geom-circle-line">Coordinate Geometry Problem</a>
         <a class="btn btn-primary" href="#functions">Functions</a>
         <a class="btn btn-primary" href="#functions-practice">Functions Practice</a>
-        <a class="btn btn-primary" href="#algebraic-fractions">Algebraic Fractions</a>
-        <a class="btn btn-primary" href="#rearranging-formulas">Rearranging Formulas</a>
-        <a class="btn btn-primary" href="#rearranging-practice">Rearranging Practice</a>
         <a class="btn btn-primary" href="#factorisation-indices">Factorisation &amp; Indices</a>
         <a class="btn btn-primary" href="#factorisation-practice">Factorisation Practice</a>
       </div>
     </section>
 
-    <div class="update-notice">✓ Page updated on May 9, 2026 at 5:00 PM</div>
+    <div class="update-notice">Updated 00:45, May 12, 2026</div>
 
-    <!-- ===================== SECTION 1: KEY TRIG VALUES ===================== -->
-    <section class="panel" id="key-trig-values">
-      <h2>1) Key Trigonometric Values</h2>
+    <section class="panel collapsed" id="trig-solving">
+      <div class="section-header">
+        <h2>Solving Trigonometry Equations (Unit Circle Method)</h2>
+        <button class="section-toggle" type="button" aria-expanded="false" onclick="toggleSection('trig-solving', this)">Show section</button>
+      </div>
+
+      <div class="section-content">
       <p>
-        You need to know the exact values of \(\sin\), \(\cos\) and \(\tan\) for certain angles.
-        These appear frequently in exam questions and allow you to give exact answers rather than decimals.
+        The diagram below shows a circle is the unit circle. The unit circle means the circle with radius 1.
+        The equation for the unit circle is \(x^2 + y^2 = 1\).
       </p>
 
-      <h3>Angles on the unit circle: 0°, 90°, 180°, 270°, 360°</h3>
-      <div class="trig-table-wrap">
-        <table class="trig-table">
-          <thead>
-            <tr>
-              <th>\(x\)</th>
-              <th>\(0°\)</th>
-              <th>\(90°\)</th>
-              <th>\(180°\)</th>
-              <th>\(270°\)</th>
-              <th>\(360°\)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>\(\sin x\)</td>
-              <td>\(0\)</td>
-              <td>\(1\)</td>
-              <td>\(0\)</td>
-              <td>\(-1\)</td>
-              <td>\(0\)</td>
-            </tr>
-            <tr>
-              <td>\(\cos x\)</td>
-              <td>\(1\)</td>
-              <td>\(0\)</td>
-              <td>\(-1\)</td>
-              <td>\(0\)</td>
-              <td>\(1\)</td>
-            </tr>
-            <tr>
-              <td>\(\tan x\)</td>
-              <td>\(0\)</td>
-              <td class="undef">undefined</td>
-              <td>\(0\)</td>
-              <td class="undef">undefined</td>
-              <td>\(0\)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="tip">
-        \(\tan x\) is undefined at 90° and 270° because \(\tan x = \frac{\sin x}{\cos x}\) and \(\cos 90° = \cos 270° = 0\),
-        which would mean dividing by zero.
-      </div>
-
-      <h3 style="margin-top:1.5rem;">Special angles: 30°, 45°, 60°</h3>
       <p>
-        These three angles come from two standard triangles (the 30-60-90 and the 45-45-90 triangle).
-        Their exact values involve surds.
-      </p>
-      <div class="trig-table-wrap">
-        <table class="trig-table">
-          <thead>
-            <tr>
-              <th>\(x\)</th>
-              <th>\(30°\)</th>
-              <th>\(45°\)</th>
-              <th>\(60°\)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>\(\sin x\)</td>
-              <td>\(\dfrac{1}{2}\)</td>
-              <td>\(\dfrac{\sqrt{2}}{2}\)</td>
-              <td>\(\dfrac{\sqrt{3}}{2}\)</td>
-            </tr>
-            <tr>
-              <td>\(\cos x\)</td>
-              <td>\(\dfrac{\sqrt{3}}{2}\)</td>
-              <td>\(\dfrac{\sqrt{2}}{2}\)</td>
-              <td>\(\dfrac{1}{2}\)</td>
-            </tr>
-            <tr>
-              <td>\(\tan x\)</td>
-              <td>\(\dfrac{1}{\sqrt{3}} = \dfrac{\sqrt{3}}{3}\)</td>
-              <td>\(1\)</td>
-              <td>\(\sqrt{3}\)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="tip">
-        <strong>Memory tip:</strong> for \(\sin\), the pattern across 30°, 45°, 60° is
-        \(\frac{1}{2},\ \frac{\sqrt{2}}{2},\ \frac{\sqrt{3}}{2}\) — numerators are \(\sqrt{1}, \sqrt{2}, \sqrt{3}\).
-        For \(\cos\) the pattern is exactly reversed.
-      </div>
-    </section>
-
-    <!-- ===================== SECTION 2: QUADRANT RULES ===================== -->
-    <section class="panel" id="cast-diagram">
-      <h2>2) The CAST Diagram — Which Quadrant to Use</h2>
-
-      <p>
-        When you solve a trig equation like \(\sin x = -\tfrac{1}{2}\), your calculator gives you
-        one answer (the <strong>reference angle</strong>), but there are usually <em>two</em> angles
-        between 0° and 360° that work. The CAST diagram tells you which quadrants to use.
+        \(P(x,y)\) means a general point that lies on the circle and the coordinates of that point are \(x\) and \(y\).
       </p>
 
-      <h3>What CAST stands for</h3>
       <p>
-        Each letter tells you which trig function is <strong>positive</strong> in that quadrant.
-        Everything else is negative in that quadrant.
+        To solve what \(x\) and \(y\) are for \(P(x,y)\), you only need to know the angle.
+        Then you can use \(x=\cos(A)\) and \(y=\sin(A)\), where \(A\) is the angle.
       </p>
 
-      <!-- CAST diagram — read anti-clockwise: Q1=A, Q2=S, Q3=T, Q4=C -->
-      <div class="cast-diagram">
-        <!-- Top-left = Q2 -->
-        <div class="cast-cell">
-          <div class="cast-letter" style="color:#22C55E;">S</div>
-          <div class="cast-range">Q2 — 90° to 180°</div>
-          <div class="cast-desc">
-            <span class="pos">Sin +</span><br>
-            <span class="neg">Cos −, Tan −</span>
-          </div>
-        </div>
-        <!-- Top-right = Q1 -->
-        <div class="cast-cell">
-          <div class="cast-letter" style="color:#22D3EE;">A</div>
-          <div class="cast-range">Q1 — 0° to 90°</div>
-          <div class="cast-desc">
-            <span class="pos">All + (Sin, Cos, Tan)</span>
-          </div>
-        </div>
-        <!-- Bottom-left = Q3 -->
-        <div class="cast-cell">
-          <div class="cast-letter" style="color:#22C55E;">T</div>
-          <div class="cast-range">Q3 — 180° to 270°</div>
-          <div class="cast-desc">
-            <span class="pos">Tan +</span><br>
-            <span class="neg">Sin −, Cos −</span>
-          </div>
-        </div>
-        <!-- Bottom-right = Q4 -->
-        <div class="cast-cell">
-          <div class="cast-letter" style="color:#22C55E;">C</div>
-          <div class="cast-range">Q4 — 270° to 360°</div>
-          <div class="cast-desc">
-            <span class="pos">Cos +</span><br>
-            <span class="neg">Sin −, Tan −</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="tip">
-        <strong>How to read it:</strong> If you need \(\sin x\) to be <em>negative</em>, look for the
-        quadrants where Sin is <em>not</em> listed as positive — that's Q3 and Q4.
-      </div>
-
-      <h3 style="margin-top:1.5rem;">The four quadrant formulas</h3>
       <p>
-        Once you know which quadrants to use, these formulas convert the reference angle \(\theta\)
-        into the actual angle \(x\):
+        For example, if the angle \(A=30°\), then \(x=\cos(30°)=\frac{\sqrt{3}}{2}\) and
+        \(y=\sin(30°)=\frac{1}{2}\). Then:
+      </p>
+      <p class="math-line">
+        \[P(x,y) = (\cos(30°),\sin(30°)) = \left(\frac{\sqrt{3}}{2}, \frac{1}{2}\right)\]
       </p>
 
-      <div class="cast-formula-grid">
-        <div class="cast-formula-cell">
-          <div class="cf-label">Quadrant 1 (0°–90°)</div>
-          <div class="cf-formula">\(x = \theta\)</div>
-          <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.3rem;">The angle is just the reference angle itself.</div>
-        </div>
-        <div class="cast-formula-cell">
-          <div class="cf-label">Quadrant 2 (90°–180°)</div>
-          <div class="cf-formula">\(x = 180° - \theta\)</div>
-          <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.3rem;">Subtract the reference angle from 180°.</div>
-        </div>
-        <div class="cast-formula-cell">
-          <div class="cf-label">Quadrant 3 (180°–270°)</div>
-          <div class="cf-formula">\(x = 180° + \theta\)</div>
-          <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.3rem;">Add the reference angle to 180°.</div>
-        </div>
-        <div class="cast-formula-cell">
-          <div class="cf-label">Quadrant 4 (270°–360°)</div>
-          <div class="cf-formula">\(x = 360° - \theta\)</div>
-          <div style="font-size:0.85rem; color:var(--text-muted); margin-top:0.3rem;">Subtract the reference angle from 360°.</div>
-        </div>
+      <p>The diagram shows all the \(P(x,y)\) for all the special angles.</p>
+      <div class="diagram-image-wrap">
+        <img class="diagram-image" src="Pasted image.png" alt="Unit circle diagram with special angle coordinates">
       </div>
 
-      <h3 style="margin-top:1.5rem;">Step-by-step method</h3>
-      <ol>
-        <li><strong>Rearrange</strong> the equation so the trig function is on its own (e.g. \(\sin x = -\tfrac{1}{2}\)).</li>
-        <li><strong>Find the reference angle</strong> \(\theta\): ignore the sign for now and use the positive value. Look it up in the key values table, or use \(\sin^{-1}\), \(\cos^{-1}\), or \(\tan^{-1}\) on your calculator.</li>
-        <li><strong>Decide the sign</strong> of your answer (positive or negative).</li>
-        <li><strong>Use the CAST diagram</strong> to find which two quadrants give that sign.</li>
-        <li><strong>Apply the quadrant formulas</strong> above to write both angles.</li>
-      </ol>
-
-      <div class="example-block">
-        <h3>Worked walk-through — Solve \(\sin x = -\dfrac{1}{2}\) for \(0° \leq x \leq 360°\)</h3>
-        <div class="k-step">
-          <strong>Step 1:</strong> The trig function is already isolated. We need \(\sin x = -\dfrac{1}{2}\).
-        </div>
-        <div class="k-step">
-          <strong>Step 2:</strong> Find the reference angle using the <em>positive</em> value.
-          \(\sin \theta = \dfrac{1}{2} \Rightarrow \theta = 30°\)
-        </div>
-        <div class="k-step">
-          <strong>Step 3:</strong> The answer is <em>negative</em>. In which quadrants is Sin negative?
-          From the CAST diagram: <strong>Q3 and Q4</strong>.
-        </div>
-        <div class="k-step">
-          <strong>Step 4:</strong> Apply the Q3 formula: \(x = 180° + 30° = 210°\)
-        </div>
-        <div class="k-step">
-          <strong>Step 5:</strong> Apply the Q4 formula: \(x = 360° - 30° = 330°\)
-        </div>
-        <p class="math-line">\[\boxed{x = 210° \text{ or } x = 330°}\]</p>
-        <div class="tip">
-          Quick check: \(\sin 210° = -\tfrac{1}{2}\) ✓ &nbsp; \(\sin 330° = -\tfrac{1}{2}\) ✓
-        </div>
-      </div>
-
-      <h3 style="margin-top:1.5rem;">Quick reference: which quadrants for each sign?</h3>
+      <h3>How To Remember</h3>
       <div class="rule-box">
-        <p><strong>Sin positive</strong> &rarr; Q1 and Q2 &nbsp; | &nbsp; <strong>Sin negative</strong> &rarr; Q3 and Q4</p>
-        <p><strong>Cos positive</strong> &rarr; Q1 and Q4 &nbsp; | &nbsp; <strong>Cos negative</strong> &rarr; Q2 and Q3</p>
-        <p><strong>Tan positive</strong> &rarr; Q1 and Q3 &nbsp; | &nbsp; <strong>Tan negative</strong> &rarr; Q2 and Q4</p>
+        <p>In general, the x and y coordinates of points that are on opposite sides of the circle to each other are the opposite sign.</p>
+        <p>
+          The coordinates of angle \(180°\) are the negative of the coordinates of angle \(0°\).
+          For angle \(0°\), \(P(x,y)=(1,0)\). For angle \(180°\), \(P(x,y)=(-1,0)\).
+        </p>
+        <p>
+          Angle \(270°\) is the negative of angle \(90°\).
+          For angle \(90°\), \(P(x,y)=(0,1)\). For angle \(270°\), \(P(x,y)=(0,-1)\).
+        </p>
+        <p>
+          For all the other special angles, the denominator of the fractions is \(2\),
+          so you only need to remember the pattern of numerators.
+        </p>
+        <p>
+          The numerators are \(\sqrt{3}\), \(\sqrt{2}\), or \(1\).
+        </p>
+        <p>
+          Look at angles \(30°\), \(45°\), and \(60°\): the numerators for the \(x\)-coordinate
+          decrease in order \(\sqrt{3} \rightarrow \sqrt{2} \rightarrow 1\).
+        </p>
+        <p>
+          Now look at angles \(120°\), \(135°\), \(150°\): the \(x\)-numerators increase
+          \(1 \rightarrow \sqrt{2} \rightarrow \sqrt{3}\).
+        </p>
+        <p>
+          Then for \(210°\), \(225°\), \(240°\) they decrease again, and for
+          \(300°\), \(315°\), \(330°\) they increase again.
+        </p>
+        <p>
+          The \(y\)-coordinate numerators do the opposite pattern:
+          when \(x\)-numerators increase, \(y\)-numerators decrease, and vice versa.
+        </p>
+        <p>
+          For angles \(30°\), \(45°\), \(60°\), both \(x\) and \(y\) are positive.
+          The opposite angles \(210°\), \(225°\), \(240°\) have both negative.
+        </p>
+        <p>
+          For angles \(120°\), \(135°\), \(150°\), \(x\) is negative and \(y\) is positive.
+          The opposite angles \(300°\), \(315°\), \(330°\) have \(x\) positive and \(y\) negative.
+        </p>
       </div>
-    </section>
 
-    <!-- ===================== SECTION 3: SOLVING TRIG EQUATIONS ===================== -->
-    <section class="panel" id="trig-equations">
-      <h2>3) More Worked Examples — Solving Trig Equations</h2>
-      <p>
-        These examples all follow the same five-step method from Section 2.
-        Each one shows a different function and a different sign combination.
-      </p>
-
+      <h3>How To Use The Diagram To Solve Trig Equations</h3>
       <div class="example-block">
-        <h3>Example 1 &mdash; Solve \(\cos x = -\dfrac{\sqrt{3}}{2}\) for \(0° \leq x \leq 360°\)</h3>
         <div class="k-step">
-          Reference angle: \(\cos \theta = \dfrac{\sqrt{3}}{2} \Rightarrow \theta = 30°\)
+          Say we have \(2\sin(x) = -1\). Rearrange to get the trig function on its own:
+          divide both sides by 2 to get \(\sin(x)=-\frac{1}{2}\).
         </div>
         <div class="k-step">
-          The answer is <strong>negative</strong>. Cos is negative in <strong>Q2 and Q3</strong>.
+          We need to find both angles where this is true.
         </div>
         <div class="k-step">
-          Q2 formula: \(x = 180° - 30° = 150°\)
+          Remember that for \(P(x,y)\), \(x=\cos(A)\) and \(y=\sin(A)\).
+          Since this is a sine equation, focus on the \(y\)-coordinate.
         </div>
         <div class="k-step">
-          Q3 formula: \(x = 180° + 30° = 210°\)
+          We need angles where \(y=-\frac{1}{2}\). On the diagram that happens at
+          \(x=210°\) or \(x=330°\).
         </div>
-        <p class="math-line">\[\boxed{x = 150° \text{ or } x = 210°}\]</p>
+        <p class="math-line">\[\sin(x)=-\frac{1}{2} \text{ when } x=210° \text{ or } x=330°\]</p>
       </div>
 
-      <div class="example-block">
-        <h3>Example 2 &mdash; Solve \(\tan x = 1\) for \(0° \leq x \leq 360°\)</h3>
-        <div class="k-step">
-          Reference angle: \(\tan \theta = 1 \Rightarrow \theta = 45°\)
-        </div>
-        <div class="k-step">
-          The answer is <strong>positive</strong>. Tan is positive in <strong>Q1 and Q3</strong>.
-        </div>
-        <div class="k-step">
-          Q1 formula: \(x = 45°\)
-        </div>
-        <div class="k-step">
-          Q3 formula: \(x = 180° + 45° = 225°\)
-        </div>
-        <p class="math-line">\[\boxed{x = 45° \text{ or } x = 225°}\]</p>
-      </div>
-
-      <div class="example-block">
-        <h3>Example 3 &mdash; Solve \(2\cos x + \sqrt{2} = 0\) for \(0° \leq x \leq 360°\)</h3>
-        <div class="k-step">
-          Rearrange first: \(2\cos x = -\sqrt{2} \Rightarrow \cos x = -\dfrac{\sqrt{2}}{2}\)
-        </div>
-        <div class="k-step">
-          Reference angle: \(\cos \theta = \dfrac{\sqrt{2}}{2} \Rightarrow \theta = 45°\)
-        </div>
-        <div class="k-step">
-          The answer is <strong>negative</strong>. Cos is negative in <strong>Q2 and Q3</strong>.
-        </div>
-        <div class="k-step">
-          Q2 formula: \(x = 180° - 45° = 135°\)
-        </div>
-        <div class="k-step">
-          Q3 formula: \(x = 180° + 45° = 225°\)
-        </div>
-        <p class="math-line">\[\boxed{x = 135° \text{ or } x = 225°}\]</p>
-      </div>
-
-      <div class="example-block">
-        <h3>Example 4 &mdash; Solve \(\sin x = \dfrac{\sqrt{3}}{2}\) for \(0° \leq x \leq 360°\)</h3>
-        <div class="k-step">
-          Reference angle: \(\sin \theta = \dfrac{\sqrt{3}}{2} \Rightarrow \theta = 60°\)
-        </div>
-        <div class="k-step">
-          The answer is <strong>positive</strong>. Sin is positive in <strong>Q1 and Q2</strong>.
-        </div>
-        <div class="k-step">
-          Q1 formula: \(x = 60°\)
-        </div>
-        <div class="k-step">
-          Q2 formula: \(x = 180° - 60° = 120°\)
-        </div>
-        <p class="math-line">\[\boxed{x = 60° \text{ or } x = 120°}\]</p>
-      </div>
-
-      <div class="example-block">
-        <h3>Example 5 &mdash; Solve \(\tan x = -\dfrac{1}{\sqrt{3}}\) for \(0° \leq x \leq 360°\)</h3>
-        <div class="k-step">
-          Reference angle: \(\tan \theta = \dfrac{1}{\sqrt{3}} \Rightarrow \theta = 30°\)
-        </div>
-        <div class="k-step">
-          The answer is <strong>negative</strong>. Tan is negative in <strong>Q2 and Q4</strong>.
-        </div>
-        <div class="k-step">
-          Q2 formula: \(x = 180° - 30° = 150°\)
-        </div>
-        <div class="k-step">
-          Q4 formula: \(x = 360° - 30° = 330°\)
-        </div>
-        <p class="math-line">\[\boxed{x = 150° \text{ or } x = 330°}\]</p>
-      </div>
-    </section>
-
-    <!-- ===================== SECTION 4: TRIG PRACTICE ===================== -->
-    <section class="panel" id="trig-practice">
-      <h2>4) Practice Questions — Trigonometry</h2>
-      <p class="hint">Try each one first. Then use the button to check the answer.</p>
+      <h3>Practice: GCSE Higher Trig Equations</h3>
+      <p class="hint">Try each one first. Then reveal the answer.</p>
 
       <article class="practice-card">
         <h3>Question 1</h3>
-        <p>Solve \(\sin x = -1\) for \(0° \leq x \leq 360°\).</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('tq1', this)">Show answer</button>
-        <div class="answer" id="tq1">
-          <div class="k-step">
-            Reference angle: \(\sin \theta = 1 \Rightarrow \theta = 90°\).
-          </div>
-          <div class="k-step">
-            \(\sin x\) is negative &rarr; Quadrants 3 and 4.
-          </div>
-          <div class="k-step">
-            Q3: \(x = 180° + 90° = 270°\) &nbsp;&nbsp; Q4: \(x = 360° - 90° = 360°\equiv 0°\)
-          </div>
-          <div class="k-step">
-            But \(\sin 270° = -1\) and \(\sin 0° = \sin 360° = 0 \neq -1\), so only one solution survives.
-          </div>
-          <p class="math-line">\[\boxed{x = 270°}\]</p>
+        <p>Solve \(\sin x = \frac{1}{2}\) for \(0° \le x \le 360°\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq1', this)">Show answer</button>
+        <div class="answer" id="teq1">
+          <div class="k-step">Sine is \(\frac{1}{2}\) at \(30°\) and \(150°\).</div>
+          <p class="math-line">\[x=30°,\ 150°\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 2</h3>
-        <p>Solve \(2\cos x = 1\) for \(0° \leq x \leq 360°\).</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('tq2', this)">Show answer</button>
-        <div class="answer" id="tq2">
-          <div class="k-step">
-            Rearrange: \(\cos x = \dfrac{1}{2}\).
-          </div>
-          <div class="k-step">
-            Reference angle: \(\cos \theta = \dfrac{1}{2} \Rightarrow \theta = 60°\).
-          </div>
-          <div class="k-step">
-            \(\cos x\) is positive &rarr; Quadrants 1 and 4.
-          </div>
-          <div class="k-step">
-            Q1: \(x = 60°\) &nbsp;&nbsp; Q4: \(x = 360° - 60° = 300°\)
-          </div>
-          <p class="math-line">\[\boxed{x = 60° \text{ or } x = 300°}\]</p>
+        <p>Solve \(\cos x = -\frac{\sqrt{3}}{2}\) for \(0° \le x \le 360°\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq2', this)">Show answer</button>
+        <div class="answer" id="teq2">
+          <div class="k-step">Cosine is negative in Q2 and Q3 with reference angle \(30°\).</div>
+          <p class="math-line">\[x=150°,\ 210°\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 3</h3>
-        <p>Solve \(\tan x = -\sqrt{3}\) for \(0° \leq x \leq 360°\).</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('tq3', this)">Show answer</button>
-        <div class="answer" id="tq3">
-          <div class="k-step">
-            Reference angle: \(\tan \theta = \sqrt{3} \Rightarrow \theta = 60°\).
-          </div>
-          <div class="k-step">
-            \(\tan x\) is negative &rarr; Quadrants 2 and 4.
-          </div>
-          <div class="k-step">
-            Q2: \(x = 180° - 60° = 120°\) &nbsp;&nbsp; Q4: \(x = 360° - 60° = 300°\)
-          </div>
-          <p class="math-line">\[\boxed{x = 120° \text{ or } x = 300°}\]</p>
+        <p>Solve \(\tan x = 1\) for \(0° \le x \le 360°\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq3', this)">Show answer</button>
+        <div class="answer" id="teq3">
+          <div class="k-step">Reference angle is \(45°\), tangent positive in Q1 and Q3.</div>
+          <p class="math-line">\[x=45°,\ 225°\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 4</h3>
-        <p>Solve \(2\sin x + \sqrt{2} = 0\) for \(0° \leq x \leq 360°\).</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('tq4', this)">Show answer</button>
-        <div class="answer" id="tq4">
-          <div class="k-step">
-            Rearrange: \(\sin x = -\dfrac{\sqrt{2}}{2}\).
-          </div>
-          <div class="k-step">
-            Reference angle: \(\sin \theta = \dfrac{\sqrt{2}}{2} \Rightarrow \theta = 45°\).
-          </div>
-          <div class="k-step">
-            \(\sin x\) is negative &rarr; Quadrants 3 and 4.
-          </div>
-          <div class="k-step">
-            Q3: \(x = 180° + 45° = 225°\) &nbsp;&nbsp; Q4: \(x = 360° - 45° = 315°\)
-          </div>
-          <p class="math-line">\[\boxed{x = 225° \text{ or } x = 315°}\]</p>
+        <p>Solve \(2\sin x=-\sqrt{3}\) for \(0° \le x \le 360°\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq4', this)">Show answer</button>
+        <div class="answer" id="teq4">
+          <div class="k-step">\(\sin x=-\frac{\sqrt{3}}{2}\), reference angle \(60°\), Q3 and Q4.</div>
+          <p class="math-line">\[x=240°,\ 300°\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 5</h3>
-        <p>Write down the exact value of \(\sin 150°\) and \(\cos 240°\).</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('tq5', this)">Show answer</button>
-        <div class="answer" id="tq5">
-          <div class="k-step">
-            \(\sin 150° = \sin(180° - 30°) = \sin 30° = \dfrac{1}{2}\)
-          </div>
-          <div class="k-step">
-            \(\cos 240° = \cos(180° + 60°) = -\cos 60° = -\dfrac{1}{2}\)
-          </div>
-          <p class="math-line">\[\boxed{\sin 150° = \tfrac{1}{2}, \quad \cos 240° = -\tfrac{1}{2}}\]</p>
+        <p>Solve \(3\cos x+3=0\) for \(0° \le x \le 360°\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq5', this)">Show answer</button>
+        <div class="answer" id="teq5">
+          <div class="k-step">\(\cos x=-1\).</div>
+          <p class="math-line">\[x=180°\]</p>
         </div>
       </article>
-    </section>
 
-    <!-- ===================== SECTION 5: STRAIGHT LINES & CIRCLES ===================== -->
-    <section class="panel" id="lines-circles">
-      <h2>5) Straight Lines and Circles</h2>
+      <article class="practice-card">
+        <h3>Question 6</h3>
+        <p>Solve \(\tan x=-\sqrt{3}\) for \(0° \le x \le 360°\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq6', this)">Show answer</button>
+        <div class="answer" id="teq6">
+          <div class="k-step">Reference angle \(60°\), tangent negative in Q2 and Q4.</div>
+          <p class="math-line">\[x=120°,\ 300°\]</p>
+        </div>
+      </article>
 
-      <!-- 5a straight line -->
-      <h3>5a) Equation of a Straight Line</h3>
-      <p>
-        The general form of a straight line is:
-      </p>
-      <p class="math-line">\[y = mx + c\]</p>
-      <p>
-        where \(m\) is the <strong>gradient</strong> (steepness) and \(c\) is the
-        <strong>\(y\)-intercept</strong> (where the line crosses the \(y\)-axis).
-      </p>
+      <article class="practice-card">
+        <h3>Question 7</h3>
+        <p>Solve \(4\sin x-2=0\) for \(0° \le x \le 360°\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq7', this)">Show answer</button>
+        <div class="answer" id="teq7">
+          <div class="k-step">\(\sin x=\frac{1}{2}\).</div>
+          <p class="math-line">\[x=30°,\ 150°\]</p>
+        </div>
+      </article>
 
-      <div class="rule-box">
-        <p><strong>Gradient formula</strong> given two points \((x_1, y_1)\) and \((x_2, y_2)\):</p>
-        <p class="math-line">\[m = \frac{y_2 - y_1}{x_2 - x_1}\]</p>
-      </div>
+      <article class="practice-card">
+        <h3>Question 8</h3>
+        <p>Solve \(2\cos x=\sqrt{2}\) for \(0° \le x \le 360°\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq8', this)">Show answer</button>
+        <div class="answer" id="teq8">
+          <div class="k-step">\(\cos x=\frac{\sqrt{2}}{2}\), cosine positive in Q1 and Q4.</div>
+          <p class="math-line">\[x=45°,\ 315°\]</p>
+        </div>
+      </article>
 
-      <div class="example-block">
-        <h3>Example — Find the equation of the line through \((1, 3)\) and \((4, 9)\)</h3>
-        <div class="k-step">
-          Find the gradient: \(m = \dfrac{9 - 3}{4 - 1} = \dfrac{6}{3} = 2\)
+      <article class="practice-card">
+        <h3>Question 9</h3>
+        <p>Solve \(\sin x=0\) for \(0° \le x \le 360°\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq9', this)">Show answer</button>
+        <div class="answer" id="teq9">
+          <div class="k-step">Sine is zero on the x-axis.</div>
+          <p class="math-line">\[x=0°,\ 180°,\ 360°\]</p>
         </div>
-        <div class="k-step">
-          Use \(y = mx + c\) with one point, say \((1, 3)\):
-          \[3 = 2(1) + c \Rightarrow c = 1\]
-        </div>
-        <p class="math-line">\[\boxed{y = 2x + 1}\]</p>
-      </div>
+      </article>
 
-      <!-- 5b circle -->
-      <h3 style="margin-top:1.5rem;">5b) Equation of a Circle</h3>
-      <p>
-        A circle with centre at the origin \((0, 0)\) and radius \(r\) has the equation:
-      </p>
-      <p class="math-line">\[x^2 + y^2 = r^2\]</p>
-
-      <div class="example-block">
-        <h3>Example — Write down the equation of the circle with centre the origin and radius \(5\)</h3>
-        <div class="k-step">
-          Substitute \(r = 5\) into \(x^2 + y^2 = r^2\).
+      <article class="practice-card">
+        <h3>Question 10 (Higher Challenge)</h3>
+        <p>Solve \(2\sin x+\cos x=0\) for \(0° \le x \le 360°\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq10', this)">Show answer</button>
+        <div class="answer" id="teq10">
+          <div class="k-step">\(2\sin x=-\cos x\Rightarrow \tan x=-\frac{1}{2}\).</div>
+          <div class="k-step">Reference angle \(\theta=\tan^{-1}(\frac{1}{2})\approx 26.565°\), Q2 and Q4.</div>
+          <p class="math-line">\[x\approx 153.4°,\ 333.4°\]</p>
         </div>
-        <p class="math-line">\[\boxed{x^2 + y^2 = 25}\]</p>
-      </div>
-
-      <!-- 5c perpendicular -->
-      <h3 style="margin-top:1.5rem;">5c) Perpendicular Lines</h3>
-      <p>
-        Two lines are perpendicular when the product of their gradients equals \(-1\):
-      </p>
-      <p class="math-line">\[m_1 \times m_2 = -1 \quad \Longleftrightarrow \quad m_2 = -\frac{1}{m_1}\]</p>
-      <p>
-        To find the equation of a perpendicular line through a given point:
-      </p>
-      <ol>
-        <li>Find the gradient of the original line.</li>
-        <li>Take the negative reciprocal to get the perpendicular gradient.</li>
-        <li>Substitute the point and new gradient into \(y = mx + c\).</li>
-      </ol>
-
-      <div class="example-block">
-        <h3>Example — Find the equation of the perpendicular to \(y = 3x - 5\) through \((6, 4)\)</h3>
-        <div class="k-step">
-          Gradient of original line: \(m_1 = 3\).
-        </div>
-        <div class="k-step">
-          Perpendicular gradient: \(m_2 = -\dfrac{1}{3}\).
-        </div>
-        <div class="k-step">
-          Use \(y = m_2 x + c\) with point \((6, 4)\):
-          \[4 = -\tfrac{1}{3}(6) + c \Rightarrow 4 = -2 + c \Rightarrow c = 6\]
-        </div>
-        <p class="math-line">\[\boxed{y = -\frac{1}{3}x + 6}\]</p>
-      </div>
-
-      <!-- 5d intersection -->
-      <h3 style="margin-top:1.5rem;">5d) Points of Intersection</h3>
-      <p>
-        To find where two lines (or a line and a circle) intersect, set their equations equal
-        and solve simultaneously.
-      </p>
-
-      <div class="example-block">
-        <h3>Example — Find where \(y = 2x + 1\) and \(y = -x + 7\) intersect</h3>
-        <div class="k-step">
-          Set equal: \(2x + 1 = -x + 7\)
-        </div>
-        <div class="k-step">
-          Solve: \(3x = 6 \Rightarrow x = 2\)
-        </div>
-        <div class="k-step">
-          Substitute back: \(y = 2(2) + 1 = 5\)
-        </div>
-        <p class="math-line">\[\boxed{(2,\ 5)}\]</p>
-      </div>
-
-      <div class="example-block">
-        <h3>Example — Find where the line \(y = x + 1\) intersects the circle \(x^2 + y^2 = 25\)</h3>
-        <div class="k-step">
-          Substitute \(y = x + 1\) into \(x^2 + y^2 = 25\):
-          \[x^2 + (x+1)^2 = 25\]
-        </div>
-        <div class="k-step">
-          Expand: \(x^2 + x^2 + 2x + 1 = 25\)
-        </div>
-        <div class="k-step">
-          Simplify: \(2x^2 + 2x - 24 = 0 \Rightarrow x^2 + x - 12 = 0\)
-        </div>
-        <div class="k-step">
-          Factorise: \((x + 4)(x - 3) = 0 \Rightarrow x = -4 \text{ or } x = 3\)
-        </div>
-        <div class="k-step">
-          Find \(y\) values: \(x = -4 \Rightarrow y = -3\); \(x = 3 \Rightarrow y = 4\)
-        </div>
-        <p class="math-line">\[\boxed{(-4,\ -3) \text{ and } (3,\ 4)}\]</p>
+      </article>
       </div>
     </section>
 
-    <!-- ===================== SECTION 6: LINES & CIRCLES PRACTICE ===================== -->
-    <section class="panel" id="lines-circles-practice">
-      <h2>6) Practice Questions — Lines and Circles</h2>
-      <p class="hint">Try each one first. Then use the button to check the answer.</p>
+    <section class="panel collapsed" id="exam-ratios">
+      <div class="section-header">
+        <h2>Exam Question (Ratios)</h2>
+        <button class="section-toggle" type="button" aria-expanded="false" onclick="toggleSection('exam-ratios', this)">Show section</button>
+      </div>
+
+      <div class="section-content">
+      <p>Here is the exam question image:</p>
+      <div class="diagram-image-wrap">
+        <img class="diagram-image" src="exam18.png" alt="Exam question about carrots and tomatoes ratio">
+      </div>
+
+      <h3>Here is why it works</h3>
+      <div class="example-block">
+        <p>Let:</p>
+        <p class="math-line">\[c = \text{cost of 1 kg of carrots (in pence)}\]</p>
+        <p class="math-line">\[t = \text{cost of 1 kg of tomatoes (in pence)}\]</p>
+
+        <p>From the question:</p>
+        <p class="math-line">\[7c + 5t = 480\]</p>
+
+        <p>The ratio \(c:t = 5:9\) means:</p>
+        <p class="math-line">\[\frac{t}{c} = \frac{9}{5}\]</p>
+
+        <p>Cross multiply:</p>
+        <p class="math-line">\[9c = 5t\]</p>
+
+        <p>Now substitute into the first equation.</p>
+        <p>Since \(5t=9c\), replace \(5t\) in \(7c+5t=480\) with \(9c\):</p>
+        <p class="math-line">\[7c + 9c = 480\]</p>
+        <p class="math-line">\[16c = 480\]</p>
+        <p class="math-line">\[c = 30\]</p>
+
+        <p>Now use \(9c=5t\):</p>
+        <p class="math-line">\[9(30)=5t\]</p>
+        <p class="math-line">\[270=5t\]</p>
+        <p class="math-line">\[t=54\]</p>
+
+        <p><strong>Final answer:</strong></p>
+        <p class="math-line">\[\text{Carrots} = 30\text{p per kg}\]</p>
+        <p class="math-line">\[\text{Tomatoes} = 54\text{p per kg}\]</p>
+      </div>
+
+      <h3>Practice: Similar Ratio Exam Questions</h3>
+      <p class="hint">Try each one first, then reveal the answer.</p>
 
       <article class="practice-card">
         <h3>Question 1</h3>
-        <p>Find the equation of the straight line through \((2, 5)\) and \((6, 13)\).</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('lq1', this)">Show answer</button>
-        <div class="answer" id="lq1">
-          <div class="k-step">
-            Gradient: \(m = \dfrac{13 - 5}{6 - 2} = \dfrac{8}{4} = 2\)
-          </div>
-          <div class="k-step">
-            Using \((2, 5)\): \(5 = 2(2) + c \Rightarrow c = 1\)
-          </div>
-          <p class="math-line">\[\boxed{y = 2x + 1}\]</p>
+        <p>
+          Let \(a\) be the cost of 1 kg of apples (pence) and \(b\) be the cost of 1 kg of bananas (pence).<br>
+          Given \(4a + 3b = 330\) and \(a:b = 3:5\), find \(a\) and \(b\).
+        </p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rq1', this)">Show answer</button>
+        <div class="answer" id="rq1">
+          <div class="k-step">From \(a:b=3:5\), \(\frac{b}{a}=\frac{5}{3}\Rightarrow 5a=3b\).</div>
+          <div class="k-step">Substitute \(3b=5a\) into \(4a+3b=330\): \(4a+5a=330\Rightarrow 9a=330\Rightarrow a=\frac{110}{3}\).</div>
+          <div class="k-step">Use \(5a=3b\): \(3b=\frac{550}{3}\Rightarrow b=\frac{550}{9}\).</div>
+          <p class="math-line">\[\boxed{a=\frac{110}{3}\text{p},\quad b=\frac{550}{9}\text{p}}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 2</h3>
-        <p>Find the equation of the line perpendicular to \(y = \dfrac{1}{2}x + 3\) passing through \((4, 1)\).</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('lq2', this)">Show answer</button>
-        <div class="answer" id="lq2">
-          <div class="k-step">
-            Gradient of original line: \(m_1 = \dfrac{1}{2}\).
-          </div>
-          <div class="k-step">
-            Perpendicular gradient: \(m_2 = -2\).
-          </div>
-          <div class="k-step">
-            Using \((4, 1)\): \(1 = -2(4) + c \Rightarrow c = 9\)
-          </div>
-          <p class="math-line">\[\boxed{y = -2x + 9}\]</p>
-        </div>
-      </article>
-
-      <article class="practice-card">
-        <h3>Question 3</h3>
-        <p>Find the coordinates of the intersection of \(y = 3x - 2\) and \(y = -2x + 8\).</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('lq3', this)">Show answer</button>
-        <div class="answer" id="lq3">
-          <div class="k-step">
-            Set equal: \(3x - 2 = -2x + 8\)
-          </div>
-          <div class="k-step">
-            Solve: \(5x = 10 \Rightarrow x = 2\)
-          </div>
-          <div class="k-step">
-            Substitute: \(y = 3(2) - 2 = 4\)
-          </div>
-          <p class="math-line">\[\boxed{(2,\ 4)}\]</p>
-        </div>
-      </article>
-
-      <article class="practice-card">
-        <h3>Question 4</h3>
-        <p>Find where the line \(y = 2x - 3\) intersects the circle \(x^2 + y^2 = 20\).</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('lq4', this)">Show answer</button>
-        <div class="answer" id="lq4">
-          <div class="k-step">
-            Substitute \(y = 2x - 3\) into \(x^2 + y^2 = 20\):
-            \[x^2 + (2x-3)^2 = 20\]
-          </div>
-          <div class="k-step">
-            Expand: \(x^2 + 4x^2 - 12x + 9 = 20\)
-          </div>
-          <div class="k-step">
-            Simplify: \(5x^2 - 12x - 11 = 0\)
-          </div>
-          <div class="k-step">
-            Use the quadratic formula: \(x = \dfrac{12 \pm \sqrt{144 + 220}}{10} = \dfrac{12 \pm \sqrt{364}}{10}\)
-          </div>
-          <div class="k-step">
-            \(\sqrt{364} = 2\sqrt{91}\), so \(x = \dfrac{12 \pm 2\sqrt{91}}{10} = \dfrac{6 \pm \sqrt{91}}{5}\)
-          </div>
-          <div class="k-step">
-            For each \(x\), find \(y = 2x - 3\).
-          </div>
-          <p class="math-line">\[\boxed{x = \frac{6 + \sqrt{91}}{5},\quad x = \frac{6 - \sqrt{91}}{5}}\]</p>
-          <p style="color:var(--text-muted); font-size:0.95rem;">Approximately \(x \approx 3.11\) or \(x \approx -0.71\).</p>
-        </div>
-      </article>
-
-      <article class="practice-card">
-        <h3>Question 5 (More Difficult)</h3>
         <p>
-          The line \(L\) passes through \((0, 5)\) and is perpendicular to the line joining
-          \(A(1, 3)\) and \(B(5, 1)\). Find the equation of \(L\) and the coordinates where
-          \(L\) crosses the \(x\)-axis.
+          Let \(m\) be the cost of 1 kg of mangoes (pence) and \(o\) be the cost of 1 kg of oranges (pence).<br>
+          Given \(6m + 4o = 600\) and \(m:o = 2:3\), find \(m\) and \(o\).
         </p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('lq5', this)">Show answer</button>
-        <div class="answer" id="lq5">
-          <div class="k-step">
-            Gradient of \(AB\): \(m_{AB} = \dfrac{1 - 3}{5 - 1} = \dfrac{-2}{4} = -\dfrac{1}{2}\)
-          </div>
-          <div class="k-step">
-            Perpendicular gradient: \(m_L = 2\)
-          </div>
-          <div class="k-step">
-            Line \(L\) passes through \((0, 5)\), so \(c = 5\): \(\quad y = 2x + 5\)
-          </div>
-          <div class="k-step">
-            Set \(y = 0\) to find the \(x\)-intercept: \(0 = 2x + 5 \Rightarrow x = -\dfrac{5}{2}\)
-          </div>
-          <p class="math-line">\[\boxed{y = 2x + 5;\quad \text{crosses } x\text{-axis at } \left(-\tfrac{5}{2},\ 0\right)}\]</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rq2', this)">Show answer</button>
+        <div class="answer" id="rq2">
+          <div class="k-step">From \(m:o=2:3\), \(\frac{o}{m}=\frac{3}{2}\Rightarrow 3m=2o\).</div>
+          <div class="k-step">Substitute \(2o=3m\) into \(6m+4o=600\): \(6m+6m=600\Rightarrow 12m=600\Rightarrow m=50\).</div>
+          <div class="k-step">Use \(3m=2o\): \(150=2o\Rightarrow o=75\).</div>
+          <p class="math-line">\[\boxed{m=50\text{p},\quad o=75\text{p}}\]</p>
         </div>
       </article>
+      </div>
     </section>
 
-    <!-- ===================== SECTION 7: COMPOSITE & INVERSE FUNCTIONS ===================== -->
-    <section class="panel" id="functions">
-      <h2>7) Composite and Inverse Functions</h2>
+    <section class="panel collapsed" id="coord-geom-circle-line">
+      <div class="section-header">
+        <h2>Coordinate Geometry Problem (Circle Line Intersection)</h2>
+        <button class="section-toggle" type="button" aria-expanded="false" onclick="toggleSection('coord-geom-circle-line', this)">Show section</button>
+      </div>
 
-      <!-- 7a composite -->
+      <div class="section-content">
+      <p>Here is the exam-style diagram:</p>
+      <div class="diagram-image-wrap">
+        <img class="diagram-image" src="circleline.png" alt="Coordinate geometry circle and line intersection diagram">
+      </div>
+
+      <h3>Worked Explanation</h3>
+      <div class="example-block">
+        <p>Since the circle has centre \((0,0)\), any point on the circle is the same distance from the origin.</p>
+
+        <p>Point \(P=(5,10)\) is on the circle, so first find the radius squared:</p>
+        <p class="math-line">\[r^2 = 5^2 + 10^2\]</p>
+        <p class="math-line">\[r^2 = 25 + 100 = 125\]</p>
+
+        <p>So the equation of the circle is:</p>
+        <p class="math-line">\[x^2 + y^2 = 125\]</p>
+
+        <p>Point \(Q\) is also on the circle and has \(x=-2\).</p>
+        <p>Substitute into the circle equation:</p>
+        <p class="math-line">\[(-2)^2 + y^2 = 125\]</p>
+        <p class="math-line">\[4 + y^2 = 125\]</p>
+        <p class="math-line">\[y^2 = 121\]</p>
+        <p class="math-line">\[y = \pm 11\]</p>
+
+        <p>So \(Q\) could be:</p>
+        <p class="math-line">\[(-2,11)\text{ or }(-2,-11)\]</p>
+
+        <p>Now use the information that line \(L\) has a positive gradient. Test both possibilities with \(P=(5,10)\).</p>
+
+        <div class="k-step">
+          Option 1: \(Q=(-2,11)\)<br>
+          Gradient:
+          \[\frac{10-11}{5-(-2)}=\frac{-1}{7}\]
+          Negative gradient, so reject.
+        </div>
+
+        <div class="k-step">
+          Option 2: \(Q=(-2,-11)\)<br>
+          Gradient:
+          \[\frac{10-(-11)}{5-(-2)}=\frac{21}{7}=3\]
+          Positive gradient, so this is correct.
+        </div>
+
+        <p>So:</p>
+        <p class="math-line">\[Q=(-2,-11)\]</p>
+
+        <p>Find the equation of the line through \(P=(5,10)\) with gradient \(3\).</p>
+        <p>Use:</p>
+        <p class="math-line">\[y=3x+k\]</p>
+
+        <p>Substitute \(P\):</p>
+        <p class="math-line">\[10=3(5)+k\]</p>
+        <p class="math-line">\[10=15+k\]</p>
+        <p class="math-line">\[k=-5\]</p>
+
+        <p><strong>Answer:</strong></p>
+        <p class="math-line">\[\boxed{k=-5}\]</p>
+      </div>
+
+      <h3>Practice: Similar Circle-Line Questions</h3>
+      <p class="hint">Hide/reveal answers as usual after attempting each one.</p>
+
+      <article class="practice-card">
+        <h3>Question 1 (Similar Style)</h3>
+        <p>
+          A circle has centre \((0,0)\) and passes through \(A=(3,-4)\).<br>
+          Point \(B\) is on the circle and has \(x=-3\).<br>
+          The line through \(A\) and \(B\) has negative gradient. Find \(B\) and the line equation in the form \(y=mx+c\).
+        </p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('cg1', this)">Show answer</button>
+        <div class="answer" id="cg1">
+          <div class="k-step">\(r^2=3^2+4^2=25\), so circle is \(x^2+y^2=25\).</div>
+          <div class="k-step">For \(x=-3\): \(9+y^2=25\Rightarrow y=\pm 4\), so \(B=(-3,4)\) or \((-3,-4)\).</div>
+          <div class="k-step">Using \(A=(3,-4)\): with \(B=(-3,4)\), \(m=\frac{4-(-4)}{-3-3}=\frac{8}{-6}=-\frac{4}{3}\) (negative).</div>
+          <div class="k-step">With \(B=(-3,-4)\), \(m=\frac{-4-(-4)}{-3-3}=0\) (not positive).</div>
+          <div class="k-step">So choose \(B=(-3,4)\) for the non-zero gradient case and the line is found from \(y+4=-\frac{4}{3}(x-3)\).</div>
+          <p class="math-line">\[\boxed{B=(-3,4),\quad y=-\frac{4}{3}x}\]</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 2 (Similar Style)</h3>
+        <p>
+          A circle has centre \((0,0)\) and passes through \(P=(8,6)\).<br>
+          Point \(Q\) is on the circle and has \(x=-8\).<br>
+          The line \(PQ\) has positive gradient. Find \(Q\) and the equation of \(PQ\).
+        </p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('cg2', this)">Show answer</button>
+        <div class="answer" id="cg2">
+          <div class="k-step">\(r^2=8^2+6^2=100\), so circle: \(x^2+y^2=100\).</div>
+          <div class="k-step">At \(x=-8\): \(64+y^2=100\Rightarrow y=\pm 6\), so \(Q=(-8,6)\) or \((-8,-6)\).</div>
+          <div class="k-step">With \(P=(8,6)\), \((-8,-6)\) gives \(m=\frac{-6-6}{-8-8}=\frac{-12}{-16}=\frac{3}{4}>0\). So \(Q=(-8,-6)\).</div>
+          <div class="k-step">Line through \(P\) with \(m=\frac{3}{4}\): \(y=\frac{3}{4}x+c\). Use \((8,6)\): \(6=6+c\Rightarrow c=0\).</div>
+          <p class="math-line">\[\boxed{Q=(-8,-6),\quad y=\frac{3}{4}x}\]</p>
+        </div>
+      </article>
+
+      <h3 style="margin-top:1.5rem;">Practice: Perpendicular Lines</h3>
+
+      <article class="practice-card">
+        <h3>Question 3 (Perpendicular)</h3>
+        <p>Find the equation of the line through \((2,-1)\) perpendicular to \(y=\frac{1}{2}x+4\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('cg3', this)">Show answer</button>
+        <div class="answer" id="cg3">
+          <div class="k-step">Given slope is \(\frac{1}{2}\), perpendicular slope is \(-2\).</div>
+          <div class="k-step">Use point-slope: \(y+1=-2(x-2)\).</div>
+          <p class="math-line">\[\boxed{y=-2x+3}\]</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 4 (Perpendicular)</h3>
+        <p>Find the equation of the line through \((-4,5)\) perpendicular to \(3y-6x=9\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('cg4', this)">Show answer</button>
+        <div class="answer" id="cg4">
+          <div class="k-step">Rewrite given line: \(3y=6x+9\Rightarrow y=2x+3\), so slope is \(2\).</div>
+          <div class="k-step">Perpendicular slope is \(-\frac{1}{2}\).</div>
+          <div class="k-step">Through \((-4,5)\): \(y-5=-\frac{1}{2}(x+4)\).</div>
+          <p class="math-line">\[\boxed{y=-\frac{1}{2}x+3}\]</p>
+        </div>
+      </article>
+
+      <h3 style="margin-top:1.5rem;">Practice: Tangent Lines</h3>
+
+      <article class="practice-card">
+        <h3>Question 5 (Tangent)</h3>
+        <p>
+          For the circle \(x^2+y^2=25\), find the equation of the tangent at \((3,4)\).
+        </p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('cg5', this)">Show answer</button>
+        <div class="answer" id="cg5">
+          <div class="k-step">Radius from origin to \((3,4)\) has slope \(\frac{4}{3}\).</div>
+          <div class="k-step">Tangent slope is negative reciprocal: \(-\frac{3}{4}\).</div>
+          <div class="k-step">Through \((3,4)\): \(y-4=-\frac{3}{4}(x-3)\).</div>
+          <p class="math-line">\[\boxed{y=-\frac{3}{4}x+\frac{25}{4}}\]</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 6 (Tangent)</h3>
+        <p>
+          For the circle \((x-1)^2+(y+2)^2=16\), find the equation of the tangent at \((5,-2)\).
+        </p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('cg6', this)">Show answer</button>
+        <div class="answer" id="cg6">
+          <div class="k-step">Centre is \((1,-2)\). Radius to \((5,-2)\) is horizontal (slope \(0\)).</div>
+          <div class="k-step">Tangent is vertical, so equation is \(x=5\).</div>
+          <p class="math-line">\[\boxed{x=5}\]</p>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="panel collapsed" id="functions">
+      <div class="section-header">
+        <h2>Composite and Inverse Functions</h2>
+        <button class="section-toggle" type="button" aria-expanded="false" onclick="toggleSection('functions', this)">Show section</button>
+      </div>
+
+      <div class="section-content">
+
       <h3>7a) Composite Functions</h3>
       <p>
         A <strong>composite function</strong> means applying one function and then feeding the result
@@ -1195,7 +907,6 @@
         <p class="math-line">\[\boxed{gf(x) = 3x + 2}\]</p>
       </div>
 
-      <!-- 7b inverse -->
       <h3 style="margin-top:1.5rem;">7b) Inverse Functions</h3>
       <p>
         The <strong>inverse function</strong> \(f^{-1}(x)\) <em>undoes</em> \(f\). If \(f\) maps
@@ -1249,949 +960,252 @@
         </div>
         <p class="math-line">\[\boxed{f^{-1}(x) = \frac{3x-1}{2}}\]</p>
       </div>
+      </div>
     </section>
 
-    <!-- ===================== SECTION 8: FUNCTIONS PRACTICE ===================== -->
-    <section class="panel" id="functions-practice">
-      <h2>8) Practice Questions — Composite and Inverse Functions</h2>
-      <p class="hint">Try each one first. Then use the button to check the answer.</p>
+    <section class="panel collapsed" id="functions-practice">
+      <div class="section-header">
+        <h2>Practice Questions — Composite and Inverse Functions</h2>
+        <button class="section-toggle" type="button" aria-expanded="false" onclick="toggleSection('functions-practice', this)">Show section</button>
+      </div>
+
+      <div class="section-content">
+      <p class="hint">These are aimed at GCSE Higher level. Start with the easy set, then move to the hard and challenging questions. Reveal answers only after a proper attempt.</p>
+
+      <h3>Easy Questions</h3>
 
       <article class="practice-card">
         <h3>Question 1</h3>
-        <p>
-          Let \(f(x) = 4x - 3\) and \(g(x) = x + 2\).<br>
-          Find \(fg(x)\) and \(gf(x)\), giving each in simplified form.
-        </p>
+        <p>Let \(f(x)=2x+5\) and \(g(x)=x-3\). Find \(fg(x)\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq1', this)">Show answer</button>
         <div class="answer" id="fq1">
-          <div class="k-step">
-            \(fg(x) = f(g(x)) = f(x+2) = 4(x+2) - 3 = 4x + 8 - 3 = 4x + 5\)
-          </div>
-          <div class="k-step">
-            \(gf(x) = g(f(x)) = g(4x-3) = (4x-3) + 2 = 4x - 1\)
-          </div>
-          <p class="math-line">\[\boxed{fg(x) = 4x + 5, \qquad gf(x) = 4x - 1}\]</p>
+          <div class="k-step">Apply \(g\) first: \(g(x)=x-3\).</div>
+          <div class="k-step">Then apply \(f\): \(f(x-3)=2(x-3)+5\).</div>
+          <p class="math-line">\[\boxed{fg(x)=2x-1}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 2</h3>
-        <p>
-          Let \(f(x) = 3x + 1\) and \(g(x) = x^2\).<br>
-          Find the value of \(fg(2)\).
-        </p>
+        <p>Let \(f(x)=3x-1\) and \(g(x)=x^2\). Find \(gf(x)\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq2', this)">Show answer</button>
         <div class="answer" id="fq2">
-          <div class="k-step">
-            First apply \(g\): \(g(2) = 2^2 = 4\)
-          </div>
-          <div class="k-step">
-            Then apply \(f\): \(f(4) = 3(4) + 1 = 13\)
-          </div>
-          <p class="math-line">\[\boxed{fg(2) = 13}\]</p>
+          <div class="k-step">Apply \(f\) first: \(f(x)=3x-1\).</div>
+          <div class="k-step">Then square the result.</div>
+          <p class="math-line">\[\boxed{gf(x)=(3x-1)^2}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 3</h3>
-        <p>Find \(f^{-1}(x)\) where \(f(x) = 5x + 2\).</p>
+        <p>Let \(f(x)=x+4\) and \(g(x)=2x\). Find \(fg(6)\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq3', this)">Show answer</button>
         <div class="answer" id="fq3">
-          <div class="k-step">
-            Write \(y = 5x + 2\).
-          </div>
-          <div class="k-step">
-            Rearrange for \(x\): \(y - 2 = 5x \Rightarrow x = \dfrac{y-2}{5}\)
-          </div>
-          <div class="k-step">
-            Replace \(y\) with \(x\):
-          </div>
-          <p class="math-line">\[\boxed{f^{-1}(x) = \frac{x-2}{5}}\]</p>
+          <div class="k-step">\(g(6)=12\).</div>
+          <div class="k-step">Then \(f(12)=16\).</div>
+          <p class="math-line">\[\boxed{fg(6)=16}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 4</h3>
-        <p>Find \(f^{-1}(x)\) where \(f(x) = \dfrac{x - 3}{4}\).</p>
+        <p>Find \(f^{-1}(x)\) for \(f(x)=4x+7\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq4', this)">Show answer</button>
         <div class="answer" id="fq4">
-          <div class="k-step">
-            Write \(y = \dfrac{x-3}{4}\).
-          </div>
-          <div class="k-step">
-            Multiply both sides by 4: \(4y = x - 3\)
-          </div>
-          <div class="k-step">
-            Add 3: \(x = 4y + 3\)
-          </div>
-          <div class="k-step">
-            Replace \(y\) with \(x\):
-          </div>
-          <p class="math-line">\[\boxed{f^{-1}(x) = 4x + 3}\]</p>
-        </div>
-      </article>
-
-      <article class="practice-card">
-        <h3>Question 5 (More Difficult)</h3>
-        <p>
-          Let \(f(x) = 2x + 1\) and \(g(x) = x^2\).<br>
-          Solve \(fg(x) = gf(x)\).
-        </p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq5', this)">Show answer</button>
-        <div class="answer" id="fq5">
-          <div class="k-step">
-            Find \(fg(x)\): \(fg(x) = f(x^2) = 2x^2 + 1\)
-          </div>
-          <div class="k-step">
-            Find \(gf(x)\): \(gf(x) = g(2x+1) = (2x+1)^2 = 4x^2 + 4x + 1\)
-          </div>
-          <div class="k-step">
-            Set them equal: \(2x^2 + 1 = 4x^2 + 4x + 1\)
-          </div>
-          <div class="k-step">
-            Rearrange: \(0 = 2x^2 + 4x \Rightarrow 0 = 2x(x + 2)\)
-          </div>
-          <div class="k-step">
-            Solve: \(x = 0\) or \(x = -2\)
-          </div>
-          <p class="math-line">\[\boxed{x = 0 \text{ or } x = -2}\]</p>
-        </div>
-      </article>
-    </section>
-
-    <!-- ===================== SECTION: MULTIPLYING ALGEBRAIC FRACTIONS ===================== -->
-    <section class="panel" id="algebraic-fractions">
-      <h2>Algebraic Fractions: Multiplying by Whole Numbers and Fractions</h2>
-      <p>
-        Many students find it confusing when a whole number or fraction is multiplied by an algebraic fraction.
-        The key is to understand that algebraic fractions follow exactly the same rules as regular fractions.
-      </p>
-
-      <h3>Understanding the Pattern</h3>
-      <p>
-        When you multiply a fraction by a whole number or another fraction, you multiply the <strong>numerators</strong> together and the <strong>denominators</strong> together.
-      </p>
-
-      <div class="rule-box">
-        <p>\[\frac{a}{b} \times c = \frac{a \times c}{b}\]</p>
-        <p>\[\frac{a}{b} \times \frac{c}{d} = \frac{a \times c}{b \times d}\]</p>
-      </div>
-
-      <h3>Example 1: Multiplying an algebraic fraction by a whole number</h3>
-      <div class="example-block">
-        <p class="math-line">\[3 \times \frac{2x}{5}\]</p>
-        <div class="k-step">
-          Think of \(3\) as \(\frac{3}{1}\)
-        </div>
-        <div class="k-step">
-          Multiply numerators: \(3 \times 2x = 6x\)
-        </div>
-        <div class="k-step">
-          Multiply denominators: \(1 \times 5 = 5\)
-        </div>
-        <div class="k-step">
-          Result: \(\frac{6x}{5}\)
-        </div>
-        <p class="math-line">\[3 \times \frac{2x}{5} = \frac{6x}{5}\]</p>
-      </div>
-
-      <h3>Example 2: Multiplying an algebraic fraction by a fraction</h3>
-      <div class="example-block">
-        <p class="math-line">\[\frac{4}{5} \times \frac{2x}{3}\]</p>
-        <div class="k-step">
-          Multiply numerators: \(4 \times 2x = 8x\)
-        </div>
-        <div class="k-step">
-          Multiply denominators: \(5 \times 3 = 15\)
-        </div>
-        <div class="k-step">
-          Result: \(\frac{8x}{15}\)
-        </div>
-        <p class="math-line">\[\frac{4}{5} \times \frac{2x}{3} = \frac{8x}{15}\]</p>
-      </div>
-
-      <h3>Example 3: The whole number or fraction goes on top (numerator)</h3>
-      <div class="example-block">
-        <p class="math-line">\[3 \times \frac{2x}{2+y}\]</p>
-        <div class="k-step">
-          The whole number \(3\) multiplies the numerator: \(3 \times 2x = 6x\)
-        </div>
-        <div class="k-step">
-          The denominator stays the same: \(2 + y\)
-        </div>
-        <div class="k-step">
-          Result: \(\frac{6x}{2+y}\)
-        </div>
-        <p class="math-line">\[3 \times \frac{2x}{2+y} = \frac{6x}{2+y}\]</p>
-      </div>
-
-      <h3>Example 4: Fraction multiplied by algebraic fraction</h3>
-      <div class="example-block">
-        <p class="math-line">\[\frac{4}{5} \times \frac{2x}{3-y}\]</p>
-        <div class="k-step">
-          Multiply the numerators: \(4 \times 2x = 8x\)
-        </div>
-        <div class="k-step">
-          Multiply the denominators: \(5 \times (3-y) = 5(3-y)\)
-        </div>
-        <div class="k-step">
-          Result: \(\frac{8x}{5(3-y)}\)
-        </div>
-        <p class="math-line">\[\frac{4}{5} \times \frac{2x}{3-y} = \frac{8x}{5(3-y)}\]</p>
-        <div class="tip">
-          <strong>Note:</strong> We write \(5(3-y)\) rather than expanding it as \(15 - 5y\). This keeps the form clearer, especially in algebra.
-        </div>
-      </div>
-
-      <h3>Example 5: More complex fraction</h3>
-      <div class="example-block">
-        <p class="math-line">\[\frac{2}{3} \times \frac{5x+1}{4-x}\]</p>
-        <div class="k-step">
-          Multiply the numerators: \(2 \times (5x+1) = 2(5x+1)\)
-        </div>
-        <div class="k-step">
-          Multiply the denominators: \(3 \times (4-x) = 3(4-x)\)
-        </div>
-        <div class="k-step">
-          Result: \(\frac{2(5x+1)}{3(4-x)}\)
-        </div>
-        <p class="math-line">\[\frac{2}{3} \times \frac{5x+1}{4-x} = \frac{2(5x+1)}{3(4-x)}\]</p>
-      </div>
-    </section>
-
-    <!-- ===================== SECTION: REARRANGING FORMULAS ===================== -->
-    <section class="panel" id="rearranging-formulas">
-      <h2>Rearranging Formulas: Making a Variable the Subject</h2>
-      <p>
-        To rearrange a formula, we apply the same operation to <strong>both sides</strong> of the equation.
-        This keeps the equation balanced, like a see-saw.
-      </p>
-
-      <p>
-        We use <strong>L</strong> to mean the <strong>Left side</strong> and <strong>R</strong> to mean the <strong>Right side</strong> of the equation.
-      </p>
-
-      <div class="tip">
-        <strong>Why use brackets?</strong> When applying operations to both sides, we put brackets around each side so that we correctly apply the operation to the <strong>entire side</strong>, not just part of it. This prevents mistakes.
-      </div>
-
-      <h3>Example 1: Simple subtraction</h3>
-      <div class="example-block">
-        <p class="math-line">\[y = 3x + 2\]</p>
-        <div class="k-step">
-          <strong>Start:</strong><br>
-          L = y<br>
-          R = 3x + 2
-        </div>
-        <div class="k-step">
-          <strong>Step 1: Subtract 2 from both sides</strong><br>
-          L = (y) - 2 = y - 2<br>
-          R = (3x + 2) - 2 = 3x + 2 - 2 = 3x
-        </div>
-        <div class="k-step">
-          <strong>Rearranged equation:</strong>
-        </div>
-        <p class="math-line">\[y - 2 = 3x\]</p>
-        <div class="k-step">
-          <strong>Step 2: Divide both sides by 3</strong><br>
-          L = (y - 2) ÷ 3 = \(\frac{y-2}{3}\)<br>
-          R = (3x) ÷ 3 = x
-        </div>
-        <div class="k-step">
-          <strong>Final rearranged equation:</strong>
-        </div>
-        <p class="math-line">\[\frac{y-2}{3} = x\]</p>
-        <p>
-          Since \(x\) is now the subject (on its own), we can also write: \(x = \frac{y-2}{3}\)
-        </p>
-      </div>
-
-      <h3>Example 2: Multiple operations</h3>
-      <div class="example-block">
-        <p class="math-line">\[y = 2x - 5 + c\]</p>
-        <p>Make \(x\) the subject.</p>
-        <div class="k-step">
-          <strong>Start:</strong><br>
-          L = y<br>
-          R = 2x - 5 + c
-        </div>
-        <div class="k-step">
-          <strong>Step 1: Subtract c from both sides</strong><br>
-          L = (y) - c = y - c<br>
-          R = (2x - 5 + c) - c = 2x - 5
-        </div>
-        <p class="math-line">\[y - c = 2x - 5\]</p>
-        <div class="k-step">
-          <strong>Step 2: Add 5 to both sides</strong><br>
-          L = (y - c) + 5 = y - c + 5<br>
-          R = (2x - 5) + 5 = 2x
-        </div>
-        <p class="math-line">\[y - c + 5 = 2x\]</p>
-        <div class="k-step">
-          <strong>Step 3: Divide both sides by 2</strong><br>
-          L = (y - c + 5) ÷ 2 = \(\frac{y - c + 5}{2}\)<br>
-          R = (2x) ÷ 2 = x
-        </div>
-        <p class="math-line">\[\frac{y - c + 5}{2} = x\]</p>
-      </div>
-
-      <h3>Example 3: Algebraic fractions</h3>
-      <div class="example-block">
-        <p class="math-line">\[y = \frac{3x}{2} + 4\]</p>
-        <p>Make \(x\) the subject.</p>
-        <div class="k-step">
-          <strong>Start:</strong><br>
-          L = y<br>
-          R = \(\frac{3x}{2} + 4\)
-        </div>
-        <div class="k-step">
-          <strong>Step 1: Subtract 4 from both sides</strong><br>
-          L = (y) - 4 = y - 4<br>
-          R = (\(\frac{3x}{2} + 4\)) - 4 = \(\frac{3x}{2}\)
-        </div>
-        <p class="math-line">\[y - 4 = \frac{3x}{2}\]</p>
-        <div class="k-step">
-          <strong>Step 2: Multiply both sides by 2</strong><br>
-          L = (y - 4) × 2 = 2(y - 4) = 2y - 8<br>
-          R = (\(\frac{3x}{2}\)) × 2 = 3x
-        </div>
-        <p class="math-line">\[2y - 8 = 3x\]</p>
-        <div class="k-step">
-          <strong>Step 3: Divide both sides by 3</strong><br>
-          L = (2y - 8) ÷ 3 = \(\frac{2y-8}{3}\)<br>
-          R = (3x) ÷ 3 = x
-        </div>
-        <p class="math-line">\[\frac{2y-8}{3} = x\]</p>
-      </div>
-
-      <h3>Example 4: Fraction with algebraic denominator</h3>
-      <div class="example-block">
-        <p class="math-line">\[y = \frac{2x + 5}{3 - a}\]</p>
-        <p>Make \(x\) the subject.</p>
-        <div class="k-step">
-          <strong>Start:</strong><br>
-          L = y<br>
-          R = \(\frac{2x + 5}{3 - a}\)
-        </div>
-        <div class="k-step">
-          <strong>Step 1: Multiply both sides by (3 - a)</strong><br>
-          L = (y) × (3 - a) = y(3 - a)<br>
-          R = (\(\frac{2x + 5}{3 - a}\)) × (3 - a) = 2x + 5
-        </div>
-        <p class="math-line">\[y(3 - a) = 2x + 5\]</p>
-        <div class="k-step">
-          <strong>Step 2: Subtract 5 from both sides</strong><br>
-          L = (y(3 - a)) - 5 = y(3 - a) - 5<br>
-          R = (2x + 5) - 5 = 2x
-        </div>
-        <p class="math-line">\[y(3 - a) - 5 = 2x\]</p>
-        <div class="k-step">
-          <strong>Step 3: Divide both sides by 2</strong><br>
-          L = (y(3 - a) - 5) ÷ 2 = \(\frac{y(3-a) - 5}{2}\)<br>
-          R = (2x) ÷ 2 = x
-        </div>
-        <p class="math-line">\[\frac{y(3-a) - 5}{2} = x\]</p>
-      </div>
-
-      <h3>Example 5: Indices and surds</h3>
-      <div class="example-block">
-        <p class="math-line">\[y = \frac{x^2}{4} + 3\]</p>
-        <p>Make \(x\) the subject.</p>
-        <div class="k-step">
-          <strong>Start:</strong><br>
-          L = y<br>
-          R = \(\frac{x^2}{4} + 3\)
-        </div>
-        <div class="k-step">
-          <strong>Step 1: Subtract 3 from both sides</strong><br>
-          L = (y) - 3 = y - 3<br>
-          R = (\(\frac{x^2}{4} + 3\)) - 3 = \(\frac{x^2}{4}\)
-        </div>
-        <p class="math-line">\[y - 3 = \frac{x^2}{4}\]</p>
-        <div class="k-step">
-          <strong>Step 2: Multiply both sides by 4</strong><br>
-          L = (y - 3) × 4 = 4(y - 3) = 4y - 12<br>
-          R = (\(\frac{x^2}{4}\)) × 4 = x^2
-        </div>
-        <p class="math-line">\[4y - 12 = x^2\]</p>
-        <div class="k-step">
-          <strong>Step 3: Take the square root of both sides</strong><br>
-          L = \(\sqrt{4y - 12}\) = \(\sqrt{4(y-3)}\) = \(2\sqrt{y-3}\)<br>
-          R = \(\sqrt{x^2}\) = \(|x|\) or \(x\) (if we take the positive root)
-        </div>
-        <p class="math-line">\[x = \sqrt{4y - 12} = 2\sqrt{y-3}\]</p>
-      </div>
-
-      <h3>Example 6: More complex with surds</h3>
-      <div class="example-block">
-        <p class="math-line">\[y = 2\sqrt{x} + 5\]</p>
-        <p>Make \(x\) the subject.</p>
-        <div class="k-step">
-          <strong>Start:</strong><br>
-          L = y<br>
-          R = \(2\sqrt{x} + 5\)
-        </div>
-        <div class="k-step">
-          <strong>Step 1: Subtract 5 from both sides</strong><br>
-          L = (y) - 5 = y - 5<br>
-          R = (2\(\sqrt{x}\) + 5) - 5 = 2\(\sqrt{x}\)
-        </div>
-        <p class="math-line">\[y - 5 = 2\sqrt{x}\]</p>
-        <div class="k-step">
-          <strong>Step 2: Divide both sides by 2</strong><br>
-          L = (y - 5) ÷ 2 = \(\frac{y-5}{2}\)<br>
-          R = (2\(\sqrt{x}\)) ÷ 2 = \(\sqrt{x}\)
-        </div>
-        <p class="math-line">\[\frac{y-5}{2} = \sqrt{x}\]</p>
-        <div class="k-step">
-          <strong>Step 3: Square both sides</strong><br>
-          L = (\(\frac{y-5}{2}\))² = \(\frac{(y-5)^2}{4}\)<br>
-          R = (\(\sqrt{x}\))² = x
-        </div>
-        <p class="math-line">\[x = \frac{(y-5)^2}{4}\]</p>
-      </div>
-
-      <h3>Example 7: Fraction with fraction numerator</h3>
-      <div class="example-block">
-        <p class="math-line">\[y = \frac{\frac{x}{3} + 2}{5}\]</p>
-        <p>Make \(x\) the subject.</p>
-        <div class="k-step">
-          <strong>Start:</strong><br>
-          L = y<br>
-          R = \(\frac{\frac{x}{3} + 2}{5}\)
-        </div>
-        <div class="k-step">
-          <strong>Step 1: Multiply both sides by 5</strong><br>
-          L = (y) × 5 = 5y<br>
-          R = (\(\frac{\frac{x}{3} + 2}{5}\)) × 5 = \(\frac{x}{3} + 2\)
-        </div>
-        <p class="math-line">\[5y = \frac{x}{3} + 2\]</p>
-        <div class="k-step">
-          <strong>Step 2: Subtract 2 from both sides</strong><br>
-          L = (5y) - 2 = 5y - 2<br>
-          R = (\(\frac{x}{3} + 2\)) - 2 = \(\frac{x}{3}\)
-        </div>
-        <p class="math-line">\[5y - 2 = \frac{x}{3}\]</p>
-        <div class="k-step">
-          <strong>Step 3: Multiply both sides by 3</strong><br>
-          L = (5y - 2) × 3 = 3(5y - 2) = 15y - 6<br>
-          R = (\(\frac{x}{3}\)) × 3 = x
-        </div>
-        <p class="math-line">\[x = 15y - 6\]</p>
-      </div>
-    </section>
-
-    <!-- ===================== PRACTICE QUESTIONS ===================== -->
-    <section class="panel" id="rearranging-practice">
-      <h2>Practice Questions: Rearranging Formulas</h2>
-      <p class="hint">Try each one first. Show all your working. Then use the button to check the answer.</p>
-
-      <article class="practice-card">
-        <h3>Question 1</h3>
-        <p>Make \(x\) the subject:</p>
-        <p class="math-line">\[y = 4x + 7\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr1', this)">Show answer</button>
-        <div class="answer" id="rearr1">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = y<br>
-            R = 4x + 7
-          </div>
-          <div class="k-step">
-            <strong>Subtract 7 from both sides:</strong><br>
-            L = (y) - 7 = y - 7<br>
-            R = (4x + 7) - 7 = 4x
-          </div>
-          <p class="math-line">\[y - 7 = 4x\]</p>
-          <div class="k-step">
-            <strong>Divide both sides by 4:</strong><br>
-            L = (y - 7) ÷ 4 = \(\frac{y-7}{4}\)<br>
-            R = (4x) ÷ 4 = x
-          </div>
-          <p class="math-line">\[x = \frac{y-7}{4}\]</p>
-        </div>
-      </article>
-
-      <article class="practice-card">
-        <h3>Question 2</h3>
-        <p>Make \(x\) the subject:</p>
-        <p class="math-line">\[y = \frac{2x + 3}{5}\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr2', this)">Show answer</button>
-        <div class="answer" id="rearr2">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = y<br>
-            R = \(\frac{2x + 3}{5}\)
-          </div>
-          <div class="k-step">
-            <strong>Multiply both sides by 5:</strong><br>
-            L = (y) × 5 = 5y<br>
-            R = (\(\frac{2x + 3}{5}\)) × 5 = 2x + 3
-          </div>
-          <p class="math-line">\[5y = 2x + 3\]</p>
-          <div class="k-step">
-            <strong>Subtract 3 from both sides:</strong><br>
-            L = (5y) - 3 = 5y - 3<br>
-            R = (2x + 3) - 3 = 2x
-          </div>
-          <p class="math-line">\[5y - 3 = 2x\]</p>
-          <div class="k-step">
-            <strong>Divide both sides by 2:</strong><br>
-            L = (5y - 3) ÷ 2 = \(\frac{5y-3}{2}\)<br>
-            R = (2x) ÷ 2 = x
-          </div>
-          <p class="math-line">\[x = \frac{5y-3}{2}\]</p>
-        </div>
-      </article>
-
-      <article class="practice-card">
-        <h3>Question 3</h3>
-        <p>Make \(x\) the subject:</p>
-        <p class="math-line">\[y = \frac{x}{3} - 2 + b\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr3', this)">Show answer</button>
-        <div class="answer" id="rearr3">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = y<br>
-            R = \(\frac{x}{3} - 2 + b\)
-          </div>
-          <div class="k-step">
-            <strong>Add 2 to both sides:</strong><br>
-            L = (y) + 2 = y + 2<br>
-            R = (\(\frac{x}{3} - 2 + b\)) + 2 = \(\frac{x}{3} + b\)
-          </div>
-          <p class="math-line">\[y + 2 = \frac{x}{3} + b\]</p>
-          <div class="k-step">
-            <strong>Subtract b from both sides:</strong><br>
-            L = (y + 2) - b = y + 2 - b<br>
-            R = (\(\frac{x}{3} + b\)) - b = \(\frac{x}{3}\)
-          </div>
-          <p class="math-line">\[y + 2 - b = \frac{x}{3}\]</p>
-          <div class="k-step">
-            <strong>Multiply both sides by 3:</strong><br>
-            L = (y + 2 - b) × 3 = 3(y + 2 - b) = 3y + 6 - 3b<br>
-            R = (\(\frac{x}{3}\)) × 3 = x
-          </div>
-          <p class="math-line">\[x = 3y + 6 - 3b\]</p>
-        </div>
-      </article>
-
-      <article class="practice-card">
-        <h3>Question 4</h3>
-        <p>Make \(a\) the subject:</p>
-        <p class="math-line">\[z = \frac{3a + 1}{4}\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr4', this)">Show answer</button>
-        <div class="answer" id="rearr4">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = z<br>
-            R = \(\frac{3a + 1}{4}\)
-          </div>
-          <div class="k-step">
-            <strong>Multiply both sides by 4:</strong><br>
-            L = (z) × 4 = 4z<br>
-            R = (\(\frac{3a + 1}{4}\)) × 4 = 3a + 1
-          </div>
-          <p class="math-line">\[4z = 3a + 1\]</p>
-          <div class="k-step">
-            <strong>Subtract 1 from both sides:</strong><br>
-            L = (4z) - 1 = 4z - 1<br>
-            R = (3a + 1) - 1 = 3a
-          </div>
-          <p class="math-line">\[4z - 1 = 3a\]</p>
-          <div class="k-step">
-            <strong>Divide both sides by 3:</strong><br>
-            L = (4z - 1) ÷ 3 = \(\frac{4z-1}{3}\)<br>
-            R = (3a) ÷ 3 = a
-          </div>
-          <p class="math-line">\[a = \frac{4z-1}{3}\]</p>
+          <div class="k-step">Write \(y=4x+7\).</div>
+          <div class="k-step">Rearrange: \(y-7=4x\Rightarrow x=\frac{y-7}{4}\).</div>
+          <p class="math-line">\[\boxed{f^{-1}(x)=\frac{x-7}{4}}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 5</h3>
-        <p>Make \(x\) the subject:</p>
-        <p class="math-line">\[m = \frac{x}{b + c}\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr5', this)">Show answer</button>
-        <div class="answer" id="rearr5">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = m<br>
-            R = \(\frac{x}{b + c}\)
-          </div>
-          <div class="k-step">
-            <strong>Multiply both sides by (b + c):</strong><br>
-            L = (m) × (b + c) = m(b + c)<br>
-            R = (\(\frac{x}{b + c}\)) × (b + c) = x
-          </div>
-          <p class="math-line">\[x = m(b + c)\]</p>
+        <p>Find \(f^{-1}(x)\) for \(f(x)=\frac{x-5}{3}\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq5', this)">Show answer</button>
+        <div class="answer" id="fq5">
+          <div class="k-step">Write \(y=\frac{x-5}{3}\).</div>
+          <div class="k-step">Multiply by 3 and add 5: \(3y=x-5\Rightarrow x=3y+5\).</div>
+          <p class="math-line">\[\boxed{f^{-1}(x)=3x+5}\]</p>
         </div>
       </article>
 
+      <h3 style="margin-top:1.5rem;">Hard Questions</h3>
+
       <article class="practice-card">
         <h3>Question 6</h3>
-        <p>Make \(p\) the subject:</p>
-        <p class="math-line">\[q = \frac{2p - 5}{3 - r}\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr6', this)">Show answer</button>
-        <div class="answer" id="rearr6">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = q<br>
-            R = \(\frac{2p - 5}{3 - r}\)
-          </div>
-          <div class="k-step">
-            <strong>Multiply both sides by (3 - r):</strong><br>
-            L = (q) × (3 - r) = q(3 - r)<br>
-            R = (\(\frac{2p - 5}{3 - r}\)) × (3 - r) = 2p - 5
-          </div>
-          <p class="math-line">\[q(3 - r) = 2p - 5\]</p>
-          <div class="k-step">
-            <strong>Add 5 to both sides:</strong><br>
-            L = (q(3 - r)) + 5 = q(3 - r) + 5<br>
-            R = (2p - 5) + 5 = 2p
-          </div>
-          <p class="math-line">\[q(3 - r) + 5 = 2p\]</p>
-          <div class="k-step">
-            <strong>Divide both sides by 2:</strong><br>
-            L = (q(3 - r) + 5) ÷ 2 = \(\frac{q(3-r) + 5}{2}\)<br>
-            R = (2p) ÷ 2 = p
-          </div>
-          <p class="math-line">\[p = \frac{q(3-r) + 5}{2}\]</p>
+        <p>Let \(f(x)=2x-3\) and \(g(x)=x^2+1\). Find \(fg(x)\) in simplified form.</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq6', this)">Show answer</button>
+        <div class="answer" id="fq6">
+          <div class="k-step">\(fg(x)=f(x^2+1)=2(x^2+1)-3\).</div>
+          <p class="math-line">\[\boxed{fg(x)=2x^2-1}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 7</h3>
-        <p>Make \(x\) the subject:</p>
-        <p class="math-line">\[y = \sqrt{x + 3}\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr7', this)">Show answer</button>
-        <div class="answer" id="rearr7">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = y<br>
-            R = \(\sqrt{x + 3}\)
-          </div>
-          <div class="k-step">
-            <strong>Square both sides:</strong><br>
-            L = (y)² = y²<br>
-            R = (\(\sqrt{x + 3}\))² = x + 3
-          </div>
-          <p class="math-line">\[y^2 = x + 3\]</p>
-          <div class="k-step">
-            <strong>Subtract 3 from both sides:</strong><br>
-            L = (y²) - 3 = y² - 3<br>
-            R = (x + 3) - 3 = x
-          </div>
-          <p class="math-line">\[x = y^2 - 3\]</p>
+        <p>Let \(f(x)=x+2\) and \(g(x)=3x-4\). Find both \(fg(x)\) and \(gf(x)\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq7', this)">Show answer</button>
+        <div class="answer" id="fq7">
+          <div class="k-step">\(fg(x)=f(3x-4)=3x-4+2=3x-2\).</div>
+          <div class="k-step">\(gf(x)=g(x+2)=3(x+2)-4=3x+2\).</div>
+          <p class="math-line">\[\boxed{fg(x)=3x-2,\qquad gf(x)=3x+2}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 8</h3>
-        <p>Make \(x\) the subject:</p>
-        <p class="math-line">\[y = 2x^2 + 5\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr8', this)">Show answer</button>
-        <div class="answer" id="rearr8">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = y<br>
-            R = 2x² + 5
-          </div>
-          <div class="k-step">
-            <strong>Subtract 5 from both sides:</strong><br>
-            L = (y) - 5 = y - 5<br>
-            R = (2x² + 5) - 5 = 2x²
-          </div>
-          <p class="math-line">\[y - 5 = 2x^2\]</p>
-          <div class="k-step">
-            <strong>Divide both sides by 2:</strong><br>
-            L = (y - 5) ÷ 2 = \(\frac{y-5}{2}\)<br>
-            R = (2x²) ÷ 2 = x²
-          </div>
-          <p class="math-line">\[\frac{y-5}{2} = x^2\]</p>
-          <div class="k-step">
-            <strong>Take the square root of both sides (positive root):</strong><br>
-            L = \(\sqrt{\frac{y-5}{2}}\)<br>
-            R = \(\sqrt{x^2}\) = x (taking the positive root)
-          </div>
-          <p class="math-line">\[x = \sqrt{\frac{y-5}{2}}\]</p>
+        <p>Let \(f(x)=x^2\) and \(g(x)=x-1\). Find \(fg(5)\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq8', this)">Show answer</button>
+        <div class="answer" id="fq8">
+          <div class="k-step">\(g(5)=4\).</div>
+          <div class="k-step">\(f(4)=16\).</div>
+          <p class="math-line">\[\boxed{fg(5)=16}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 9</h3>
-        <p>Make \(x\) the subject:</p>
-        <p class="math-line">\[y = \frac{3\sqrt{x}}{2} + 1\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr9', this)">Show answer</button>
-        <div class="answer" id="rearr9">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = y<br>
-            R = \(\frac{3\sqrt{x}}{2} + 1\)
-          </div>
-          <div class="k-step">
-            <strong>Subtract 1 from both sides:</strong><br>
-            L = (y) - 1 = y - 1<br>
-            R = (\(\frac{3\sqrt{x}}{2} + 1\)) - 1 = \(\frac{3\sqrt{x}}{2}\)
-          </div>
-          <p class="math-line">\[y - 1 = \frac{3\sqrt{x}}{2}\]</p>
-          <div class="k-step">
-            <strong>Multiply both sides by 2:</strong><br>
-            L = (y - 1) × 2 = 2(y - 1) = 2y - 2<br>
-            R = (\(\frac{3\sqrt{x}}{2}\)) × 2 = 3\(\sqrt{x}\)
-          </div>
-          <p class="math-line">\[2y - 2 = 3\sqrt{x}\]</p>
-          <div class="k-step">
-            <strong>Divide both sides by 3:</strong><br>
-            L = (2y - 2) ÷ 3 = \(\frac{2y-2}{3}\)<br>
-            R = (3\(\sqrt{x}\)) ÷ 3 = \(\sqrt{x}\)
-          </div>
-          <p class="math-line">\[\frac{2y-2}{3} = \sqrt{x}\]</p>
-          <div class="k-step">
-            <strong>Square both sides:</strong><br>
-            L = (\(\frac{2y-2}{3}\))² = \(\frac{(2y-2)^2}{9}\)<br>
-            R = (\(\sqrt{x}\))² = x
-          </div>
-          <p class="math-line">\[x = \frac{(2y-2)^2}{9}\]</p>
+        <p>Find \(f^{-1}(x)\) for \(f(x)=5-2x\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq9', this)">Show answer</button>
+        <div class="answer" id="fq9">
+          <div class="k-step">Write \(y=5-2x\).</div>
+          <div class="k-step">\(2x=5-y\Rightarrow x=\frac{5-y}{2}\).</div>
+          <p class="math-line">\[\boxed{f^{-1}(x)=\frac{5-x}{2}}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 10</h3>
-        <p>Make \(t\) the subject:</p>
-        <p class="math-line">\[s = \frac{t^2}{2a} + ut\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr10', this)">Show answer</button>
-        <div class="answer" id="rearr10">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = s<br>
-            R = \(\frac{t^2}{2a} + ut\)
-          </div>
-          <div class="k-step">
-            <strong>Multiply both sides by 2a to clear the fraction:</strong><br>
-            L = (s) × 2a = 2as<br>
-            R = (\(\frac{t^2}{2a} + ut\)) × 2a = t² + 2aut
-          </div>
-          <p class="math-line">\[2as = t^2 + 2aut\]</p>
-          <div class="k-step">
-            <strong>Rearrange as a quadratic in t:</strong><br>
-            This is: t² + 2aut - 2as = 0
-          </div>
-          <div class="k-step">
-            <strong>Using the quadratic formula where a coefficient = 1, b = 2au, c = -2as:</strong><br>
-            \(t = \frac{-2au \pm \sqrt{(2au)^2 - 4(1)(-2as)}}{2(1)}\)<br>
-            \(t = \frac{-2au \pm \sqrt{4a^2u^2 + 8as}}{2}\)<br>
-            \(t = \frac{-2au \pm 2\sqrt{a^2u^2 + 2as}}{2}\)<br>
-            \(t = -au \pm \sqrt{a^2u^2 + 2as}\)
-          </div>
-          <p class="math-line">\[t = -au \pm \sqrt{a^2u^2 + 2as}\]</p>
-          <div class="tip">
-            <strong>Note:</strong> This is a quadratic in t, so we get two solutions (± symbol). In physics problems, we typically choose the positive root.
-          </div>
+        <p>Find \(f^{-1}(x)\) for \(f(x)=\frac{3x+4}{2}\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq10', this)">Show answer</button>
+        <div class="answer" id="fq10">
+          <div class="k-step">Write \(y=\frac{3x+4}{2}\).</div>
+          <div class="k-step">\(2y=3x+4\Rightarrow 3x=2y-4\Rightarrow x=\frac{2y-4}{3}\).</div>
+          <p class="math-line">\[\boxed{f^{-1}(x)=\frac{2x-4}{3}}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 11</h3>
-        <p>Make \(x\) the subject:</p>
-        <p class="math-line">\[y = \frac{2x + 7}{x - 1}\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr11', this)">Show answer</button>
-        <div class="answer" id="rearr11">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = y<br>
-            R = \(\frac{2x + 7}{x - 1}\)
-          </div>
-          <div class="k-step">
-            <strong>Multiply both sides by (x - 1):</strong><br>
-            L = (y) × (x - 1) = y(x - 1)<br>
-            R = (\(\frac{2x + 7}{x - 1}\)) × (x - 1) = 2x + 7
-          </div>
-          <p class="math-line">\[y(x - 1) = 2x + 7\]</p>
-          <div class="k-step">
-            <strong>Expand the left side:</strong><br>
-            yx - y = 2x + 7
-          </div>
-          <div class="k-step">
-            <strong>Collect x terms on one side. Subtract 2x from both sides:</strong><br>
-            L = (yx - y) - 2x = yx - 2x - y<br>
-            R = (2x + 7) - 2x = 7
-          </div>
-          <p class="math-line">\[yx - 2x - y = 7\]</p>
-          <div class="k-step">
-            <strong>Add y to both sides:</strong><br>
-            L = (yx - 2x - y) + y = yx - 2x<br>
-            R = 7 + y
-          </div>
-          <p class="math-line">\[yx - 2x = 7 + y\]</p>
-          <div class="k-step">
-            <strong>Factor out x on the left side:</strong><br>
-            x(y - 2) = 7 + y
-          </div>
-          <div class="k-step">
-            <strong>Divide both sides by (y - 2):</strong><br>
-            L = (x(y - 2)) ÷ (y - 2) = x<br>
-            R = (7 + y) ÷ (y - 2) = \(\frac{7 + y}{y - 2}\)
-          </div>
-          <p class="math-line">\[x = \frac{7 + y}{y - 2}\]</p>
+        <p>Given \(f(x)=2x+1\), find \(f^{-1}(7)\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq11', this)">Show answer</button>
+        <div class="answer" id="fq11">
+          <div class="k-step">First find the inverse: \(f^{-1}(x)=\frac{x-1}{2}\).</div>
+          <div class="k-step">Then substitute \(x=7\).</div>
+          <p class="math-line">\[\boxed{f^{-1}(7)=3}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 12</h3>
-        <p>Make \(x\) the subject:</p>
-        <p class="math-line">\[y = \sqrt{\frac{2x + 5}{3}}\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr12', this)">Show answer</button>
-        <div class="answer" id="rearr12">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = y<br>
-            R = \(\sqrt{\frac{2x + 5}{3}}\)
-          </div>
-          <div class="k-step">
-            <strong>Square both sides:</strong><br>
-            L = (y)² = y²<br>
-            R = (\(\sqrt{\frac{2x + 5}{3}}\))² = \(\frac{2x + 5}{3}\)
-          </div>
-          <p class="math-line">\[y^2 = \frac{2x + 5}{3}\]</p>
-          <div class="k-step">
-            <strong>Multiply both sides by 3:</strong><br>
-            L = (y²) × 3 = 3y²<br>
-            R = (\(\frac{2x + 5}{3}\)) × 3 = 2x + 5
-          </div>
-          <p class="math-line">\[3y^2 = 2x + 5\]</p>
-          <div class="k-step">
-            <strong>Subtract 5 from both sides:</strong><br>
-            L = (3y²) - 5 = 3y² - 5<br>
-            R = (2x + 5) - 5 = 2x
-          </div>
-          <p class="math-line">\[3y^2 - 5 = 2x\]</p>
-          <div class="k-step">
-            <strong>Divide both sides by 2:</strong><br>
-            L = (3y² - 5) ÷ 2 = \(\frac{3y^2 - 5}{2}\)<br>
-            R = (2x) ÷ 2 = x
-          </div>
-          <p class="math-line">\[x = \frac{3y^2 - 5}{2}\]</p>
+        <p>Let \(f(x)=3x-2\) and \(g(x)=x^2\). Find \(gf(-1)\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq12', this)">Show answer</button>
+        <div class="answer" id="fq12">
+          <div class="k-step">\(f(-1)=3(-1)-2=-5\).</div>
+          <div class="k-step">Then \(g(-5)=25\).</div>
+          <p class="math-line">\[\boxed{gf(-1)=25}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
         <h3>Question 13</h3>
-        <p>Make \(r\) the subject:</p>
-        <p class="math-line">\[A = \pi r^2 h + 2\pi r^2\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr13', this)">Show answer</button>
-        <div class="answer" id="rearr13">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = A<br>
-            R = πr²h + 2πr²
-          </div>
-          <div class="k-step">
-            <strong>Factor out πr² from the right side:</strong><br>
-            A = πr²(h + 2)
-          </div>
-          <div class="k-step">
-            <strong>Divide both sides by π(h + 2):</strong><br>
-            L = (A) ÷ (π(h + 2)) = \(\frac{A}{\pi(h + 2)}\)<br>
-            R = (πr²(h + 2)) ÷ (π(h + 2)) = r²
-          </div>
-          <p class="math-line">\[r^2 = \frac{A}{\pi(h + 2)}\]</p>
-          <div class="k-step">
-            <strong>Take the square root (positive root):</strong><br>
-            L = \(\sqrt{\frac{A}{\pi(h + 2)}}\)<br>
-            R = \(\sqrt{r^2}\) = r
-          </div>
-          <p class="math-line">\[r = \sqrt{\frac{A}{\pi(h + 2)}}\]</p>
+        <p>Let \(f(x)=x+1\) and \(g(x)=2x^2\). Find \(fg(x)\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq13', this)">Show answer</button>
+        <div class="answer" id="fq13">
+          <div class="k-step">\(fg(x)=f(2x^2)=2x^2+1\).</div>
+          <p class="math-line">\[\boxed{fg(x)=2x^2+1}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
-        <h3>Question 14 (Challenging)</h3>
-        <p>Make \(x\) the subject:</p>
-        <p class="math-line">\[y = \frac{\sqrt{x + a}}{b - c}\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr14', this)">Show answer</button>
-        <div class="answer" id="rearr14">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = y<br>
-            R = \(\frac{\sqrt{x + a}}{b - c}\)
-          </div>
-          <div class="k-step">
-            <strong>Multiply both sides by (b - c):</strong><br>
-            L = (y) × (b - c) = y(b - c)<br>
-            R = (\(\frac{\sqrt{x + a}}{b - c}\)) × (b - c) = \(\sqrt{x + a}\)
-          </div>
-          <p class="math-line">\[y(b - c) = \sqrt{x + a}\]</p>
-          <div class="k-step">
-            <strong>Square both sides:</strong><br>
-            L = (y(b - c))² = y²(b - c)²<br>
-            R = (\(\sqrt{x + a}\))² = x + a
-          </div>
-          <p class="math-line">\[y^2(b - c)^2 = x + a\]</p>
-          <div class="k-step">
-            <strong>Subtract a from both sides:</strong><br>
-            L = (y²(b - c)²) - a = y²(b - c)² - a<br>
-            R = (x + a) - a = x
-          </div>
-          <p class="math-line">\[x = y^2(b - c)^2 - a\]</p>
+        <h3>Question 14</h3>
+        <p>Let \(f(x)=x^2+4\) and \(g(x)=x-2\). Find \(gf(x)\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq14', this)">Show answer</button>
+        <div class="answer" id="fq14">
+          <div class="k-step">Apply \(f\) first to get \(x^2+4\).</div>
+          <div class="k-step">Then \(g(x^2+4)=x^2+4-2\).</div>
+          <p class="math-line">\[\boxed{gf(x)=x^2+2}\]</p>
         </div>
       </article>
 
       <article class="practice-card">
-        <h3>Question 15 (Challenging)</h3>
-        <p>Make \(x\) the subject:</p>
-        <p class="math-line">\[v = u + \frac{at}{1 + \frac{x}{c}}\]</p>
-        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('rearr15', this)">Show answer</button>
-        <div class="answer" id="rearr15">
-          <div class="k-step">
-            <strong>Start:</strong><br>
-            L = v<br>
-            R = \(u + \frac{at}{1 + \frac{x}{c}}\)
-          </div>
-          <div class="k-step">
-            <strong>Subtract u from both sides:</strong><br>
-            L = (v) - u = v - u<br>
-            R = (\(u + \frac{at}{1 + \frac{x}{c}}\)) - u = \(\frac{at}{1 + \frac{x}{c}}\)
-          </div>
-          <p class="math-line">\[v - u = \frac{at}{1 + \frac{x}{c}}\]</p>
-          <div class="k-step">
-            <strong>Multiply both sides by (1 + \(\frac{x}{c}\)):</strong><br>
-            L = (v - u) × (1 + \(\frac{x}{c}\)) = (v - u)(1 + \(\frac{x}{c}\))<br>
-            R = (\(\frac{at}{1 + \frac{x}{c}}\)) × (1 + \(\frac{x}{c}\)) = at
-          </div>
-          <p class="math-line">\[(v - u)\left(1 + \frac{x}{c}\right) = at\]</p>
-          <div class="k-step">
-            <strong>Expand the left side:</strong><br>
-            (v - u) + (v - u)\(\frac{x}{c}\) = at
-          </div>
-          <div class="k-step">
-            <strong>Subtract (v - u) from both sides:</strong><br>
-            L = ((v - u) + (v - u)\(\frac{x}{c}\)) - (v - u) = (v - u)\(\frac{x}{c}\)<br>
-            R = at - (v - u)
-          </div>
-          <p class="math-line">\[(v - u)\frac{x}{c} = at - (v - u)\]</p>
-          <div class="k-step">
-            <strong>Multiply both sides by c:</strong><br>
-            L = ((v - u)\(\frac{x}{c}\)) × c = (v - u)x<br>
-            R = (at - (v - u)) × c = c(at - (v - u))
-          </div>
-          <p class="math-line">\[(v - u)x = c(at - (v - u))\]</p>
-          <div class="k-step">
-            <strong>Divide both sides by (v - u):</strong><br>
-            L = ((v - u)x) ÷ (v - u) = x<br>
-            R = (c(at - (v - u))) ÷ (v - u) = \(\frac{c(at - (v - u))}{v - u}\)
-          </div>
-          <p class="math-line">\[x = \frac{c(at - (v - u))}{v - u}\]</p>
-          <p>
-            Or simplified: \(x = \frac{c(at - v + u)}{v - u}\)
-          </p>
+        <h3>Question 15</h3>
+        <p>Show that \(f(f^{-1}(x))=x\) for \(f(x)=3x+6\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq15', this)">Show answer</button>
+        <div class="answer" id="fq15">
+          <div class="k-step">First find the inverse: \(f^{-1}(x)=\frac{x-6}{3}\).</div>
+          <div class="k-step">Substitute into \(f\): \(f\left(\frac{x-6}{3}\right)=3\left(\frac{x-6}{3}\right)+6\).</div>
+          <p class="math-line">\[\boxed{f(f^{-1}(x))=x}\]</p>
         </div>
       </article>
+
+      <h3 style="margin-top:1.5rem;">Challenging Questions</h3>
+
+      <article class="practice-card">
+        <h3>Question 16</h3>
+        <p>Let \(f(x)=2x+3\) and \(g(x)=x^2\). Solve \(fg(x)=11\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq16', this)">Show answer</button>
+        <div class="answer" id="fq16">
+          <div class="k-step">\(fg(x)=f(x^2)=2x^2+3\).</div>
+          <div class="k-step">Set equal to 11: \(2x^2+3=11\Rightarrow 2x^2=8\Rightarrow x^2=4\).</div>
+          <p class="math-line">\[\boxed{x=\pm 2}\]</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 17</h3>
+        <p>Let \(f(x)=x-4\) and \(g(x)=x^2+1\). Solve \(gf(x)=10\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq17', this)">Show answer</button>
+        <div class="answer" id="fq17">
+          <div class="k-step">\(gf(x)=g(x-4)=(x-4)^2+1\).</div>
+          <div class="k-step">\((x-4)^2+1=10\Rightarrow (x-4)^2=9\).</div>
+          <p class="math-line">\[\boxed{x=1 \text{ or } x=7}\]</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 18</h3>
+        <p>Given \(f(x)=3x-5\), solve \(f^{-1}(x)=4\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq18', this)">Show answer</button>
+        <div class="answer" id="fq18">
+          <div class="k-step">\(f^{-1}(x)=\frac{x+5}{3}\).</div>
+          <div class="k-step">Set \(\frac{x+5}{3}=4\Rightarrow x+5=12\).</div>
+          <p class="math-line">\[\boxed{x=7}\]</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 19</h3>
+        <p>Let \(f(x)=2x+1\) and \(g(x)=x^2\). Solve \(fg(x)=gf(x)\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq19', this)">Show answer</button>
+        <div class="answer" id="fq19">
+          <div class="k-step">\(fg(x)=2x^2+1\).</div>
+          <div class="k-step">\(gf(x)=(2x+1)^2=4x^2+4x+1\).</div>
+          <div class="k-step">Set equal: \(2x^2+1=4x^2+4x+1\Rightarrow 2x^2+4x=0\).</div>
+          <p class="math-line">\[\boxed{x=0 \text{ or } x=-2}\]</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 20</h3>
+        <p>Let \(f(x)=\frac{x+1}{2}\). Find \(ff(x)\), then solve \(ff(x)=x\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('fq20', this)">Show answer</button>
+        <div class="answer" id="fq20">
+          <div class="k-step">\(ff(x)=f\left(\frac{x+1}{2}\right)=\frac{\frac{x+1}{2}+1}{2}=\frac{x+3}{4}\).</div>
+          <div class="k-step">Set equal to \(x\): \(\frac{x+3}{4}=x\Rightarrow x+3=4x\Rightarrow 3=3x\).</div>
+          <p class="math-line">\[\boxed{ff(x)=\frac{x+3}{4},\qquad x=1}\]</p>
+        </div>
+      </article>
+      </div>
     </section>
 
-    <!-- ===================== SECTION 9: FACTORISATION + INDICES REARRANGING ===================== -->
-    <section class="panel" id="factorisation-indices">
-      <h2>9) Rearranging Formulas with Factorisation and Index Rules</h2>
+    <section class="panel collapsed" id="factorisation-indices">
+      <div class="section-header">
+        <h2>Rearranging Formulas with Factorisation and Index Rules</h2>
+        <button class="section-toggle" type="button" aria-expanded="false" onclick="toggleSection('factorisation-indices', this)">Show section</button>
+      </div>
+
+      <div class="section-content">
       <p>
         These questions need more than one skill. You often need to factorise first, simplify, and then rearrange.
         For index questions, name the exact index rule each time you use it.
@@ -2321,10 +1335,16 @@
         </div>
         <p class="math-line">\[x = \left(\frac{y+4}{2}\right)^{2/3}\]</p>
       </div>
+      </div>
     </section>
 
-    <section class="panel" id="factorisation-practice">
-      <h2>10) Practice: Factorisation and Index Rearranging</h2>
+    <section class="panel collapsed" id="factorisation-practice">
+      <div class="section-header">
+        <h2>Practice: Factorisation and Index Rearranging</h2>
+        <button class="section-toggle" type="button" aria-expanded="false" onclick="toggleSection('factorisation-practice', this)">Show section</button>
+      </div>
+
+      <div class="section-content">
       <p class="hint">These are harder. Try each one first, then reveal the working.</p>
 
       <div class="rule-box">
@@ -2437,6 +1457,7 @@
           <p class="math-line">\[x = \frac{y}{3} - 2\]</p>
         </div>
       </article>
+      </div>
     </section>
 
   </main>
