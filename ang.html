@@ -403,7 +403,7 @@
       </div>
     </section>
 
-    <div class="update-notice">Updated 01:38, May 12, 2026</div>
+    <div class="update-notice">Updated 01:47, May 12, 2026</div>
 
     <section class="panel collapsed" id="trig-solving">
       <div class="section-header">
@@ -545,7 +545,8 @@
         <p>Solve \(\sin x = \frac{1}{2}\) for \(0° \le x \le 360°\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq1', this)">Show answer</button>
         <div class="answer" id="teq1">
-          <div class="k-step">Sine is \(\frac{1}{2}\) at \(30°\) and \(150°\).</div>
+          <div class="k-step">Since this is a sine equation, we look at the \(y\)-coordinate of \(P(x,y)\).</div>
+          <div class="k-step">We need angles where \(y=\frac{1}{2}\). On the diagram that happens at \(30°\) and \(150°\).</div>
           <p class="math-line">\[x=30°,\ 150°\]</p>
         </div>
       </article>
@@ -555,7 +556,8 @@
         <p>Solve \(\cos x = -\frac{\sqrt{3}}{2}\) for \(0° \le x \le 360°\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq2', this)">Show answer</button>
         <div class="answer" id="teq2">
-          <div class="k-step">Cosine is negative in Q2 and Q3 with reference angle \(30°\).</div>
+          <div class="k-step">Since this is a cosine equation, we look at the \(x\)-coordinate of \(P(x,y)\).</div>
+          <div class="k-step">We need angles where \(x=-\frac{\sqrt{3}}{2}\). On the diagram that happens at \(150°\) and \(210°\).</div>
           <p class="math-line">\[x=150°,\ 210°\]</p>
         </div>
       </article>
@@ -565,7 +567,8 @@
         <p>Solve \(\tan x = 1\) for \(0° \le x \le 360°\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq3', this)">Show answer</button>
         <div class="answer" id="teq3">
-          <div class="k-step">Reference angle is \(45°\), tangent positive in Q1 and Q3.</div>
+          <div class="k-step">For tangent, recall \(\tan(A)=\frac{y}{x}\) for \(P(x,y)\). We need angles where \(\frac{y}{x}=1\), i.e. where the \(y\)-coordinate equals the \(x\)-coordinate.</div>
+          <div class="k-step">On the diagram that happens at \(45°\) and \(225°\).</div>
           <p class="math-line">\[x=45°,\ 225°\]</p>
         </div>
       </article>
@@ -575,7 +578,8 @@
         <p>Solve \(2\sin x=-\sqrt{3}\) for \(0° \le x \le 360°\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq4', this)">Show answer</button>
         <div class="answer" id="teq4">
-          <div class="k-step">\(\sin x=-\frac{\sqrt{3}}{2}\), reference angle \(60°\), Q3 and Q4.</div>
+          <div class="k-step">Rearrange: \(\sin x=-\frac{\sqrt{3}}{2}\). Since this is a sine equation, we look at the \(y\)-coordinate of \(P(x,y)\).</div>
+          <div class="k-step">We need angles where \(y=-\frac{\sqrt{3}}{2}\). On the diagram that happens at \(240°\) and \(300°\).</div>
           <p class="math-line">\[x=240°,\ 300°\]</p>
         </div>
       </article>
@@ -585,7 +589,8 @@
         <p>Solve \(3\cos x+3=0\) for \(0° \le x \le 360°\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq5', this)">Show answer</button>
         <div class="answer" id="teq5">
-          <div class="k-step">\(\cos x=-1\).</div>
+          <div class="k-step">Rearrange: \(\cos x=-1\). Since this is a cosine equation, we look at the \(x\)-coordinate of \(P(x,y)\).</div>
+          <div class="k-step">We need the angle where \(x=-1\). On the diagram that is only \(180°\).</div>
           <p class="math-line">\[x=180°\]</p>
         </div>
       </article>
@@ -595,7 +600,8 @@
         <p>Solve \(\tan x=-\sqrt{3}\) for \(0° \le x \le 360°\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq6', this)">Show answer</button>
         <div class="answer" id="teq6">
-          <div class="k-step">Reference angle \(60°\), tangent negative in Q2 and Q4.</div>
+          <div class="k-step">For tangent, recall \(\tan(A)=\frac{y}{x}\) for \(P(x,y)\). We need angles where \(\frac{y}{x}=-\sqrt{3}\).</div>
+          <div class="k-step">On the diagram that happens at \(120°\) (where \(P=(-\frac{1}{2},\frac{\sqrt{3}}{2})\)) and \(300°\) (where \(P=(\frac{1}{2},-\frac{\sqrt{3}}{2})\)) — in both cases dividing \(y\) by \(x\) gives \(-\sqrt{3}\).</div>
           <p class="math-line">\[x=120°,\ 300°\]</p>
         </div>
       </article>
@@ -605,7 +611,8 @@
         <p>Solve \(4\sin x-2=0\) for \(0° \le x \le 360°\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq7', this)">Show answer</button>
         <div class="answer" id="teq7">
-          <div class="k-step">\(\sin x=\frac{1}{2}\).</div>
+          <div class="k-step">Rearrange: \(\sin x=\frac{1}{2}\). Since this is a sine equation, we look at the \(y\)-coordinate of \(P(x,y)\).</div>
+          <div class="k-step">We need angles where \(y=\frac{1}{2}\). On the diagram that happens at \(30°\) and \(150°\).</div>
           <p class="math-line">\[x=30°,\ 150°\]</p>
         </div>
       </article>
@@ -615,7 +622,8 @@
         <p>Solve \(2\cos x=\sqrt{2}\) for \(0° \le x \le 360°\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq8', this)">Show answer</button>
         <div class="answer" id="teq8">
-          <div class="k-step">\(\cos x=\frac{\sqrt{2}}{2}\), cosine positive in Q1 and Q4.</div>
+          <div class="k-step">Rearrange: \(\cos x=\frac{\sqrt{2}}{2}\). Since this is a cosine equation, we look at the \(x\)-coordinate of \(P(x,y)\).</div>
+          <div class="k-step">We need angles where \(x=\frac{\sqrt{2}}{2}\). On the diagram that happens at \(45°\) and \(315°\).</div>
           <p class="math-line">\[x=45°,\ 315°\]</p>
         </div>
       </article>
@@ -625,7 +633,8 @@
         <p>Solve \(\sin x=0\) for \(0° \le x \le 360°\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq9', this)">Show answer</button>
         <div class="answer" id="teq9">
-          <div class="k-step">Sine is zero on the x-axis.</div>
+          <div class="k-step">Since this is a sine equation, we look at the \(y\)-coordinate of \(P(x,y)\).</div>
+          <div class="k-step">We need angles where \(y=0\). On the diagram that happens at \(0°\), \(180°\), and \(360°\) — these are the points where \(P\) sits directly on the horizontal axis.</div>
           <p class="math-line">\[x=0°,\ 180°,\ 360°\]</p>
         </div>
       </article>
@@ -635,8 +644,10 @@
         <p>Solve \(2\sin x+\cos x=0\) for \(0° \le x \le 360°\).</p>
         <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('teq10', this)">Show answer</button>
         <div class="answer" id="teq10">
-          <div class="k-step">\(2\sin x=-\cos x\Rightarrow \tan x=-\frac{1}{2}\).</div>
-          <div class="k-step">Reference angle \(\theta=\tan^{-1}(\frac{1}{2})\approx 26.565°\), Q2 and Q4.</div>
+          <div class="k-step">Rearrange: \(2\sin x=-\cos x\Rightarrow \tan x=-\frac{1}{2}\).</div>
+          <div class="k-step">For tangent, recall \(\tan(A)=\frac{y}{x}\) for \(P(x,y)\). We need angles where \(\frac{y}{x}=-\frac{1}{2}\).</div>
+          <div class="k-step">This value does not appear exactly on the special-angle diagram, so use a calculator: \(\tan^{-1}\!\left(\frac{1}{2}\right)\approx 26.6°\). We need \(\frac{y}{x}\) to be negative, which happens where \(x\) and \(y\) have opposite signs — on the diagram those are the angles between \(90°\) and \(180°\), and between \(270°\) and \(360°\).</div>
+          <div class="k-step">So the two angles are \(180°-26.6°=153.4°\) and \(360°-26.6°=333.4°\).</div>
           <p class="math-line">\[x\approx 153.4°,\ 333.4°\]</p>
         </div>
       </article>
