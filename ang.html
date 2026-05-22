@@ -130,6 +130,12 @@
       border-color: rgba(34, 211, 238, 0.4);
     }
 
+    .btn-new-section {
+      background: linear-gradient(135deg, #22C55E, #16A34A);
+      color: #04210f;
+      border-color: rgba(74, 222, 128, 0.55);
+    }
+
     .section-header {
       display: flex;
       justify-content: space-between;
@@ -171,6 +177,12 @@
       padding: 1.5rem;
       margin-top: 1.25rem;
       animation: fadeUp 280ms ease-out both;
+    }
+
+    .panel-new-section {
+      background: linear-gradient(145deg, rgba(20, 83, 45, 0.28), rgba(22, 101, 52, 0.2));
+      border-color: rgba(74, 222, 128, 0.55);
+      box-shadow: 0 10px 28px rgba(21, 128, 61, 0.22);
     }
 
     h2 {
@@ -296,18 +308,18 @@
     }
 
     .important-notice {
-      background: linear-gradient(145deg, rgba(220, 38, 38, 0.28), rgba(127, 29, 29, 0.34));
-      border: 1px solid rgba(248, 113, 113, 0.65);
+      background: linear-gradient(145deg, rgba(34, 197, 94, 0.2), rgba(21, 128, 61, 0.28));
+      border: 1px solid rgba(74, 222, 128, 0.55);
       border-radius: var(--radius-lg);
       padding: 1rem 1.1rem;
       margin: 0.5rem 0 1.5rem;
-      color: #fee2e2;
+      color: #dcfce7;
       animation: fadeUp 280ms ease-out both;
     }
 
     .important-notice h2 {
       margin: 0 0 0.65rem;
-      color: #fecaca;
+      color: #bbf7d0;
       font-size: 1.25rem;
     }
 
@@ -322,7 +334,7 @@
 
     .important-notice li {
       margin-bottom: 0.7rem;
-      color: #fee2e2;
+      color: #dcfce7;
     }
 
     @keyframes fadeUp {
@@ -381,13 +393,8 @@
 
     <section class="important-notice">
       <h2>Important Notice</h2>
-      <p>Hi Angelica. I've updated this page by making the following changes. I've added a lot of stuff so you can choose how much you want to do. Good luck in the exam! :)</p>
-      <ul>
-        <li>Rewritten the trigonometry section to hopefully make it easier to understand and remember. If you understand it and want to remember the diagram I recommend trying to redraw the diagram from memory 2-3 times a day for the next 2 days before your exam, that should be enough to remember it.</li>
-        <li>Created new practice questions for the composite and inverse function sections if you want to practice that topic more. (the factorisation sections are not changed).</li>
-        <li>Created a new section for the ratios exam question you tried in the last session with the simulataneous equations. I've added a better explanation of how the examiner answered the question. I've also added a couple of practice questions if you want more practice on that type of question.</li>
-        <li>Created a new section for the circle + line geometry problem you tried last week. I've added an explanation how to solve that problem and added a couple of practice problems if you want to practice the topic. I've also added pratice for similar problems which involve either perpendicular lines or tangent lines which may appear in the exam.</li>
-      </ul>
+      <p>Hi Angelica, I've added a new section covering finding co-ordinates of points from other points that we went through on Thursday with some practice questions.</p>
+      <p>Also, Louise is on holiday at the moment so I will message her about arranging tutoring session next week, but she may not reply so I can't guarantee there will be a session next week unfortunately.</p>
     </section>
 
     <section class="hero">
@@ -396,6 +403,7 @@
         <a class="btn btn-primary" href="#trig-solving">Trig Equations (Unit Circle)</a>
         <a class="btn btn-primary" href="#exam-ratios">Exam Question (Ratios)</a>
         <a class="btn btn-primary" href="#coord-geom-circle-line">Coordinate Geometry Problem</a>
+        <a class="btn btn-primary btn-new-section" href="#straight-line-coordinates">Straight Line Coordinates</a>
         <a class="btn btn-primary" href="#functions">Functions</a>
         <a class="btn btn-primary" href="#functions-practice">Functions Practice</a>
         <a class="btn btn-primary" href="#factorisation-indices">Factorisation &amp; Indices</a>
@@ -403,7 +411,7 @@
       </div>
     </section>
 
-    <div class="update-notice">Updated 01:47, May 12, 2026</div>
+    <div class="update-notice">Updated 16:04, May 22, 2026</div>
 
     <section class="panel collapsed" id="trig-solving">
       <div class="section-header">
@@ -886,6 +894,209 @@
           <div class="k-step">Centre is \((1,-2)\). Radius to \((5,-2)\) is horizontal (slope \(0\)).</div>
           <div class="k-step">Tangent is vertical, so equation is \(x=5\).</div>
           <p class="math-line">\[\boxed{x=5}\]</p>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="panel panel-new-section collapsed" id="straight-line-coordinates">
+      <div class="section-header">
+        <h2>Finding Coordinates on a Straight Line</h2>
+        <button class="section-toggle" type="button" aria-expanded="false" onclick="toggleSection('straight-line-coordinates', this)">Show section</button>
+      </div>
+
+      <div class="section-content">
+      <p>
+        This topic is about finding a missing point when you already know two points on the same straight line.
+        We can solve these questions with vectors, and we can also solve many of them using straight-line formulas.
+      </p>
+
+      <h3>Method 1: Vector Approach (Best for Point-to-Point Movement)</h3>
+      <div class="rule-box">
+        <p>Let the points be:</p>
+        <p class="math-line">\[A(x_1,y_1),\quad B(x_2,y_2)\]</p>
+        <p>The vector from \(A\) to \(B\) is:</p>
+        <p class="math-line">\[\overrightarrow{AB}=(x_2-x_1,\ y_2-y_1)\]</p>
+        <p>
+          Geometrically, every point on the same line through \(A\) is found by moving from \(A\)
+          in exactly the same direction as \(\overrightarrow{AB}\), just by a different amount.
+        </p>
+        <p>That is why any point \(P\) on this line can be written as:</p>
+        <p class="math-line">\[P=A+t\overrightarrow{AB}\]</p>
+        <p>
+          The parameter \(t\) does not create a new direction; it only scales the same direction vector.
+          So this formula encodes the geometry of one straight line through \(A\) and \(B\).
+        </p>
+        <p>If \(0&lt;t&lt;1\), then \(P\) is between \(A\) and \(B\). If \(t&gt;1\), it is beyond \(B\). If \(t&lt;0\), it is on the opposite side of \(A\).</p>
+      </div>
+
+      <h3>Method 2: Straight Line Formula</h3>
+      <div class="rule-box">
+        <p>
+          The vector picture above and the line-equation picture are the same geometry written differently.
+          If \(P(x,y)\) is on the line through \(A(x_1,y_1)\), then the movement from \(A\) to \(P\) is:
+        </p>
+        <p class="math-line">\[(x-x_1,\ y-y_1)\]</p>
+        <p>
+          For points on one straight line, this movement must be parallel to \(\overrightarrow{AB}=(x_2-x_1,\ y_2-y_1)\),
+          so their component ratio is equal.
+        </p>
+        <p class="math-line">\[m=\frac{y_2-y_1}{x_2-x_1}\]</p>
+        <p>
+          Rearranging that parallel-ratio idea gives point-slope form:
+        </p>
+        <p class="math-line">\[y-y_1=m(x-x_1)\]</p>
+        <p>
+          So this is not a random formula. It is the algebra version of: "the horizontal and vertical movement from \(A\)
+          to any point on the line keep the same ratio."
+        </p>
+      </div>
+
+      <h3>Worked Examples</h3>
+
+      <div class="example-block">
+        <h3>Example 1: Midpoint of Two Points</h3>
+        <p>Find the midpoint of \(A(2,5)\) and \(B(10,1)\).</p>
+        <div class="k-step">
+          Geometrically, the midpoint is the point reached by taking exactly half of the vector from \(A\) to \(B\).
+        </div>
+        <div class="k-step">
+          \(\overrightarrow{AB}=(10-2,\ 1-5)=(8,-4)\), so half of that movement is \((4,-2)\).
+        </div>
+        <div class="k-step">
+          Start at \(A\) and add half the movement: \((2,5)+(4,-2)=(6,3)\).
+        </div>
+        <div class="k-step">
+          This is equivalent to averaging coordinates, because "halfway" means half in both horizontal and vertical directions.
+        </div>
+        <p class="math-line">\[M=\left(\frac{2+10}{2},\frac{5+1}{2}\right)=(6,3)\]</p>
+      </div>
+
+      <div class="example-block">
+        <h3>Example 2: Point One Quarter of the Way from A to B</h3>
+        <p>Given \(A(-3,2)\), \(B(5,14)\), find \(P\) where \(P=A+\frac{1}{4}\overrightarrow{AB}\).</p>
+        <div class="k-step">
+          The phrase "one quarter of the way from \(A\) to \(B\)" is geometric information about position on the segment \(AB\).
+          So we should use one quarter of the direction vector from \(A\) to \(B\).
+        </div>
+        <div class="k-step">\(\overrightarrow{AB}=(5-(-3),\ 14-2)=(8,12)\).</div>
+        <div class="k-step">\(\frac{1}{4}\overrightarrow{AB}=(2,3)\).</div>
+        <div class="k-step">
+          Add this to \(A\): \(P=A+(2,3)=(-3+2,\ 2+3)=(-1,5)\).
+          This keeps \(P\) on the same line and places it 25% along from \(A\).
+        </div>
+        <p class="math-line">\[\boxed{P=(-1,5)}\]</p>
+      </div>
+
+      <div class="example-block">
+        <h3>Example 3: Find Missing y using the Line Equation</h3>
+        <p>Points \(A(1,-2)\) and \(B(9,6)\) lie on a line. Find the point on this line where \(x=7\).</p>
+        <div class="k-step">
+          Why use a line equation here? Because we are told the unknown point is on the same line as \(A\) and \(B\),
+          and an equation is the algebraic description of that exact geometric set of points.
+        </div>
+        <div class="k-step">
+          Build that line from the two known points:
+          \(m=\frac{6-(-2)}{9-1}=1\), then \(y-(-2)=1(x-1)\Rightarrow y=x-3\).
+        </div>
+        <div class="k-step">
+          Now enforce the extra geometric condition "the point has \(x=7\)" by substituting into the line equation:
+          \(y=7-3=4\).
+        </div>
+        <div class="k-step">
+          So \((7,4)\) is the unique point that satisfies both conditions: it lies on the line and has \(x=7\).
+        </div>
+        <p class="math-line">\[\boxed{(7,4)}\]</p>
+      </div>
+
+      <div class="example-block">
+        <h3>Example 4: Internal Division in a Ratio</h3>
+        <p>Find point \(P\) dividing \(AB\) in the ratio \(AP:PB=2:3\), where \(A(-4,7)\), \(B(11,-8)\).</p>
+        <div class="k-step">
+          The ratio tells us where \(P\) sits on the segment \(AB\). A ratio \(2:3\) means the whole segment is split into
+          \(2+3=5\) equal pieces, and \(P\) is 2 pieces from \(A\).
+        </div>
+        <div class="k-step">
+          So geometrically, \(\overrightarrow{AP}=\frac{2}{5}\overrightarrow{AB}\).
+          First compute \(\overrightarrow{AB}=(11-(-4),\ -8-7)=(15,-15)\).
+        </div>
+        <div class="k-step">Then \(\overrightarrow{AP}=\frac{2}{5}(15,-15)=(6,-6)\).</div>
+        <div class="k-step">Add this move to \(A\): \(P=A+\overrightarrow{AP}=(-4,7)+(6,-6)=(2,1)\).</div>
+        <div class="k-step">
+          This matches the geometry: \(P\) is inside the segment and closer to \(A\), since the first ratio part is smaller.
+        </div>
+        <p class="math-line">\[\boxed{P=(2,1)}\]</p>
+      </div>
+
+      <h3>Practice: Straight Line Coordinate Questions</h3>
+      <p class="hint">Try each one first. Then reveal the answer.</p>
+
+      <article class="practice-card">
+        <h3>Question 1</h3>
+        <p>Find the midpoint of \(A(-6,8)\) and \(B(4,-2)\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('slq1', this)">Show answer</button>
+        <div class="answer" id="slq1">
+          <div class="k-step">\(M=\left(\frac{-6+4}{2},\frac{8+(-2)}{2}\right)=(-1,3)\).</div>
+          <p class="math-line">\[\boxed{(-1,3)}\]</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 2</h3>
+        <p>Given \(A(2,1)\) and \(B(14,13)\), find \(P\) where \(P=A+\frac{1}{3}\overrightarrow{AB}\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('slq2', this)">Show answer</button>
+        <div class="answer" id="slq2">
+          <div class="k-step">\(\overrightarrow{AB}=(12,12)\), so \(\frac{1}{3}\overrightarrow{AB}=(4,4)\).</div>
+          <div class="k-step">\(P=(2,1)+(4,4)=(6,5)\).</div>
+          <p class="math-line">\[\boxed{(6,5)}\]</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 3</h3>
+        <p>Points \(A(-1,4)\) and \(B(7,-8)\) lie on a straight line. Find the point on this line where \(x=3\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('slq3', this)">Show answer</button>
+        <div class="answer" id="slq3">
+          <div class="k-step">Gradient: \(m=\frac{-8-4}{7-(-1)}=\frac{-12}{8}=-\frac{3}{2}\).</div>
+          <div class="k-step">Equation: \(y-4=-\frac{3}{2}(x+1)\).</div>
+          <div class="k-step">Substitute \(x=3\): \(y-4=-\frac{3}{2}(4)=-6\Rightarrow y=-2\).</div>
+          <p class="math-line">\[\boxed{(3,-2)}\]</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 4</h3>
+        <p>\(A(5,-3)\), \(B(17,9)\). Find point \(P\) that divides \(AB\) in the ratio \(AP:PB=1:2\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('slq4', this)">Show answer</button>
+        <div class="answer" id="slq4">
+          <div class="k-step">\(\overrightarrow{AB}=(12,12)\).</div>
+          <div class="k-step">For ratio \(1:2\), move \(\frac{1}{3}\) of the way from \(A\): \(\frac{1}{3}\overrightarrow{AB}=(4,4)\).</div>
+          <div class="k-step">\(P=(5,-3)+(4,4)=(9,1)\).</div>
+          <p class="math-line">\[\boxed{(9,1)}\]</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 5</h3>
+        <p>\(A(-2,7)\) and \(B(10,1)\) lie on a line. Find the point where \(y=4\).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('slq5', this)">Show answer</button>
+        <div class="answer" id="slq5">
+          <div class="k-step">Gradient: \(m=\frac{1-7}{10-(-2)}=\frac{-6}{12}=-\frac{1}{2}\).</div>
+          <div class="k-step">Equation: \(y-7=-\frac{1}{2}(x+2)\).</div>
+          <div class="k-step">Set \(y=4\): \(-3=-\frac{1}{2}(x+2)\Rightarrow 6=x+2\Rightarrow x=4\).</div>
+          <p class="math-line">\[\boxed{(4,4)}\]</p>
+        </div>
+      </article>
+
+      <article class="practice-card">
+        <h3>Question 6 (Challenge)</h3>
+        <p>Given \(A(1,2)\), \(B(5,14)\), find \(Q\) on the same straight line such that \(AQ=2AB\) (same direction as \(AB\)).</p>
+        <button class="answer-btn" type="button" aria-expanded="false" onclick="toggleAnswer('slq6', this)">Show answer</button>
+        <div class="answer" id="slq6">
+          <div class="k-step">\(\overrightarrow{AB}=(4,12)\).</div>
+          <div class="k-step">\(AQ=2AB\Rightarrow \overrightarrow{AQ}=(8,24)\).</div>
+          <div class="k-step">\(Q=A+(8,24)=(9,26)\).</div>
+          <p class="math-line">\[\boxed{(9,26)}\]</p>
         </div>
       </article>
       </div>
