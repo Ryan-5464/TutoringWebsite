@@ -130,10 +130,10 @@
       border-color: rgba(34, 211, 238, 0.4);
     }
 
-    .btn-new-section {
-      background: linear-gradient(135deg, #22C55E, #16A34A);
-      color: #04210f;
-      border-color: rgba(74, 222, 128, 0.55);
+    .btn-plans-section {
+      background: linear-gradient(135deg, #F472B6, #EC4899);
+      color: #3b0726;
+      border-color: rgba(244, 114, 182, 0.65);
     }
 
     .section-header {
@@ -179,10 +179,10 @@
       animation: fadeUp 280ms ease-out both;
     }
 
-    .panel-new-section {
-      background: linear-gradient(145deg, rgba(20, 83, 45, 0.28), rgba(22, 101, 52, 0.2));
-      border-color: rgba(74, 222, 128, 0.55);
-      box-shadow: 0 10px 28px rgba(21, 128, 61, 0.22);
+    .panel-plans-section {
+      background: linear-gradient(145deg, rgba(131, 24, 67, 0.28), rgba(157, 23, 77, 0.2));
+      border-color: rgba(244, 114, 182, 0.6);
+      box-shadow: 0 10px 28px rgba(190, 24, 93, 0.24);
     }
 
     h2 {
@@ -235,6 +235,14 @@
       text-align: center;
     }
 
+    .diagram-image-wrap.rotated-plan-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 760px;
+      margin: 2.5rem 0;
+    }
+
     .diagram-image {
       width: min(720px, 100%);
       height: auto;
@@ -242,6 +250,13 @@
       border: 1px solid rgba(51, 65, 85, 0.8);
       box-shadow: var(--shadow-soft);
       background: rgba(2, 6, 23, 0.35);
+    }
+
+    .diagram-image.rotate-clockwise-90 {
+      transform: rotate(90deg);
+      transform-origin: center center;
+      display: block;
+      margin: 0 auto;
     }
 
     .practice-card {
@@ -296,30 +311,30 @@
     }
 
     .update-notice {
-      background: linear-gradient(145deg, rgba(34, 211, 238, 0.1), rgba(99, 102, 241, 0.08));
-      border: 1px solid rgba(34, 211, 238, 0.3);
+      background: linear-gradient(145deg, rgba(244, 114, 182, 0.14), rgba(236, 72, 153, 0.1));
+      border: 1px solid rgba(244, 114, 182, 0.45);
       border-radius: var(--radius-md);
       padding: 0.75rem 1rem;
       margin: 1.5rem 0;
       font-size: 0.9rem;
-      color: #A5F3FC;
+      color: #FBCFE8;
       text-align: center;
       animation: fadeUp 280ms ease-out both;
     }
 
     .important-notice {
-      background: linear-gradient(145deg, rgba(34, 197, 94, 0.2), rgba(21, 128, 61, 0.28));
-      border: 1px solid rgba(74, 222, 128, 0.55);
+      background: linear-gradient(145deg, rgba(244, 114, 182, 0.2), rgba(236, 72, 153, 0.28));
+      border: 1px solid rgba(244, 114, 182, 0.55);
       border-radius: var(--radius-lg);
       padding: 1rem 1.1rem;
       margin: 0.5rem 0 1.5rem;
-      color: #dcfce7;
+      color: #FCE7F3;
       animation: fadeUp 280ms ease-out both;
     }
 
     .important-notice h2 {
       margin: 0 0 0.65rem;
-      color: #bbf7d0;
+      color: #FBCFE8;
       font-size: 1.25rem;
     }
 
@@ -334,7 +349,7 @@
 
     .important-notice li {
       margin-bottom: 0.7rem;
-      color: #dcfce7;
+      color: #FCE7F3;
     }
 
     @keyframes fadeUp {
@@ -393,8 +408,9 @@
 
     <section class="important-notice">
       <h2>Important Notice</h2>
-      <p>Hi Angelica, I've added a new section covering finding co-ordinates of points from other points that we went through on Thursday with some practice questions.</p>
-      <p>Also, Louise is on holiday at the moment so I will message her about arranging tutoring session next week, but she may not reply so I can't guarantee there will be a session next week unfortunately.</p>
+      <p>Hi Angelica, the plans and elevations section has been added. I hope the method helps you. I think if you can follow the steps in the exam, you'll still get some marks even if you can't complete the entire question.</p>
+      <p>I've added links to some practice questions and answers for you at the bottom of the section. many of the questions are shapes made from cubes, but try to ignore the individual cubes and think about the faces and edges of the overall shape (redrawing the shape without all the cube lines might be a helpful idea to make it easier to see). This will make more sense to you once you have read the section and start to practice.</p>
+      <p>Good luck in your exams!</p>
     </section>
 
     <section class="hero">
@@ -403,7 +419,8 @@
         <a class="btn btn-primary" href="#trig-solving">Trig Equations (Unit Circle)</a>
         <a class="btn btn-primary" href="#exam-ratios">Exam Question (Ratios)</a>
         <a class="btn btn-primary" href="#coord-geom-circle-line">Coordinate Geometry Problem</a>
-        <a class="btn btn-primary btn-new-section" href="#straight-line-coordinates">Straight Line Coordinates</a>
+        <a class="btn btn-primary" href="#straight-line-coordinates">Straight Line Coordinates</a>
+        <a class="btn btn-primary btn-plans-section" href="#plans-elevations">Plans and Elevations</a>
         <a class="btn btn-primary" href="#functions">Functions</a>
         <a class="btn btn-primary" href="#functions-practice">Functions Practice</a>
         <a class="btn btn-primary" href="#factorisation-indices">Factorisation &amp; Indices</a>
@@ -899,7 +916,7 @@
       </div>
     </section>
 
-    <section class="panel panel-new-section collapsed" id="straight-line-coordinates">
+    <section class="panel collapsed" id="straight-line-coordinates">
       <div class="section-header">
         <h2>Finding Coordinates on a Straight Line</h2>
         <button class="section-toggle" type="button" aria-expanded="false" onclick="toggleSection('straight-line-coordinates', this)">Show section</button>
@@ -1099,6 +1116,84 @@
           <p class="math-line">\[\boxed{(9,26)}\]</p>
         </div>
       </article>
+      </div>
+    </section>
+
+    <section class="panel panel-plans-section collapsed" id="plans-elevations">
+      <div class="section-header">
+        <h2>Plans and Elevations</h2>
+        <button class="section-toggle" type="button" aria-expanded="false" onclick="toggleSection('plans-elevations', this)">Show section</button>
+      </div>
+
+      <div class="section-content">
+      <p>
+        We will think about drawing plans and elevations in terms of <strong>faces</strong>, <strong>edges</strong>, and <strong>corners</strong>.
+        This keeps the drawing clear and stops us from missing important lines.
+      </p>
+
+      <div class="rule-box">
+        <p><strong>Step 1: Work out the object dimensions first.</strong></p>
+        <p>
+          Identify the <strong>width</strong>, <strong>depth</strong>, and <strong>height</strong> of the full 3D object.
+          These three measurements describe the size of the shape before you choose a view.
+        </p>
+      </div>
+
+      <div class="rule-box">
+        <p><strong>Step 2: Decide which dimensions matter for the view you are drawing.</strong></p>
+        <p>
+          For a <strong>plan</strong> (top view), use width and length.
+          For a <strong>front elevation</strong>, use width and height.
+          For a <strong>side elevation</strong>, use length and height.
+        </p>
+      </div>
+
+      <div class="example-block">
+        <h3>How To Draw Accurately</h3>
+        <div class="k-step">
+          First draw the <strong>outline</strong> of the required plan or elevation.
+          This is the outside boundary of what can be seen in that view.
+        </div>
+        <div class="k-step">
+          Then look for places where the shape changes width or height <strong>abruptly</strong>.
+          Those sudden changes create <strong>edges</strong>, so draw those edges on.
+        </div>
+        <div class="k-step">
+          If an abrupt change creates an edge that is <strong>hidden from view</strong>, draw that edge as a
+          <strong>dotted line</strong>.
+          Dotted lines show real edges that exist on the shape but cannot be seen directly from that viewpoint.
+        </div>
+      </div>
+
+      <div class="tip">
+        Quick check before finishing: have you shown the correct outside outline first, then all visible abrupt edges,
+        and finally any hidden abrupt edges as dotted lines?
+      </div>
+
+      <div class="diagram-image-wrap">
+        <img class="diagram-image" src="angplans/20260530_122412.jpg" alt="Plans and elevations example image 1" loading="lazy">
+      </div>
+      <div class="diagram-image-wrap">
+        <img class="diagram-image" src="angplans/20260530_122426.jpg" alt="Plans and elevations example image 2" loading="lazy">
+      </div>
+      <div class="diagram-image-wrap">
+        <img class="diagram-image" src="angplans/20260530_122440.jpg" alt="Plans and elevations example image 3" loading="lazy">
+      </div>
+      <div class="diagram-image-wrap">
+        <img class="diagram-image" src="angplans/20260530_122450.jpg" alt="Plans and elevations example image 4" loading="lazy">
+      </div>
+      <div class="diagram-image-wrap rotated-plan-image">
+        <img class="diagram-image rotate-clockwise-90" src="angplans/20260530_122502.jpg" alt="Plans and elevations example image 5" loading="lazy">
+      </div>
+      <div class="diagram-image-wrap rotated-plan-image">
+        <img class="diagram-image rotate-clockwise-90" src="angplans/20260530_122511.jpg" alt="Plans and elevations example image 6" loading="lazy">
+      </div>
+
+      <div class="rule-box">
+        <p><strong>Practice Links</strong></p>
+        <p>Questions: <a href="https://corbettmaths.com/wp-content/uploads/2025/03/Views-PQ.pdf" target="_blank" rel="noopener noreferrer">https://corbettmaths.com/wp-content/uploads/2025/03/Views-PQ.pdf</a></p>
+        <p>Answers: <a href="https://corbettmaths.com/wp-content/uploads/2025/03/Views-PQ-Answers.pdf" target="_blank" rel="noopener noreferrer">https://corbettmaths.com/wp-content/uploads/2025/03/Views-PQ-Answers.pdf</a></p>
+      </div>
       </div>
     </section>
 
